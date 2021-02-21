@@ -1,0 +1,22 @@
+.about-img{
+    background: black;
+    overflow: hidden;
+    position: relative;
+    border: none;
+}
+
+#about-us img{
+    height: 50vh;
+    opacity: 0.4;
+    width: 100%;
+}
+
+h2{
+    font-size: 23px;
+}
+
+.about-content{
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+}

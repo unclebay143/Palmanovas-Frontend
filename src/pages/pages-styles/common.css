@@ -1,0 +1,41 @@
+:root{
+    --deep-green: rgb(39, 95, 36);    
+    --light-green: rgb(68, 146, 64);    
+}
+
+.btn-custom-green{
+    background: var(--light-green) !important;
+    color: white;
+    border: none;
+    outline: none;
+}
+
+.bg-custom-green{
+    background: var(--deep-green) !important;
+}
+.bg-custom-dodgerblue{
+    background-color: rgb(28, 78, 128) !important;
+    background-color:dodgerblue !important;
+}
+
+.bg-custom-brown{
+    background-color: rgb(128, 61, 61) !important;
+}
+
+.text-custom-green{
+    color: var(--deep-green) !important;
+}
+
+.section-lead{
+    font-weight: 800;
+    font-size: 2rem;
+}
+
+ul{
+    list-style: none;
+}
+
+
+.form-lead{
+    font-size: 35px;
+}

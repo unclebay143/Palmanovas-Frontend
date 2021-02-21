@@ -1,12 +1,29 @@
+// React
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import { HashRouter as Router } from "react-router-dom";
+
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// Bootstrap
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.js';
+
+// Custom Styles
+import './pages/pages-styles/common.css';
+import './pages/pages-styles/home.css';
+import './pages/pages-styles/login.css';
+import './pages/pages-styles/signup.css';
+import './pages/pages-styles/forgotpassword.css';
+import './pages/pages-styles/about.css';
+
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <App />
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );
