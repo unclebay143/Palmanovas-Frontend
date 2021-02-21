@@ -18,13 +18,17 @@ import './pages/pages-styles/signup.css';
 import './pages/pages-styles/forgotpassword.css';
 import './pages/pages-styles/about.css';
 
+// Redux Store
+import store from './store';
+import { Provider } from 'react-redux';
+
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <Router>
       <App />
     </Router>
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 

@@ -1,0 +1,1 @@
+// File containing all the application redux action types
