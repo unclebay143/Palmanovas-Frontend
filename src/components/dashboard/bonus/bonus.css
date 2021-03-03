@@ -32,7 +32,7 @@
 .bonus .front span.new, .bonus .back span.new {
   position: absolute;
   background: #77d596;
-  background: var(--light-green)  ;
+  background: var(--light-green-1)  ;
   color: #fff;
   font-size: 14px;
   left: 0;
@@ -122,7 +122,7 @@
   color: #48AF6A;
 }
 .bonus .front .description .quick-detail, .bonus .back .description .quick-detail {
-  background-color: var(--light-green)  ;
+  background-color: var(--light-green-1)  ;
   position: absolute;
   bottom: 0;
   right: 0;
@@ -198,7 +198,7 @@
   max-width: 100%;
 }
 .bonus .front.back .description .quick-detail, .bonus .back.back .description .quick-detail {
-  background-color: var(--light-green)  ;
+  background-color: var(--light-green-1)  ;
   position: absolute;
   bottom: 0;
   left: 0;

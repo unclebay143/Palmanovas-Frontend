@@ -34,7 +34,7 @@
     min-width: 250px;
     max-width: 250px;
     background: #7386D5;
-    background: var(--light-green);
+    background: var(--light-green-1);
     /* background: red; */
     color: #fff;
     transition: all 0.3s;
@@ -48,7 +48,8 @@
     padding: 20px;
     /* background: #6d7fcc; */
     /* background: red;   */
-    background: var(--light-green);
+    background: var(--light-green-1);
+
 
 }
 
@@ -72,7 +73,7 @@
 #sidebar ul li a.active {
     /* color: var( --dashboard-blue);
      */
-     color: var(--light-green);
+     color: var(--light-green-1);
     background: #fff;
 }
 
@@ -98,7 +99,7 @@ a[data-toggle="collapse"] {
     /* background: var(--dashboard-blue); */
     /* background: #6d7fcc; */
     /* background: #000000; */
-    background: var(--light-green);
+    background: var(--light-green-1);
     color: white;
 }
 
@@ -129,7 +130,7 @@ a.article,
 a.article:hover {
     background: #6d7fcc !important;
     background: rgb(230,46,45) !important;
-    /* background: var(--light-green) !important; */
+    /* background: var(--light-green-1) !important; */
     color: #fff !important;
 }
 

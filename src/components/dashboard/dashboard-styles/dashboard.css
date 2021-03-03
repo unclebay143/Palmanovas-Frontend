@@ -1,9 +1,16 @@
 .dashboard-menu,
 .font-icon{
     cursor: pointer;
-    background: var(--light-green);
-    color: white;
-
+    /* background: var(--light-green-2); */
+    color: var(--light-green-2);
+    background:rgb(224, 238, 224);    
+    /* color: white; */
+    border: none;
 }
 
+.dashboard-menu{
+
+    width: 100px !important;
+    padding: 112px;
+}
 

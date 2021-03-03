@@ -22,7 +22,7 @@ const Cards = (props) => {
 
                         <div 
                             className="col-md-4 col-lg-3 col-sm-4 col-12 card p-2 mb-3 dashboard-menu" 
-                            style={{width: 'rem'}}
+                            // style={{width: '1rem'}}
                             style={{marginRight: '85px'}}
                         >
                             <div className="card-body text-center">
