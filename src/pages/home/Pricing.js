@@ -63,21 +63,21 @@ const Pricing = () => {
                             packagePercentage="ROI #199,800"
                             packagePrice="#108, 000 "
                             packagePercentageBreakDown = "#9,415per day for 21days"
-                            customBackgroundColor="bg-custom-brown"
+                            customBackgroundColor="bg-custom-dodgerblue"
                         />
                         <PricingCard 
                             packageName="Palmbronze"
                             packagePercentage="ROI #410,700"
                             packagePrice="#222,000"
                             packagePercentageBreakDown = "#19,557per day for 21days"
-                            customBackgroundColor="bg-custom-brown"
+                            customBackgroundColor="bg-custom-dodgerblue"
                         />
                         <PricingCard 
                             packageName="Palmgold"
                             packagePercentage="ROI #980,500"
                             packagePrice="#530,000"
                             packagePercentageBreakDown = "#46,690per day for 21days"
-                            customBackgroundColor="bg-custom-brown"
+                            customBackgroundColor="bg-custom-dodgerblue"
                         />
                         <PricingCard 
                             packageName="Palmmaster"

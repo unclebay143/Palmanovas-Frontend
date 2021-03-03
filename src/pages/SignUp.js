@@ -7,6 +7,9 @@ import ButtonLayout from '../components/common/ButtonLayout';
 // Images
 import pageBackgroundImage from '../assets/images/reward2.jpeg'
 
+// Images
+// import pageBackgroundImage from '../assets/images/forgotpassword.jpg'
+
 const SignUp = () => {
     return (
         <>

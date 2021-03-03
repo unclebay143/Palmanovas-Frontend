@@ -21,7 +21,8 @@ export const Navbar = () => {
                             data-toggle="collapse" 
                             data-target="#navbarSupportedContent" 
                             aria-controls="navbarSupportedContent" 
-                            aria-expanded="false" 
+                            // aria-expanded="false" 
+                            // aria-expanded="true" 
                             aria-label="Toggle navigation">
                             <i className="fas fa-align-justify" />
                         </button>

@@ -1,7 +1,9 @@
 .dashboard-menu,
 .font-icon{
     cursor: pointer;
-    color: var(--dashboard-blue);
+    background: var(--light-green);
+    color: white;
+
 }
 
 

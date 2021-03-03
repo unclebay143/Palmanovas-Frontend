@@ -6,7 +6,9 @@ import { Link } from 'react-router-dom';
 import ButtonLayout from '../components/common/ButtonLayout';
 
 // Images
-import pageBackgroundImage from '../assets/images/reward4.jpeg'
+// import pageBackgroundImage from '../assets/images/reward4.jpeg'
+// Images
+import pageBackgroundImage from '../assets/images/forgotpassword.jpg'
 
 const Login = () => {
     return (
