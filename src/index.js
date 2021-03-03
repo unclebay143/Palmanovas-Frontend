@@ -9,6 +9,7 @@ import reportWebVitals from './reportWebVitals';
 // Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.js';
+// import 'bootstrap/js/dist/tab.js';
 
 // Custom Styles
 import './pages/pages-styles/common.css';
@@ -18,9 +19,13 @@ import './pages/pages-styles/signup.css';
 import './pages/pages-styles/forgotpassword.css';
 import './pages/pages-styles/about.css';
 
-
 // Dashboard Styles
 import './components/dashboard/dashboard-styles/sidebar.css';
+import './components/dashboard/dashboard-styles/dashboard.css';
+import './components/dashboard/dashboard-styles/user-profile.css';
+import './components/dashboard/bonus/bonus.css';
+
+
 
 // Redux Store
 import store from './store';

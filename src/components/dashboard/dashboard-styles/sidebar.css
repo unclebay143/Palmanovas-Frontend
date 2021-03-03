@@ -1,4 +1,4 @@
-.navbar {
+.dashboard-navbar {
     padding: 15px 10px;
     background: #fff;
     border: none;
@@ -66,8 +66,9 @@
     display: block;
 }
 
-#sidebar ul li a:hover {
-    color: #7386D5;
+#sidebar ul li a:hover,
+#sidebar ul li a.active {
+    color: var( --dashboard-blue);
     background: #fff;
 }
 
@@ -87,6 +88,12 @@ a[data-toggle="collapse"] {
     top: 50%;
     right: 20px;
     transform: translateY(-50%);
+}
+
+#sidebarCollapse{
+    background: var(--dashboard-blue);
+    /* background: #6d7fcc; */
+    color: white;
 }
 
 ul ul a {
@@ -109,13 +116,14 @@ ul.CTAs a {
 
 a.download {
     background: #fff;
-    color: #7386D5;
+    color: var( --dashboard-blue);
 }
 
 a.article,
 a.article:hover {
     background: #6d7fcc !important;
     background: rgb(230,46,45) !important;
+    /* background: var(--light-green) !important; */
     color: #fff !important;
 }
 
@@ -125,7 +133,7 @@ a.article:hover {
 
 #content {
     width: 100%;
-    /* padding: 20px; */
+    padding: 20px;
     min-height: 100vh;
     transition: all 0.3s;
 }
@@ -143,5 +151,9 @@ a.article:hover {
     }
     #sidebarCollapse span {
         display: none;
+    }
+    
+    #content {
+        padding: 0px;
     }
 }

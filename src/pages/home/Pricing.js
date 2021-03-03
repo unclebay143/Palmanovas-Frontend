@@ -21,7 +21,7 @@ const PricingCard = ({ packageName, packagePrice, packagePercentage, packagePerc
                         <Link
                             to="/signup" 
                             type="button" 
-                            className={`btn btn-lg btn-block text-white ${customBackgroundColor ? customBackgroundColor : 'bg-custom-green'}`}
+                            className={`btn btn-lg btn-block text-white ${customBackgroundColor ? customBackgroundColor : 'bg-custom-dodgerblue'}`}
                             >{ buttonText } { !buttonText && 'Invest' }</Link>
                     </div>
                 </div>

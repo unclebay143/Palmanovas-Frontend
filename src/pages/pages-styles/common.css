@@ -1,6 +1,7 @@
 :root{
     --deep-green: rgb(39, 95, 36);    
     --light-green: rgb(68, 146, 64);    
+    --dashboard-blue: #7386D5;
 }
 
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
@@ -14,6 +15,9 @@ p {
     font-size: 1.1em;
     font-weight: 300;
     line-height: 1.7em;
+}
+
+.custom-p {
     color: #999;
 }
 
@@ -32,11 +36,16 @@ a:focus {
     outline: none;
 }
 
-.bg-custom-green{
+.bg-custom-deep-green{
     background: var(--deep-green) !important;
 }
+
+.bg-custom-light-green{
+    background: var(--light-green) !important;
+    color: white;
+}
+
 .bg-custom-dodgerblue{
-    background-color: rgb(28, 78, 128) !important;
     background-color:dodgerblue !important;
 }
 
@@ -46,6 +55,10 @@ a:focus {
 
 .text-custom-green{
     color: var(--deep-green) !important;
+}
+
+.text-custom-blue{
+    color: var(--dashboard-blue);
 }
 
 .section-lead{

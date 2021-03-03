@@ -1,0 +1,7 @@
+
+.hr-line{
+    width: 50px; 
+    border: 5px solid var(--light-green);
+    float: left;
+    border-radius: 5px;
+}

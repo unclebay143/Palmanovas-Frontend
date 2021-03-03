@@ -25,7 +25,6 @@ const IndexTemplate = () => {
                     <Route exact path="/about" component={ About } />
                     <Route exact path="/" component={ LandingPage } />
                 </Switch>
-
             <Footer />
         </>
     )
