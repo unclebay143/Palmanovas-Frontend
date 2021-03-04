@@ -14,13 +14,15 @@ import {
 
 // Layout
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Sidebar = () => {
+    const { isSideBarOpen } = useSelector(state => state.layout)
     return (
         <>
             {/* <div className="wrapper"> */}
                 {/* Sidebar  */}
-                <nav id="sidebar" className="ctive">
+                <nav id="sidebar" className={` ${ isSideBarOpen ? " " : "active"}`}>
                     <div className="sidebar-header">
                     <h3>Palmanovas</h3>
                     </div>

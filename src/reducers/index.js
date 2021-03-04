@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import sample from './sample';
+import layoutReducer from './layout';
 
 
 const rootReducer = combineReducers({
-    testing: sample
+    layout: layoutReducer
 });
 
 
