@@ -21,7 +21,7 @@ export const Bonus = () => {
                     <>
                         <div className="row">
                             <div className="col-md-4 col-lg-4 col-12">
-                                <div className={ `container bonus ${ flipBonusCard ? 'flip' : '' } ` }>
+                                <div className={ `bonus ${ flipBonusCard ? 'flip' : '' } ` }>
                                     {/* FRONT OF BONUS CARD */}    
                                     <div className="front">
                                         <span className="new">Share</span>

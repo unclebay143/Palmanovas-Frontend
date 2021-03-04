@@ -10,13 +10,13 @@ const Index = () => {
     const [isIROIMature, setIsIROIMature] = useState(false);
     return (
         <>
-            <div className="dashboard-Index">
+            <div className="container dashboard-Index">
                 <h4 className="h5 text-custom-green">
                     <FontAwesomeIcon icon={ faHandSparkles } className="mr-2 text-custom-green"/>
                     Welcome back, <span className="">Username</span>
                 <span className="float-lg-right h3 mr-3 d-block mt-3 mt-lg-0">Rank: starter</span>
                 </h4>
-                <section className="container-lg-lg clearfix">
+                <section className="clearfix">
                     <div className="float-lg-left mt-4">
                         <p className="text-lg-right custom-p text-custom-green">PalmaGold - #40, 000 {isIROIMature ? '( Matured )' : ''}</p>
                         { 
@@ -62,15 +62,18 @@ const Index = () => {
                     </div>
                 </section>
                 <section className="section-heading mt-4">
-                    <di className="clearfix">
-                        {/* <h3 className="">Menu</h3> */}
-                        {/* <hr className="hr-line"/> */}
-                    </di>
+                    <div className="clearfix">
+                        {/* <h3 className="">Menu</h3>
+                        <hr className="hr-line"/> */}
+                    </div>
                 </section>
-                <section className="pl-3 pr-3 pt-3 row">
-                    
-                    <Cards />
+                {/* <section className="container pl-3 pr-3 pt-3 row"> */}
+                <section className="container">
+                    <div className="row">
+                        <Cards />
+                    </div>
                 </section>
+               
             </div>
         </>
     )

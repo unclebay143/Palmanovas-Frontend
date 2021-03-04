@@ -1,6 +1,6 @@
 // React
 import React from 'react';
-import {user} from './Menu';
+import {user} from './appDb';
 
 // Fontawesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

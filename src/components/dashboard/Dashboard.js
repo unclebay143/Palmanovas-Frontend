@@ -23,7 +23,7 @@ const Dashboard = () => {
                 <Sidebar />
                 <div id="content">
                     <Navbar />
-                    <div className="m-2 m-lg-3 ">
+                    <div className="container m-2 m-lg-3 ">
                         <Switch>
                             <Route path="/dashboard/upgrade" component = { Upgrade } />
                             <Route path="/dashboard/profile" component = { UserProfile } />

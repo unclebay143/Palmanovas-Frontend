@@ -49,13 +49,14 @@
     /* background: #6d7fcc; */
     /* background: red;   */
     background: var(--light-green-1);
-
-
+    border-bottom: 1px solid #333333;
+    border-bottom: 1px solid white;
 }
 
 #sidebar ul.components {
     padding: 20px 0;
     border-bottom: 1px solid #333333;
+    border-bottom: 1px solid white;
 }
 
 #sidebar ul p {
