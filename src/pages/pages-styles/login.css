@@ -10,10 +10,15 @@
 /* Background Image Styling */
 
 .login-form img{
-    height: 100vh;
+    /* height: 100vh; */
     opacity: 0.4;
+    object-fit: cover;
 }
-
+@media(max-width: 900px){
+    .login-form img{
+        height: 90vh;
+    }
+}
 /* Page positioning */
 .form-area{
     width: 100%;

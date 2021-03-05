@@ -3,7 +3,7 @@ import React from 'react';
 // Fontawesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
-    faAlignLeft, 
+    faAlignLeft, faSignOutAlt, 
 } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from 'react-redux';
 import { TOGGLE_SIDEBAR } from '../../../actions/types';
@@ -19,12 +19,11 @@ export const Navbar = () => {
                         <button 
                             type="button" 
                             id="sidebarCollapse" 
-                            className="btn" 
+                            className="btn ml-3" 
                             onClick={(()=>dispatch(toggleSidebar()))}>
                             <FontAwesomeIcon icon={ faAlignLeft } className="mr-2"/>
-                            {/* <span>Toggle Sidebar</span> */}
                         </button>
-                        <button 
+                        {/* <button 
                             className="btn btn-dark d-inline-block d-lg-none ml-auto" 
                             type="button" 
                             data-toggle="collapse" 
@@ -32,8 +31,9 @@ export const Navbar = () => {
                             aria-controls="navbarSupportedContent" 
                             aria-expanded="true" 
                             aria-label="Toggle navigation">
-                            <i className="fas fa-align-justify" />
-                        </button>
+                            <i className="fas fa-align-justify" /> */}
+                            {/* <FontAwesomeIcon icon={ faSignOutAlt } className="mr-2"/> */}
+                        {/* </button> */}
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className="nav navbar-nav ml-auto">
                                 <li className="nav-item">

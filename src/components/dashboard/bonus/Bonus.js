@@ -5,8 +5,12 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
     faAngleRight,
-    faCheckCircle, faShareAlt, faTimesCircle, 
+    faCheckCircle, 
+    faShareAlt, 
+    faTimesCircle,
+    faAngleLeft
 } from "@fortawesome/free-solid-svg-icons";
+import { Link } from 'react-router-dom';
 
 
 export const Bonus = () => {
@@ -35,9 +39,9 @@ export const Bonus = () => {
                                             </span>
                                             <div className="content">
                                                 <h3> Social Share </h3>
-                                                <p className="text-primary"><a href="#"> Facebook </a></p>
-                                                <p className="text-primary"><a href="#"> Twitter </a></p>
-                                                <p className="text-primary"><a href="#"> Whatsapp </a></p>
+                                                <p className="text-primary"><a href="https://facebook.com/sharer/sharer.php?u=www.palmanovas.com"> Facebook </a></p>
+                                                <p className="text-primary"><a href="http://twitter.com/intent/tweet/?text=I joined palmanovas&url=www.palmanovas.com"> Twitter </a></p>
+                                                <p className="text-primary"><a href="http://api.whatsapp.com/send?text=I%20joined%20palmanovas"> Whatsapp </a></p>
                                             </div>
                                             <div className="price">
                                                 {/* <span className="old-price"><del></del></span><span className="new-price text-danger">4</span> */}
@@ -51,18 +55,13 @@ export const Bonus = () => {
 
                                     {/* BACK OF BONUS CARD */}
                                     <div className="back">
-                                        <div className="img-wrap">
-                                            <img src="https://cdn.macrumors.com/article-new/2014/11/macbook_air_yosemite-800x450.jpg" alt="mac air" />
-                                            <ul className="indicator">
-                                                <li><img src="https://cdn.macrumors.com/article-new/2014/11/macbook_air_yosemite-800x450.jpg" alt /></li>
-                                                <li><img src="https://cdn.macrumors.com/article-new/2014/11/macbook_air_yosemite-800x450.jpg" alt /></li>
-                                                <li><img src="https://cdn.macrumors.com/article-new/2014/11/macbook_air_yosemite-800x450.jpg" alt /></li>
-                                            </ul>
+                                        <div className="d-flex justify-content-center align-items-center" style={{height:'300px'}}>
+                                            <p>Thank you for choosing us</p>
                                         </div>
                                         {/* img-wrap */}
                                         <div className="description clearfix">
                                             <div className="quick-detail" onClick={(()=>setFlipBonusCard(false))}>
-                                                <i className="fa fa-angle-right" />
+                                                <FontAwesomeIcon icon={ faAngleLeft }/> 
                                             </div>
                                         </div>
                                         {/* /description */}
@@ -77,7 +76,7 @@ export const Bonus = () => {
                                         <h3>Bonus Tasks</h3>
                                         <hr className="hr-line"/>
                                     </div>
-                                    <ul>
+                                    <ul className="p-0">
                                         <li>
                                             <FontAwesomeIcon icon={ faCheckCircle } className="mr-2 text-custom-green" size="lg"/> 
                                             Refer 5 people

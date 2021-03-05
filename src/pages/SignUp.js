@@ -15,12 +15,12 @@ const SignUp = () => {
         <>
             <section className="card signup-form">
                 <div className="signup-img">
-                    <img src={pageBackgroundImage} className="card-img-top img-fluid" alt="signup page background"/>
+                    <img src={ pageBackgroundImage } className="card-img-top img-fluid" alt="signup page background"/>
                 </div>
                 <div className="form-area">
-                    <section>
+                    <section className="">
                         <h2 className="text-enter mb-4 form-lead">Signup</h2>
-                        <form className="">
+                        <section className="">
                             <div className="form-group">
                                 <label htmlFor="userName">Username</label>
                                 <input type="text" className="form-control" id="userName" aria-describedby="userNameHelp" placeholder="Enter Username"/>
@@ -52,7 +52,7 @@ const SignUp = () => {
                             <div className="form-group">
                                 <ButtonLayout customclass="btn-md form-control" label="Signup"/>
                             </div>
-                        </form>
+                        </section>
                     </section>
                 </div> 
             </section>

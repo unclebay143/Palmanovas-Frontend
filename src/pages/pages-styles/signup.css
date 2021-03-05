@@ -12,6 +12,7 @@
 .signup-form img{
     height: 120vh;
     opacity: 0.4;
+    object-fit: cover;
 }
 
 /* Page positioning */
@@ -27,7 +28,10 @@
 }
 
 /* Input sizes */
-.signup-form input[type="password"],
-.signup-form input[type="email"]{
-    width: 300px;
+
+@media (min-width: 900px){
+    .signup-form input[type="password"],
+    .signup-form input[type="emai"]{
+        width: 300px;
+    }
 }

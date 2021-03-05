@@ -12,6 +12,9 @@ const Upgrade = () => {
                 <hr className="hr-line"/>
             </div>
           </section>
+          <article>
+            <p>View the available palmanovas packages and choose an agent to pay to.</p>
+          </article>
           <section>
               <Tabs> 
                 {
@@ -22,7 +25,7 @@ const Upgrade = () => {
                           { // check and run this block if the current loop is packagesInformation
                             packagesInformation ? (
                               <>
-                              <p>{packagesInformation.map((x, index)=>{
+                              <p style={{overflow: 'scroll', height: '45vh'}}>{packagesInformation.map((x, index)=>{
                                 return(
                                   <>
                                   <dl>

@@ -3,8 +3,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { HashLink as ScrollLink } from 'react-router-hash-link'
 
+// Fontawesome
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHands, faHandsHelping, faHome, faSearch } from '@fortawesome/free-solid-svg-icons';
+
 // Images
-import logo2 from '../../assets/images/logo2.PNG'
+import logo2 from '../../assets/images/logo2.PNG';
+
+// Social icons
+import { SocialIcon } from 'react-social-icons'
+
 
 const Footer = () => {
     return (
@@ -15,7 +23,10 @@ const Footer = () => {
                     <div className="logo-brand">
                         <img src={ logo2 } alt="palmanovas logo on the footer" className="mb-3 pb-1"/>
                         <hr className="bg-white"/>
-                        <h5 className="mt-lg-5 mb-5 pt-1" >Address</h5>
+                        <h5 className="mt-lg-5 mb-5 pt-1">
+                            <FontAwesomeIcon icon={ faHome } className="mr-2"/>
+                            Address
+                        </h5>
                         <address className="text-muted">Abuja Area 10 wusa, Nigeria</address>
                         <hr />
                         <p className="text-muted">Send us an email today: palmanovas@gmail.com</p>
@@ -23,7 +34,10 @@ const Footer = () => {
                 </div>
                 <div className='col-md-3 col-lg-3 mt-lg-0 mt-5' id="contact-us">
                     <ul className="p-0">
-                        <h5 className="mt-lg-5 mb-5 pt-1" >Quick Access</h5>
+                        <h5 className="mt-lg-5 mb-5 pt-1" >
+                            <FontAwesomeIcon icon={ faSearch } className="mr-2"/>
+                            Quick Access
+                        </h5>
                         <hr className="bg-white"/>
                         <li className="py-2"><Link to="/" className="text-muted">Home</Link></li>
                         <li className="py-2">
@@ -54,9 +68,29 @@ const Footer = () => {
                 </div>
                 <div className="col-md-4 col-lg-4 mt-lg-0 mt-5">
                     <ul className="p-0">
-                        <h5 className="mt-5 mb-5 pt-1">Contact Phone</h5>
+                        <h5 className="mt-5 mb-5 pt-1">
+                            <FontAwesomeIcon icon={ faHandsHelping } className="mr-2"/>
+                            Get in touch
+                        </h5>
                         <hr className="bg-white"/>
-                        <li className="text-muted py-2"><span>+234 08-137-201-776</span></li>
+                        <li className="text-muted py-4">
+                            <span>
+                                <SocialIcon url="http://facebook.com/" network="facebook" style={{ height: 25, width: 25, }}/>
+                                <span className="ml-3">Facebook</span>
+                            </span>
+                        </li>
+                        <li className="text-muted py-4">
+                            <span>
+                                <SocialIcon url="http://twitter.com/" network="twitter" style={{ height: 25, width: 25, }}/>
+                                <span className="ml-3">Twitter</span>
+                            </span>
+                        </li>
+                        <li className="text-muted py-4">
+                            <span>
+                                <SocialIcon url="http://whatsapp.com/" network="whatsapp" style={{ height: 25, width: 25, }}/>
+                                <span className="ml-3">Whatsapp</span>
+                            </span>
+                        </li>
                         <li className="text-muted py-2"><span>+234 08-137-201-776</span></li>
                     </ul>
                 </div>
