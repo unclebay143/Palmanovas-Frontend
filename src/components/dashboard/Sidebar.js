@@ -68,6 +68,12 @@ const Sidebar = () => {
                                 Referrals
                             </NavLink>
                         </li>
+                        <li>
+                            <NavLink exact to="/dashboard/referrals" activeClassName="active">
+                                <FontAwesomeIcon icon={ faUsers } className="mr-2"/>
+                                Resolution
+                            </NavLink>
+                        </li>
                     </ul>
                     <ul className="list-unstyled CTAs">
                         <li>

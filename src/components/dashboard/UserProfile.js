@@ -56,7 +56,10 @@ const UserProfile = () => {
                             Account Number: { user.account.accountNumber }
                         </p>
                         <p>
-                            Account Name: { user.account.accountType }
+                            Account Name: { user.account.accountName }
+                        </p>
+                        <p>
+                            Account Type: { user.account.accountType }
                         </p>
                         <button 
                             className="btn btn-sm bg-custom-light-green">Update 

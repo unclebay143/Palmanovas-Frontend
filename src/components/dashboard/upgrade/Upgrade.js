@@ -1,6 +1,6 @@
 import React from 'react';
 import Tabs from '../Layout/tab/Tabs'
-import { agents } from '../appDb';
+import { upgradeAndAgentsDetails } from '../appDb';
 const Upgrade = () => {
     return (
 
@@ -8,28 +8,53 @@ const Upgrade = () => {
         <div className="upgrade">
           <section className="section-heading mt-5">
             <div className="clearfix">
-                <h3>Payment Option</h3>
+                <h3>Upgrade & Payment Option</h3>
                 <hr className="hr-line"/>
             </div>
           </section>
           <section>
               <Tabs> 
                 {
-                  agents.map(({ name, whatsappNumber, sr, cryptoAddress }, index)=>{
+                  upgradeAndAgentsDetails.map(({ name, whatsappNumber, sr, cryptoAddress, packagesInformation  }, index)=>{
                     return(
                       <div label={ sr } className="tab-heading" key={ index }> 
+                        <section className="my-4">
+                          { // check and run this block if the current loop is packagesInformation
+                            packagesInformation ? (
+                              <>
+                              <p>{packagesInformation.map((x, index)=>{
+                                return(
+                                  <>
+                                  <dl>
+                                    <dt> {index + 1}. {x.packageName}</dt>
+                                    <dd>{x.packagePrice}</dd>
+                                    <dd>{x.packageDescription}</dd>
+                                  </dl>
 
+                                  </>
+                                )
+                              })}</p>
+                              </>
+                              
+                            ):( // else run this block if the the current loop is not packagesInformation
+                              <>
+                                {
+                                  cryptoAddress ? ( // run this block if there is a cryptoAddress
+                                    <p>Wallet Address: <em>{ cryptoAddress }</em></p>
+                                    ) : ( // run this block for agent details
+                                      <>
+                                      <p>Name: <em>{ name }</em></p>
+                                      <p>Whatsapp Number: <em>{ whatsappNumber }</em></p>
+                                    </>
+                                  )
+                                }
+                              </>
+                            )
+                          }
+                        </section>
                         {
-                          cryptoAddress ? (
-                            <p>Wallet Address: <em>{ cryptoAddress }</em></p>
-                          ) : (
-                            <>
-                              <p>Name: <em>{ name }</em></p>
-                              <p>Whatsapp Number: <em>{ whatsappNumber }</em></p>
-                            </>
-                          )
+                          !packagesInformation && <button className="btn btn-sm btn-custom-green">I have paid to { sr }</button>
                         }
-                        <button className="btn btn-sm btn-custom-green">I have paid to { sr }</button>
                       </div> 
                     )
                   })

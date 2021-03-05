@@ -15,6 +15,7 @@ import Referral from './referral/Referral';
 import PaymentHistory from './history/PaymentHistory';
 import Bonus from './bonus/Bonus';
 import Upgrade from './upgrade/Upgrade';
+import RequestWithdrawal from './request-payment/RequestWithdrawal';
 
 const Dashboard = () => {
     return (
@@ -25,6 +26,7 @@ const Dashboard = () => {
                     <Navbar />
                     <div className="container m-2 m-lg-3 ">
                         <Switch>
+                            <Route path="/dashboard/withdraw" component = { RequestWithdrawal } />
                             <Route path="/dashboard/upgrade" component = { Upgrade } />
                             <Route path="/dashboard/profile" component = { UserProfile } />
                             <Route path="/dashboard/referrals" component = { Referral } />

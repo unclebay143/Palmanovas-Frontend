@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHandSparkles } from "@fortawesome/free-solid-svg-icons";
 import Cards from './Layout/Cards';
+import { Link } from 'react-router-dom';
 
 const Index = () => {
     const [isIROIMature, setIsIROIMature] = useState(false);
@@ -23,9 +24,9 @@ const Index = () => {
                         // ternary conditional rendering basd on ROI maturity
                             isIROIMature ? (
 
-                                <div>
-                                    <button className="btn btn-sm btn-warning text-white">Request Withdrawal</button>
-                                </div>
+                                <>
+                                    <Link to="/dashboard/withdraw" className="btn btn-sm btn-warning text-white">Request Withdrawal</Link>
+                                </>
 
                             ):(
                                 <div className="progress" onClick={(()=>setIsIROIMature(true))}>
