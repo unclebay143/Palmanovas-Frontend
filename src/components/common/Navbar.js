@@ -1,10 +1,10 @@
 // React
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { HashLink as ScrollLink } from 'react-router-hash-link';
 
 // Images
-import logo from '../../assets/images/logo.png';
+import logo from '../../assets/images/logo1.png';
 
 const Navbar = () => {
     return (
@@ -19,11 +19,11 @@ const Navbar = () => {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav mr-auto">
-                            <li className="nav-item active">
-                                <Link className="nav-link" to="/">Home <span className="sr-only">(current)</span></Link>
+                            <li className="nav-item">
+                                <NavLink exact activeClassName="active" className="nav-link" active to="/">Home <span className="sr-only">(current)</span></NavLink>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/about">About us</Link>
+                                <NavLink activeClassName="active" className="nav-link" to="/about">About us</NavLink>
                             </li>
                             <li className="nav-item">
                                 <ScrollLink 
@@ -61,10 +61,10 @@ const Navbar = () => {
                         </ul>
                         <ul className="float-md-right navbar-nav">
                             <li className="nav-item">
-                                <Link to="/login" className="nav-link">Login</Link>
+                                <NavLink activeClassName="active" to="/login" className="nav-link">Login</NavLink>
                             </li>
                             <li className="nav-item">
-                                <Link to="/signup" className="nav-link">Sign Up</Link>
+                                <NavLink activeClassName="active" to="/signup" className="nav-link">Sign Up</NavLink>
                             </li>                
                         </ul>
                     </div>

@@ -1,5 +1,5 @@
+// React
 import React, { useState } from 'react';
-
 
 // Fontawesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,15 +8,15 @@ import {
     faCheckCircle, 
     faShareAlt, 
     faTimesCircle,
-    faAngleLeft
+    faAngleLeft,
+    faSpinner
 } from "@fortawesome/free-solid-svg-icons";
-import { Link } from 'react-router-dom';
 
 
 export const Bonus = () => {
 
     const [flipBonusCard, setFlipBonusCard] = useState(false)
-    const [isBonusAvailable, setIsBonusAvailable] = useState(true)
+    const [isBonusAvailable] = useState(true)
     
     return (
         <>
@@ -90,7 +90,7 @@ export const Bonus = () => {
                                             Upgrade your package
                                         </li>
                                         <li>
-                                            <FontAwesomeIcon icon={ faTimesCircle } className="mr-2 text-danger" size="lg"/> 
+                                            <FontAwesomeIcon icon={ faSpinner } className="mr-2 text-custom-green" size="lg"/> 
                                             More tasks loading
                                         </li>
                                     </ul>

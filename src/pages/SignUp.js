@@ -7,10 +7,19 @@ import ButtonLayout from '../components/common/ButtonLayout';
 // Images
 import pageBackgroundImage from '../assets/images/reward2.jpeg'
 
-// Images
-// import pageBackgroundImage from '../assets/images/forgotpassword.jpg'
+// Layout
+import { TextInput } from '../components/common/FormInput';
+
+// Formik
+import { ErrorMessage, Form, Formik } from 'formik';
+
+// Schema
+import { signUpSchema } from '../Validation/Schema';
+import { handleRegistration } from '../actions/userAction';
+import { useDispatch } from 'react-redux';
 
 const SignUp = () => {
+    const dispatch = useDispatch()
     return (
         <>
             <section className="card signup-form">
@@ -20,39 +29,147 @@ const SignUp = () => {
                 <div className="form-area">
                     <section className="">
                         <h2 className="text-enter mb-4 form-lead">Signup</h2>
-                        <section className="">
-                            <div className="form-group">
-                                <label htmlFor="userName">Username</label>
-                                <input type="text" className="form-control" id="userName" aria-describedby="userNameHelp" placeholder="Enter Username"/>
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="email">Email address</label>
-                                <input type="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter Valid Email"/>
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="phone">Phone number</label>
-                                <input type="phone" className="form-control" id="phone" aria-describedby="phoneHelp" placeholder="Enter Phone Number"/>
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="password1">Password</label>
-                                <input type="password" className="form-control" id="password1" placeholder="Create Password" autoComplete="true"/>
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="password2">Confirm Password</label>
-                                <input type="password" className="form-control" id="password2" placeholder="Confirm Password" autoComplete="true"/>
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="referral">Referral <span className="text-muted">(Optional)</span></label>
-                                <input type="referral" className="form-control" id="referral" aria-describedby="referralHelp" placeholder="Enter referral id or username"/>
-                            </div>
-                            <div className="form-group form-check">
-                                <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                                <label className="form-check-label" htmlFor="exampleCheck1">Accept Terms and Condition.</label>
-                            </div>
-                            <div className="form-group">
-                                <ButtonLayout customclass="btn-md form-control" label="Signup"/>
-                            </div>
-                        </section>
+                        {/* <section className=""> */}
+                        <Formik
+                            initialValues={{
+                                email: '',
+                                password: '',
+                                confirmPassword: '',
+                                userName: '',
+                                referral: '',
+                                phone: ''
+                            }}
+                            validationSchema={ signUpSchema }
+                            onSubmit={(values, action)=>{
+                                dispatch(handleRegistration(values, action))
+                            }}
+                        >
+                            {({values, errors, touched, isSubmitting })=>(
+                                    <Form className="">
+                                        <div className="form-group">
+                                            <TextInput 
+                                                label="Username"
+                                                name="userName"
+                                                type="userName"
+                                                className={`form-control ${
+                                                    touched.userName && errors.userName ? "is-invalid" : ""
+                                                }`}
+                                                id="userName"
+                                                placeholder="Enter Username"
+                                            />
+                                            <ErrorMessage
+                                                component="div"
+                                                name="userName"
+                                                className="invalid-feedback p-0"
+                                            />
+                                        </div>
+                                        <div className="form-group">
+                                            <TextInput 
+                                                label="Email address"
+                                                name="email"
+                                                type="email"
+                                                className={`form-control ${
+                                                    touched.email && errors.email ? "is-invalid" : ""
+                                                }`}
+                                                id="email"
+                                                placeholder="Enter Valid Email"
+                                            />
+                                            <ErrorMessage
+                                                component="div"
+                                                name="email"
+                                                className="invalid-feedback p-0"
+                                            />
+                                        </div>
+                                        <div className="form-group">
+                                            <TextInput 
+                                                label="Phone number"
+                                                name="phone"
+                                                type="phone"
+                                                className={`form-control ${
+                                                    touched.phone && errors.phone ? "is-invalid" : ""
+                                                }`}
+                                                id="phone"
+                                                placeholder="Enter Phone Number"
+                                            />
+                                            <ErrorMessage
+                                                component="div"
+                                                name="phone"
+                                                className="invalid-feedback p-0"
+                                            />
+                                        </div>
+                                        <div className="form-group">
+                                            <TextInput 
+                                                name="password"
+                                                type="password"
+                                                label="Password"
+                                                className={`form-control ${
+                                                    touched.password && errors.password ? "is-invalid" : ""
+                                                }`}
+                                                id="password"
+                                                placeholder="Create Password"
+                                                autoComplete='on'
+                                            />
+                                            <ErrorMessage
+                                                component="div"
+                                                name="password"
+                                                className="invalid-feedback"
+                                            />
+                                        </div>
+                                        <div className="form-group">
+                                            <TextInput 
+                                                name="confirmPassword"
+                                                type="password"
+                                                label="Confirm Password"
+                                                className={`form-control ${
+                                                    touched.confirmPassword && errors.confirmPassword ? "is-invalid" : ""
+                                                }`}
+                                                id="confirmPassword"
+                                                placeholder="Repeat Password"
+                                                autoComplete='on'
+                                            />
+                                            <ErrorMessage
+                                                component="div"
+                                                name="confirmPassword"
+                                                className="invalid-feedback"
+                                            />
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor="referral">Referral <span className="text-muted">(Optional)</span></label>
+                                            <TextInput 
+                                                name="referral"
+                                                type="text"
+                                                // label="Referral"
+                                                className={`form-control ${
+                                                    touched.referral && errors.referral ? "is-invalid" : ""
+                                                }`}
+                                                id="referral"
+                                                placeholder="Enter referral id or username"
+                                                autoComplete='on'
+                                            />
+                                            <ErrorMessage
+                                                component="div"
+                                                name="confirmPassword"
+                                                className="invalid-feedback"
+                                            />
+                                        </div>
+                                        <div className="form-group form-check">
+                                            <input type="checkbox" className="form-check-input" id="exampleCheck1" />
+                                            <label className="form-check-label" htmlFor="exampleCheck1">Accept Terms and Condition.</label>
+                                        </div>
+                                        <div className="form-group">
+                                            <ButtonLayout 
+                                                type="submit"
+                                                customclass="btn-md form-control" 
+                                                disabled={isSubmitting}
+                                                label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Loading...</span>) : "Signup"}
+                                            />
+                                        </div>
+                                        
+                                    </Form>
+
+                                )
+                            }
+                        </Formik>
                     </section>
                 </div> 
             </section>

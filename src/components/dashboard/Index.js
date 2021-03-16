@@ -6,62 +6,99 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHandSparkles } from "@fortawesome/free-solid-svg-icons";
 import Cards from './Layout/Cards';
 import { Link } from 'react-router-dom';
+import { user } from './appDb'
 
 const Index = () => {
-    const [isIROIMature, setIsIROIMature] = useState(false);
+    const [isIROIMature, setIsIROIMature] = useState(true);
+    const isPaymentApproved = false;
+    const hasInvestment = false;
+    // const purchasedDate = "Mar 7 2021";
+    // const matureDate = "Mar 10 2021";
+    // // const formatedMatureDate = new Date(matureDate).getTime()
+    // const formatPurchasedDate = new Date(purchasedDate).getTime();
+    // const rem = formatedMatureDate - formatPurchasedDate
+    // const remainingDaysToMature = Math.floor(rem / (1000 * 3600 * 24))  
     return (
         <>
-            <div className="container dashboard-Index">
-                <h4 className="h5 text-custom-green">
+            <div className="container dashboard-Index"> 
+                <h5 className="text-custom-green" style={{lineHeight: '2'}}>
                     <FontAwesomeIcon icon={ faHandSparkles } className="mr-2 text-custom-green"/>
-                    Welcome back, <span className="">Username</span>
-                <span className="float-lg-right h3 mr-3 d-block mt-3 mt-lg-0">Rank: starter</span>
-                </h4>
-                <section className="clearfix">
-                    <div className="float-lg-left mt-4">
-                        <p className="text-lg-right custom-p text-custom-green">PalmaGold - #40, 000 {isIROIMature ? '( Matured )' : ''}</p>
-                        { 
-                        // ternary conditional rendering basd on ROI maturity
-                            isIROIMature ? (
+                    Welcome back, <span className="p-0">{ user.profile.username }</span>
+                    <span className="float-lg-right h3 mr-3 d-block mt-3 mt-lg-0">Rank: starter</span>
+                </h5>
+                {/* {formatedMatureDate === formatPurchasedDate ? "matured" : ("growing till "+ remainingDaysToMature)} */}
+                {
+                    hasInvestment && 
+                        <section className="clearfix">
+                            <div className={` ${ isPaymentApproved ? "" : "float-lg-left"} mt-4`}>
+                                <p className="text-lg-right custom-p text-custom-green">
+                                    PalmaGold - #40, 000 
+                                    {
+                                        isIROIMature ? (<span className=""> ( Matured )</span>) : ''
+                                    }
+                                </p>
+                                {
+                                    isPaymentApproved ?
+                                    (
+                                        
+                                        <>
+                                            <p to="/dashboard/withdraw" className="alert alert-success">Payment Approved</p>
+                                        </>
+                                    )
+                                    
+                                : 
+                                    (
+                                        
+                                        <>
 
-                                <>
-                                    <Link to="/dashboard/withdraw" className="btn btn-sm btn-warning text-white">Request Withdrawal</Link>
-                                </>
+                                            { 
+                                            // ternary conditional rendering basd on ROI maturity
+                                                isIROIMature ? (
 
-                            ):(
-                                <div className="progress" onClick={(()=>setIsIROIMature(true))}>
-                                    <div 
-                                        className="progress-bar progress-bar-striped bg-warning active" 
-                                        role="progressbar" 
-                                        aria-valuenow={15} 
-                                        aria-valuemin={0} 
-                                        aria-valuemax={15} 
-                                        style={{ width: '15%' }}>
-                                        15%
-                                    </div>
-                                    <div 
-                                        className="progress-bar progress-bar-striped bg-danger active" 
-                                        role="progressbar" 
-                                        aria-valuenow={25} 
-                                        aria-valuemin={0} 
-                                        aria-valuemax={25} 
-                                        style={{ width: '25%' }}>
-                                        25%
-                                    </div>
-                                    <div 
-                                        className="progress-bar progress-bar-striped active" 
-                                        role="progressbar" 
-                                        aria-valuenow={60} 
-                                        aria-valuemin={0} 
-                                        aria-valuemax={60} 
-                                        style={{ width: '60%' }}>
-                                        100%
-                                    </div>
-                                </div>
-                            )
-                        }
-                    </div>
-                </section>
+                                                    <>
+                                                
+                                                        <Link to="/dashboard/withdraw" className="btn btn-sm btn-warning text-white">Request Withdrawal</Link>
+                                                    </>
+
+                                                ):(
+                                                    <div className="progress" onClick={(()=>setIsIROIMature(true))}>
+                                                        <div 
+                                                            className="progress-bar progress-bar-striped bg-warning active" 
+                                                            role="progressbar" 
+                                                            aria-valuenow={15} 
+                                                            aria-valuemin={0} 
+                                                            aria-valuemax={15} 
+                                                            style={{ width: '25%' }}>
+                                                            25%
+                                                        </div>
+                                                        <div 
+                                                            className="progress-bar progress-bar-striped bg-danger active" 
+                                                            role="progressbar" 
+                                                            aria-valuenow={25} 
+                                                            aria-valuemin={0} 
+                                                            aria-valuemax={25} 
+                                                            style={{ width: '25%' }}>
+                                                            50%
+                                                        </div>
+                                                        <div 
+                                                            className="progress-bar progress-bar-striped active" 
+                                                            role="progressbar" 
+                                                            aria-valuenow={60} 
+                                                            aria-valuemin={0} 
+                                                            aria-valuemax={60} 
+                                                            style={{ width: '50%' }}>
+                                                            100%
+                                                        </div>
+                                                    </div>
+                                                )
+                                            }
+                                        </>
+
+                                    )
+                                }
+                            </div>
+                        </section>
+                }
                 <section className="section-heading mt-4">
                     <div className="clearfix">
                         {/* <h3 className="">Menu</h3>

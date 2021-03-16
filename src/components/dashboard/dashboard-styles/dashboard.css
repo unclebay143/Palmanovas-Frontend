@@ -12,14 +12,14 @@
     padding: 1rem;
 }
 
+.dashboard-menu:hover{
+    border: 1px solid var(--light-green-2);
+    cursor: pointer;
+}
+
 .card-title{
     word-wrap: nowrap !important;
     font-size: 15px;
     font-weight: 600;
-}
-
-.dashboard-menu:hover{
-    border: 1px solid var(--light-green-2);
-    cursor: pointer;
 }
 

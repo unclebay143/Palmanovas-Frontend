@@ -1,7 +1,6 @@
 import { 
     faGift,
     faHistory,
-    faMoneyBill,
     faMoneyBillAlt,
     faPaperPlane,
     faSignOutAlt,
@@ -12,7 +11,6 @@ const MenuItem = [
     {
         id: 1,
         title: "Wallets",
-        // icon: faMoneyBill,
         icon: faMoneyBillAlt,
         url: '/dashboard/wallet'
     },
@@ -49,6 +47,7 @@ const MenuItem = [
 ]
 
 export const user = {
+    isAdmin: false,
     profile:{
         name: "Ayodele Samuel Adebayo",
         username: "unclebay143",
@@ -66,6 +65,12 @@ export const user = {
     crypto:{
         id: "93939kdkdkdlaaoow994994",
         email: "crypto@gmail.com"
+    },
+    packagePurchased:{
+        name: 'PalmaGold',
+        price: '#40, 000',
+        purchasedDate: 'Mar 7 2021',
+        maturedDate: 'Mar 10 2021'
     }
 };
 
@@ -132,13 +137,13 @@ export const upgradeAndAgentsDetails = [
             name: "Mabel",
             whatsappNumber: '+234 813 547 8532'
         },
+        // {
+        //     sr: 'Agent 3',
+        //     name: "O.J",
+        //     whatsappNumber: '+234 706 586 5777'
+        // },
         {
             sr: 'Agent 3',
-            name: "O.J",
-            whatsappNumber: '+234 706 586 5777'
-        },
-        {
-            sr: 'Agent 4',
             name: "Dickson",
             whatsappNumber: '+234 906 344 7206'
         },

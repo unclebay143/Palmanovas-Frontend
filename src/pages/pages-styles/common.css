@@ -44,6 +44,7 @@ a:focus {
 
 .btn-custom-green:hover{
     text-decoration: underline;
+    color: white;
 }
 
 .bg-custom-deep-green{

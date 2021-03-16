@@ -1,0 +1,1 @@
+export const AUTH_API = 'https://reqres.in/';

@@ -1,7 +1,41 @@
 import React from 'react';
 import Tabs from '../Layout/tab/Tabs'
 import { upgradeAndAgentsDetails } from '../appDb';
+import Swal from 'sweetalert2'
 const Upgrade = () => {
+
+  const promptUser = (payeeId, payeeName) =>{
+    Swal.fire({
+      title: 'Are you sure?',
+      html: `A ticket will be raised that you have paid to <b>${ payeeId }</b> ( ${ payeeName } )`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: 'rgb(83,175,80',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, I have paid!',
+      customClass: {
+        confirmButton: 'btn  btn-custom-green',
+        cancelButton: 'btn btn-danger ml-2'
+      },
+      buttonsStyling: false
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+
+          // 'Confirmed!',
+          // 'Your ticket has been created.',
+          // 'success',
+          {
+            title: 'Confirmed!',
+            icon: 'success',
+            text: 'Your ticket has been created.',
+            confirmButtonColor: 'rgb(83,175,80',
+          }
+
+        )
+      }
+    })
+  }
     return (
 
       <>
@@ -25,13 +59,13 @@ const Upgrade = () => {
                           { // check and run this block if the current loop is packagesInformation
                             packagesInformation ? (
                               <>
-                              <p style={{overflow: 'scroll', height: '45vh'}}>{packagesInformation.map((x, index)=>{
+                              <p style={{overflow: 'scroll', height: '45vh'}}>{packagesInformation.map((packageInfo, index)=>{
                                 return(
                                   <>
                                   <dl>
-                                    <dt> {index + 1}. {x.packageName}</dt>
-                                    <dd>{x.packagePrice}</dd>
-                                    <dd>{x.packageDescription}</dd>
+                                    <dt> {index + 1}. {packageInfo.packageName}</dt>
+                                    <dd>{packageInfo.packagePrice}</dd>
+                                    <dd>{packageInfo.packageDescription}</dd>
                                   </dl>
 
                                   </>
@@ -56,7 +90,7 @@ const Upgrade = () => {
                           }
                         </section>
                         {
-                          !packagesInformation && <button className="btn btn-sm btn-custom-green">I have paid to { sr }</button>
+                          !packagesInformation && <button className="btn btn-sm btn-custom-green" onClick={(()=>promptUser(sr, name))}>I have paid to { sr }</button>
                         }
                       </div> 
                     )

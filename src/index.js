@@ -24,11 +24,11 @@ import './components/dashboard/dashboard-styles/dashboard.css';
 import './components/dashboard/dashboard-styles/user-profile.css';
 import './components/dashboard/bonus/bonus.css';
 
-
 // Tab Styles
 import './components/dashboard/Layout/tab/tabs.css'
 
-
+// Toastify Styles
+import 'react-toastify/dist/ReactToastify.css';
 
 // Redux Store
 import store from './store';

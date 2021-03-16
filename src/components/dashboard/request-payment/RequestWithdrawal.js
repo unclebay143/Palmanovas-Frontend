@@ -1,7 +1,9 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { user } from '../appDb'
 
 const RequestWithdrawal = () => {
+    const history = useHistory();
     return (
         <>
             <section className="section-heading mt-5">
@@ -19,7 +21,7 @@ const RequestWithdrawal = () => {
                         user.crypto && <option>{ user.crypto.id } - { user.crypto.email }</option>
                     }
                 </select>
-                <button className="btn btn-sm btn-custom-green mt-3">Submit</button>
+                <button className="btn btn-sm btn-custom-green mt-3" onClick={(()=>history.push('/dashboard/request_sent'))}>Submit</button>
             </section>    
         </>
     )

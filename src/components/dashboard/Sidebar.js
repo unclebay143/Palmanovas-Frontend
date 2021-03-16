@@ -10,21 +10,33 @@ import {
     faPaperPlane, 
     faUserCircle, 
     faUsers,
-    faHandsHelping
+    faHandsHelping,
+    faUsersCog,
+    faShoppingCart
 } from "@fortawesome/free-solid-svg-icons";
 
+// Dummy data
+import { user } from '../dashboard/appDb';
+
 // Layout
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+
+// Redux
 import { useSelector } from 'react-redux';
+
+// import logo from '../../assets/images/logo1.png';
+
 
 const Sidebar = () => {
     const { isSideBarOpen } = useSelector(state => state.layout)
+    const isAdmin = user.isAdmin;
     return (
         <>
             {/* Sidebar  */}
             <nav id="sidebar" className={` ${ isSideBarOpen ? " " : "active"}`}>
                 <div className="sidebar-header">
                 <h3>Palmanovas</h3>
+                {/* <img src={logo} width="50px" className="img-fluid mr-5" alt="palmanovas logo on the navbar" /> */}
                 </div>
                 <ul className="list-unstyled components mt-4">
                     {/* <p>
@@ -44,24 +56,30 @@ const Sidebar = () => {
                             Profile
                         </NavLink>
                     </li>
-                    <li>
-                        <NavLink exact to="/dashboard/history" activeClassName="active">
-                            <FontAwesomeIcon icon={ faHistory } className="mr-2"/>
-                            History
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink exact to="/dashboard/bonus" activeClassName="active">
-                            <FontAwesomeIcon icon={ faGift } className="mr-2"/>
-                            Bonus
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink exact to="/dashboard/upgrade" activeClassName="active">
-                            <FontAwesomeIcon icon={ faPaperPlane } className="mr-2"/>
-                            Upgrade
-                        </NavLink>
-                    </li>
+                    {
+                        !isAdmin &&(
+                            <>
+                                <li>
+                                    <NavLink exact to="/dashboard/history" activeClassName="active">
+                                        <FontAwesomeIcon icon={ faHistory } className="mr-2"/>
+                                        History
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink exact to="/dashboard/bonus" activeClassName="active">
+                                        <FontAwesomeIcon icon={ faGift } className="mr-2"/>
+                                        Bonus
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink exact to="/dashboard/upgrade" activeClassName="active">
+                                        <FontAwesomeIcon icon={ faPaperPlane } className="mr-2"/>
+                                        Upgrade
+                                    </NavLink>
+                                </li>
+                            </>
+                        )
+                    }
                     <li>
                         <NavLink exact to="/dashboard/referrals" activeClassName="active">
                             <FontAwesomeIcon icon={ faUsers } className="mr-2"/>
@@ -74,16 +92,35 @@ const Sidebar = () => {
                             Resolution
                         </NavLink>
                     </li>
+                    {
+                        isAdmin && (
+                            <>
+                                <li>
+                                    <NavLink exact to="/dashboard/manage_users" activeClassName="active">
+                                        <FontAwesomeIcon icon={ faUsersCog } className="mr-2"/>
+                                        Manage Users
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink exact to="/dashboard/payment_request" activeClassName="active">
+                                        <FontAwesomeIcon icon={ faShoppingCart } className="mr-2"/>
+                                        Payment Requests
+                                    </NavLink>
+                                </li>
+                            </>
+                        )
+                    }
                 </ul>
                 <ul className="list-unstyled CTAs">
                     <li>
-                        <a 
-                            href="#" 
-                            className="download">Terms and Condition</a>
+                        <Link 
+                            to="/dashboard/t&c" 
+                            className="download">Terms and Condition
+                        </Link>
                     </li>
                     <li>
                         <a 
-                            href="#" 
+                            href="." 
                             className="article">Logout</a>
                     </li>
                 </ul>

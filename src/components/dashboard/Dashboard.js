@@ -17,6 +17,13 @@ import Bonus from './bonus/Bonus';
 import Upgrade from './upgrade/Upgrade';
 import RequestWithdrawal from './request-payment/RequestWithdrawal';
 import Resolution from './resolution/Resolution';
+import HandlePaymentRequest from '../admin/HandlePaymentRequest';
+import { RequestSent } from './confirmation/RequestSent';
+import ManageUsers from './manage_users/ManageUsers';
+import { TermsAndCondition } from './t&c/TermsAndCondition';
+import UpdateProfile from '../users/UpdateProfile';
+import UpdateBankDetails from '../users/UpdateBankDetails';
+import UpdateCryptoWallet from '../users/UpdateCryptoWallet';
 
 const Dashboard = () => {
     return (
@@ -27,6 +34,13 @@ const Dashboard = () => {
                     <Navbar />
                     <div className="container m-2 m-lg-3 ">
                         <Switch>
+                            <Route path="/dashboard/update_crypto" component = { UpdateCryptoWallet } />
+                            <Route path="/dashboard/update_bank" component = { UpdateBankDetails } />
+                            <Route path="/dashboard/update_profile" component = { UpdateProfile } />
+                            <Route path="/dashboard/t&c" component = { TermsAndCondition } />
+                            <Route path="/dashboard/manage_users" component = { ManageUsers } />
+                            <Route path="/dashboard/request_sent" component = { RequestSent } />
+                            <Route path="/dashboard/payment_request" component = { HandlePaymentRequest } />
                             <Route path="/dashboard/resolution" component = { Resolution } />
                             <Route path="/dashboard/withdraw" component = { RequestWithdrawal } />
                             <Route path="/dashboard/upgrade" component = { Upgrade } />

@@ -1,13 +1,14 @@
+// React
 import React from 'react';
+import { useDispatch } from 'react-redux';
 
 // Fontawesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
-    faAlignLeft, faSignOutAlt, 
+    faAlignLeft, 
 } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch } from 'react-redux';
-import { TOGGLE_SIDEBAR } from '../../../actions/types';
 
+// Actions
 import { toggleSidebar } from '../../../actions/layoutAction';
 
 export const Navbar = () => {
@@ -37,7 +38,7 @@ export const Navbar = () => {
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className="nav navbar-nav ml-auto">
                                 <li className="nav-item">
-                                    <a className="nav-link" href="#">Logout</a>
+                                    <a className="nav-link" href=".">Logout</a>
                                 </li>
                             </ul>
                         </div>

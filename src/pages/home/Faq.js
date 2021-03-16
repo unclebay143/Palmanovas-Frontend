@@ -33,7 +33,7 @@ const Faq = () => {
                     <div className="col-12 mx-auto">
                         <div className="accordion" id="paceFaq">
                             <FaqCard cardNumber="question1" collapseNumber="collapse1" question="Palmanovas.com is about what?" 
-                                answer="Here at Palmanova, we have experts who are good at studying the forex and stock market. Corporate bodies and individuals invest in us, which at the end of a 3 weeks trade, profits+capital are paid to investors. We also appreciate the effort of individuals that takes the initiative to invite other investors to the system by paying monthly allowances."
+                                answer="Here at Palmanova, we have experts who are good at studying the forex and stock market. Corporate bodies and individuals invest with us, which at the end of a 3 weeks trade, profits+capital are paid to investors. We also appreciate the effort of individuals that takes the initiative to invite other investors to the system by paying monthly allowances."
                             />
                             <FaqCard cardNumber="question2" collapseNumber="collapse2" question="what are the risks of investing in this platform?" 
                                 answer="In Palmanovas, your investment is guaranteed because we have an excellent risk management system."
@@ -53,11 +53,11 @@ const Faq = () => {
                             <FaqCard cardNumber="question5" collapseNumber="collapse5" question=" How do I fund my wallet?" 
                                 answer={
                                     `
-                                    *Click on the fund wallet button
-                                    *Pay into the official account on the web page.
-                                    *Input your name and phone number into the required field
+                                    *Click on the fundwallet button
+                                    *Contact any of the 3 agent on your payment page via whatsapp or call.
+                                    *Pay to the agent.
+                                    *Click on the "I have paid to the agent" on the payment page where you picked the agent number
                                     *Upload your proof of payment
-                                    *Click on fund my wallet
                                     *Refresh your page after 2hrs.
                                 `}
                             />
@@ -73,7 +73,7 @@ const Faq = () => {
                             />
                             <FaqCard cardNumber="question8" collapseNumber="collapse8" question="How can I withdraw funds
 " 
-                                answer="In order to withdraw funds, the investment icon must change from yellow to green.
+                                answer="In order to withdraw funds, the investment icon must change from yellow to green after your ROI is matured.
                                 *Click on withdraw funds
                                 Withdrawals are done within 24hrs and can only be requested within working days.
                                 "
@@ -112,7 +112,7 @@ const Faq = () => {
                                 Same applies to upgrading to become a V.P.
                                 "
                             />
-                            <FaqCard cardNumber="question15" collapseNumber="collapse15" question="How can get signals for Forex or Stock?" 
+                            <FaqCard cardNumber="question15" collapseNumber="collapse15" question="How can I get signals for Forex or Stocks?" 
                                 answer="To get signals from our professionals, you will have to subscribe under or Trainee section for Forex trading.
                                 "
                             />

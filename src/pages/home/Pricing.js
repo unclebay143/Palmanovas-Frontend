@@ -7,7 +7,7 @@ const PricingCard = ({ packageName, packagePrice, packagePercentage, packagePerc
         <>
             <div className="col-md-4 pricing my-3">
                 <div className="card mb-4 box-shadow">
-                    <div className={`card-header ${customBackgroundColor ? customBackgroundColor : 'bg-custom-green'}`}>
+                    <div className={`card-header ${customBackgroundColor ? customBackgroundColor : 'bg-custom-light-green'}`}>
                         <h4 className="my-0 font-weight-normal package-name"> { packageName }</h4>
                     </div>
                     <div className="card-body">
@@ -21,7 +21,7 @@ const PricingCard = ({ packageName, packagePrice, packagePercentage, packagePerc
                         <Link
                             to="/signup" 
                             type="button" 
-                            className={`btn btn-lg btn-block text-white ${customBackgroundColor ? customBackgroundColor : 'bg-custom-dodgerblue'}`}
+                            className={`btn btn-lg btn-block text-white ${customBackgroundColor ? customBackgroundColor : 'bg-custom-light-green'}`}
                             >{ buttonText } { !buttonText && 'Invest' }</Link>
                     </div>
                 </div>
@@ -63,42 +63,42 @@ const Pricing = () => {
                             packagePercentage="ROI #199,800"
                             packagePrice="#108, 000 "
                             packagePercentageBreakDown = "#9,415per day for 21days"
-                            customBackgroundColor="bg-custom-dodgerblue"
+                            customBackgroundColor="bg-custom-light-green"
                         />
                         <PricingCard 
                             packageName="Palmbronze"
                             packagePercentage="ROI #410,700"
                             packagePrice="#222,000"
                             packagePercentageBreakDown = "#19,557per day for 21days"
-                            customBackgroundColor="bg-custom-dodgerblue"
+                            customBackgroundColor="bg-custom-light-green"
                         />
                         <PricingCard 
                             packageName="Palmgold"
                             packagePercentage="ROI #980,500"
                             packagePrice="#530,000"
                             packagePercentageBreakDown = "#46,690per day for 21days"
-                            customBackgroundColor="bg-custom-dodgerblue"
+                            customBackgroundColor="bg-custom-light-green"
                         />
                         <PricingCard 
                             packageName="Palmmaster"
                             packagePercentage="ROI #2,053,500"
                             packagePrice="#1,110,000"
                             packagePercentageBreakDown = "#330,357per day for 28day"
-                            customBackgroundColor="bg-custom-dodgerblue"
+                            customBackgroundColor="bg-custom-light-green"
                         />
                         <PricingCard 
                             packageName="Palmexecutive"
                             packagePercentage="ROI #4,625,000"
                             packagePrice="#2,500,000"
                             packagePercentageBreakDown = "#165,178per day for 28days"
-                            customBackgroundColor="bg-custom-dodgerblue"
+                            customBackgroundColor="bg-custom-light-green"
                         />
                         <PricingCard 
                             packageName="palmVIP"
                             packagePercentage="ROI # 9,250,000"
                             packagePrice="#5,000,000"
                             packagePercentageBreakDown = "#330,357per day for 28day"
-                            customBackgroundColor="bg-custom-dodgerblue"
+                            customBackgroundColor="bg-custom-light-green"
                         />
                     </div>
                 </div>

@@ -5,10 +5,10 @@ import { HashLink as ScrollLink } from 'react-router-hash-link'
 
 // Fontawesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHands, faHandsHelping, faHome, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faHandsHelping, faHome, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 // Images
-import logo2 from '../../assets/images/logo2.PNG';
+import logo3 from '../../assets/images/logo3.png';
 
 // Social icons
 import { SocialIcon } from 'react-social-icons'
@@ -21,8 +21,8 @@ const Footer = () => {
             <div className="row footer">
                 <div className="col-md-5 col-lg-5">
                     <div className="logo-brand">
-                        <img src={ logo2 } alt="palmanovas logo on the footer" className="mb-3 pb-1"/>
-                        <hr className="bg-white"/>
+                        <img src={ logo3 } alt="palmanovas logo on the footer" className="mb-3 pb-1"/>
+                        <hr className="bg-custom-light-green"/>
                         <h5 className="mt-lg-5 mb-5 pt-1">
                             <FontAwesomeIcon icon={ faHome } className="mr-2"/>
                             Address

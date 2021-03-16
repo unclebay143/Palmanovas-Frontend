@@ -7,13 +7,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
     faEdit, 
 } from "@fortawesome/free-solid-svg-icons";
+import { Link } from 'react-router-dom';
 
 const UserProfile = () => {
 
     return (
         <>
-            <div className="user-profile">
-                <section className="profile-heading">
+            <div className="row user-profile">
+                <section className="col-md-6 col-lg-6 col-12 profile-heading">
                     <div className="clearfix">
                         <h3>User profile</h3>
                         <hr className="hr-line"/>
@@ -37,13 +38,15 @@ const UserProfile = () => {
                         <p>
                             Rank: { user.profile.rank }
                         </p>
-                        <button 
-                            className="btn btn-sm bg-custom-light-green">Update 
+                        <Link
+                            to="/dashboard/update_profile" 
+                            className="btn btn-sm bg-custom-light-green"
+                        >Update 
                             <FontAwesomeIcon icon={ faEdit } className="ml-1"/> 
-                        </button>
+                        </Link>
                     </div>
                 </section>
-                <section className="section-heading mt-5">
+                <section className="col-md-6 col-lg-6 col-12 section-heading mt-">
                     <div className="clearfix">
                         <h3>Bank Information</h3>
                         <hr className="hr-line"/>
@@ -61,13 +64,13 @@ const UserProfile = () => {
                         <p>
                             Account Type: { user.account.accountType }
                         </p>
-                        <button 
+                        <Link to="/dashboard/update_bank" 
                             className="btn btn-sm bg-custom-light-green">Update 
                             <FontAwesomeIcon icon={ faEdit } className="ml-1"/> 
-                        </button>
+                        </Link>
                     </div>
                 </section>
-                <section className="section-heading mt-5">
+                <section className="col-12 section-heading mt-5">
                     <div className="clearfix">
                         <h3>Cryptocurrency Wallet</h3>
                         <hr className="hr-line"/>
@@ -79,10 +82,10 @@ const UserProfile = () => {
                         <p>
                             Email: { user.crypto.email }
                         </p>
-                        <button 
+                        <Link to="/dashboard/update_crypto" 
                             className="btn btn-sm bg-custom-light-green">Update 
                             <FontAwesomeIcon icon={ faEdit } className="ml-1"/> 
-                        </button>
+                        </Link>
                     </div>
                 </section>
             </div>
