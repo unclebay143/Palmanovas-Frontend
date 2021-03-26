@@ -1,9 +1,16 @@
 import { ErrorMessage, Form, Formik } from 'formik';
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
+import { updateUserBankDetails } from '../../actions/userAction';
 import ButtonLayout from '../common/ButtonLayout';
 import { TextInput } from '../common/FormInput';
 
 const UpdateBankDetails = () => {
+    const user = useSelector(state => state.user);
+    const dispatch = useDispatch();
+    const { profile } = user;
+    const history = useHistory();
     return (
         <>
              <div className="row update-bank-details">
@@ -15,7 +22,17 @@ const UpdateBankDetails = () => {
                     <div className="mt-4">
                         <Formik
                             initialValues={{
-                                
+                                bankName: '',
+                                accountNumber: '',
+                                accountName: '',
+                                accountType: '',
+                                bvn: ''
+                            }}
+                            onSubmit={(values, action)=>{
+                                dispatch(updateUserBankDetails(values, profile.userID, action))
+                                .then(()=>{
+                                    history.push('/dashboard/profile')
+                                })
                             }}
                             
                             >
@@ -24,17 +41,17 @@ const UpdateBankDetails = () => {
                                     <div className="form-group">
                                         <TextInput 
                                             label="Bank Name"
-                                            name="name"
-                                            type="name"
+                                            name="bankName"
+                                            type="text"
                                             className={`form-control ${
-                                                touched.name && errors.name ? "is-invalid" : ""
+                                                touched.bankName && errors.bankName ? "is-invalid" : ""
                                             }`}
-                                            id="name"
+                                            id="bankName"
                                             placeholder="Enter Bank Name"
                                         />
                                         <ErrorMessage
                                             component="div"
-                                            name="name"
+                                            name="bankName"
                                             className="invalid-feedback p-0"
                                             />
                                     </div>
@@ -86,6 +103,23 @@ const UpdateBankDetails = () => {
                                         <ErrorMessage
                                             component="div"
                                             name="accountType"
+                                            className="invalid-feedback p-0"
+                                            />
+                                    </div>
+                                    <div className="form-group">
+                                        <TextInput 
+                                            label="BVN (optional)"
+                                            name="bvn"
+                                            type="number"
+                                            className={`form-control ${
+                                                touched.bvn && errors.bvn ? "is-invalid" : ""
+                                            }`}
+                                            id="bvn"
+                                            placeholder="Enter Bvn"
+                                        />
+                                        <ErrorMessage
+                                            component="div"
+                                            name="bvn"
                                             className="invalid-feedback p-0"
                                             />
                                     </div>

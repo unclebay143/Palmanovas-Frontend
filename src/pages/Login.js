@@ -1,6 +1,6 @@
 // React
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 // Redux
 import { useDispatch } from 'react-redux';
@@ -29,7 +29,8 @@ import { handleLogin } from '../actions/userAction';
 
 
 const Login = () => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const history = useHistory();
     return (
         <>
             <section className="card login-form d-lg-flex justify-content-around">
@@ -52,12 +53,18 @@ const Login = () => {
                         <h2 className="text-enter mb-4 form-lead">Login</h2>
                         <Formik
                             initialValues={{
-                                email: '',
+                                userName: '',
                                 password: ''
                             }}
                             validationSchema={ loginSchema }
                             onSubmit={(values, action)=>{
                                 dispatch(handleLogin(values, action))
+                                .then((res)=>{
+                                    history.push('/dashboard')
+                                })
+                                .catch((err)=>{
+                                    console.log(err)
+                                })
                             }}
                         >
                             {({values, errors, touched, isSubmitting })=>(
@@ -65,17 +72,17 @@ const Login = () => {
                                         <div className="form-group">
                                             <TextInput 
                                                 label="Email address"
-                                                name="email"
-                                                type="email"
+                                                name="userName"
+                                                type="text"
                                                 className={`form-control ${
-                                                    touched.email && errors.email ? "is-invalid" : ""
+                                                    touched.userName && errors.userName ? "is-invalid" : ""
                                                 }`}
-                                                id="email"
-                                                placeholder="Enter email or username"
+                                                id="userName"
+                                                placeholder="Enter email or userName"
                                             />
                                             <ErrorMessage
                                                 component="div"
-                                                name="email"
+                                                name="userName"
                                                 className="invalid-feedback p-0"
                                             />
                                             <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
@@ -114,7 +121,6 @@ const Login = () => {
                                             <span> <Link to="/forgot-password">Forgot Password</Link></span>
                                         </div>
                                         <div className="mt-3">
-                                        {/* <pre className="text-white">{JSON.stringify(values, null, 2)}</pre> */}
                                             <span>Don't have an account? <Link to="/signup">Signup</Link></span>
                                         </div>
                                     </Form>

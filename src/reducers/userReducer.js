@@ -3,7 +3,8 @@ import {
     REGISTRATION_FAILED,
     SET_PROFILE,
     LOGIN_FAILED,
-    LOGIN_SUCCESSFUL
+    LOGIN_SUCCESSFUL,
+    LOG_OUT
  } from '../actions/types';
 
 const initialState = {
@@ -14,7 +15,9 @@ const initialState = {
 
 
 const authReducer = (state = initialState, action) =>{
-    switch (action) {
+    // Destructure the action
+    const  { type, payload } = action;
+    switch (type) {
         case REGISTRATION_SUCCESSFUL:
             return {
                 ...state
@@ -22,21 +25,29 @@ const authReducer = (state = initialState, action) =>{
         case REGISTRATION_FAILED:
             return {
                 ...state,
-                error: action.payload
+                error: payload
             }
         case LOGIN_SUCCESSFUL:
             return {
-                isLoggedIn: true
+                ...state,
+                isLoggedIn: true,
             }
         case LOGIN_FAILED:
             return {
                 ...state,
-                error: action.payload
+                error: payload
             }
         case SET_PROFILE:
             return {
                 ...state,
-                profile: action.payload
+                isLoggedIn: true,
+                profile: payload
+            }
+        case LOG_OUT:
+            return {
+                isLoggedIn: false,
+                profile: null,
+                error: null
             }
     
         default:

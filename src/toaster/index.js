@@ -2,69 +2,44 @@ import { toast } from 'react-toastify';
 
 
 // Common
-const netWorkError  =  () => toast.warning('Network Error')
-const sessionExpired = () =>  toast.warning('Session Expired')
-const somethingWentWrongLogger = () =>  toast.warning('Something went wrong, Please try again')
+export const netWorkError  =  () => toast.warning('Network Error')
+export const sessionExpired = () =>  toast.warning('Session Expired')
+export const somethingWentWrongLogger = () =>  toast.warning('Something went wrong, Please try again')
 
 
 
 //  Login Toast
-const invalidDetailsLogger = () => toast.warning('Invalid Login details');
-const userIsAuthenticatedLogger = () => toast.success('Logging in');
-const welcomeBackLogger = () => toast.info('Welcome Back');
+export const invalidDetailsLogger = () => toast.warning('Invalid Login details');
+export const userNameOrEmailNotFoundLogger = () => toast.info('Username or Email does not Exist');
+export const userIsAuthenticatedLogger = () => toast.success('Logging in');
+export const welcomeBackLogger = () => toast.info('Welcome Back');
 
 
 // Registration Toast
-const registrationFailLogger = () => toast.warning('Registration Failed');
-const registrationCompletedLogger = () => toast.info('Registration Successful');
-const emailAlreadyExistLogger = () => toast.warning('Email Already Exist')
-
-
-// Manage Employee Toast
-const emailAlreadyExist = () => toast.warning('Email Already Exist');
-
+export const registrationFailLogger = () => toast.warning('Registration Failed');
+export const registrationCompletedLogger = () => toast.info('Registration Successful');
+export const emailAlreadyExistLogger = () => toast.warning('Email Already Exist')
 
 // Logout Toast
-const logOutSuccessLogger = () => toast.warning('Logout Successful');
+export const logOutSuccessLogger = () => toast.success('Logout Successful');
 
 // Users Setting Toasts
-const profileUpdateCompletedLogger = () => toast.info('Profile Update Successfully');
-const profileUpdateFailLogger = () => toast.warning('Update Failed, Please try again');
 
-// Todo
-const invalidTodoTitle  =  () => toast.warning('Todo title is required');
+//Profile
+export const profileUpdateCompletedLogger = () => toast.info('Profile Updated Successfully');
+export const profileUpdateFailLogger = () => toast.warning('Update Failed, Please try again');
 
-
-// Tasks
-export const taskNotSent = () => toast.warning('Task Not Sent Try again');
-export const taskSent = () => toast.info('Task Sent Successfully');
-export const taskStatusUpdated = () => toast.info('Task Status Updated')
+// Password
+export const passwordUpdateCompletedLogger = () => toast.info('Password Updated Successfully');
+export const passwordUpdateFailLogger = () => toast.warning('Password Update Failed, Please try again');
 
 
-// Calendar
-export const calendarEventNotSavedLogger = () => toast.warning('Event Not Set!!! Please Try again');
-export const eventAddedSuccessfullyLogger = () => toast.info('Event added Successfully');
-export const eventDeletedSuccessfullyLogger = () =>  toast.info('Event Deleted Successfully');
-export const eventNotDeletedLogger = () => toast.warning('Event Not Deleted Please Try again');
-export const eventUpdatedSuccessfullyLogger = () => toast.info('Event updated Successfully');
-export const eventnNotUpdatedLogger= () => toast.info('Event not updated!! Please try again');
+// Bank 
+export const bankDetailsUpdatedSuccessfullyLogger = () => toast.info('Bank details updated successfully');
+export const bankDetailsUpdateFailLogger = () => toast.warning('Bank details update failed');
 
 
+// Crypto
+export const cryptoDetailsUpdatedSuccessfullyLogger = () => toast.info('Crypto details updated successfully');
+export const cryptoDetailsUpdateFailLogger = () => toast.warning('Crypto details update failed');
 
-
-export{
-    invalidDetailsLogger,
-    userIsAuthenticatedLogger,
-    emailAlreadyExistLogger,
-    registrationFailLogger,
-    registrationCompletedLogger,
-    logOutSuccessLogger,
-    invalidTodoTitle,
-    netWorkError,
-    somethingWentWrongLogger,
-    sessionExpired,
-    profileUpdateCompletedLogger,
-    profileUpdateFailLogger,
-    emailAlreadyExist,
-    welcomeBackLogger,
-}

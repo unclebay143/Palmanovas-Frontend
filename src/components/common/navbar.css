@@ -1,0 +1,7 @@
+
+@media(max-width: 900px){
+    .navbar-collapse{
+        padding: 0px 16px;
+        transition: all 0.7s;
+    }
+}

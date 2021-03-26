@@ -1,9 +1,14 @@
 import { ErrorMessage, Form, Formik } from 'formik';
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { updateUserCryptoWallet } from '../../actions/userAction';
 import ButtonLayout from '../common/ButtonLayout';
 import { TextInput } from '../common/FormInput';
 
 const UpdateCryptoWallet = () => {
+    const user = useSelector(state => state.user);
+    const dispatch = useDispatch();
+    const { profile } = user;
     return (
         <>
              <div className="row update-bank-details">
@@ -15,8 +20,13 @@ const UpdateCryptoWallet = () => {
                     <div className="mt-4">
                         <Formik
                             initialValues={{
-                                
+                                walletID: '',
+                                email: ''
                             }}
+
+                            onSubmit = {((values, action)=>{
+                                dispatch(updateUserCryptoWallet(values, profile.userID, action))
+                            })}
                             
                             >
                             {(({ values, touched, errors, isSubmitting })=>(
@@ -24,17 +34,17 @@ const UpdateCryptoWallet = () => {
                                     <div className="form-group">
                                         <TextInput 
                                             label="Wallet ID"
-                                            name="id"
+                                            name="walletID"
                                             type="text"
                                             className={`form-control ${
-                                                touched.id && errors.id ? "is-invalid" : ""
+                                                touched.walletID && errors.walletID ? "is-invalid" : ""
                                             }`}
-                                            id="id"
+                                            id="walletID"
                                             placeholder="Enter Wellet ID"
                                         />
                                         <ErrorMessage
                                             component="div"
-                                            name="id"
+                                            name="walletID"
                                             className="invalid-feedback p-0"
                                             />
                                     </div>

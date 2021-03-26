@@ -2,8 +2,14 @@ import React from 'react';
 import Tabs from '../Layout/tab/Tabs'
 import { upgradeAndAgentsDetails } from '../appDb';
 import Swal from 'sweetalert2'
+import { tryDeclarePayment, getDeclaredPaymentList } from '../../../actions/paymentAction/paymentAction';
+import { useDispatch, useSelector } from 'react-redux';
 const Upgrade = () => {
+  const user = useSelector(state => state.user);
+  const dispatch = useDispatch();
+  const { profile } = user;
 
+  // alert function
   const promptUser = (payeeId, payeeName) =>{
     Swal.fire({
       title: 'Are you sure?',
@@ -19,20 +25,31 @@ const Upgrade = () => {
       },
       buttonsStyling: false
     }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire(
-
-          // 'Confirmed!',
-          // 'Your ticket has been created.',
-          // 'success',
-          {
-            title: 'Confirmed!',
-            icon: 'success',
-            text: 'Your ticket has been created.',
-            confirmButtonColor: 'rgb(83,175,80',
-          }
-
-        )
+      // if the user clicked on confirm 
+      if (result.isConfirmed) { // run this block
+        dispatch(tryDeclarePayment(payeeName, profile.userID)) // dispatch an action to the backend
+        .then((response)=>{
+          Swal.fire( // UI notification of the success
+            {
+              title: 'Confirmed!',
+              icon: 'success',
+              text: 'Your ticket has been created.',
+              confirmButtonColor: 'rgb(83,175,80)',
+            }
+  
+          )
+        })
+        .catch((error)=>{
+          Swal.fire( // UI notification of the success
+            {
+              title: 'Error!',
+              icon: 'warning',
+              text: 'Something went wrong, please try again.',
+              confirmButtonColor: 'rgb(83,175,80)',
+            }
+  
+          )
+        })
       }
     })
   }
@@ -44,6 +61,7 @@ const Upgrade = () => {
             <div className="clearfix">
                 <h3>Upgrade & Payment Option</h3>
                 <hr className="hr-line"/>
+                <button onClick={()=>dispatch(getDeclaredPaymentList())}>fetch</button>
             </div>
           </section>
           <article>
@@ -82,6 +100,7 @@ const Upgrade = () => {
                                       <>
                                       <p>Name: <em>{ name }</em></p>
                                       <p>Whatsapp Number: <em>{ whatsappNumber }</em></p>
+                                      
                                     </>
                                   )
                                 }
@@ -90,19 +109,19 @@ const Upgrade = () => {
                           }
                         </section>
                         {
-                          !packagesInformation && <button className="btn btn-sm btn-custom-green" onClick={(()=>promptUser(sr, name))}>I have paid to { sr }</button>
+                          !packagesInformation &&(
+                            <>
+                             <button className="btn btn-sm btn-custom-green" onClick={(()=>promptUser(sr, name))}>I have paid to { sr }</button>
+                              <div className="tab-heading mt-3"> Only click on this button if you have <strong>PAID</strong> to {name || cryptoAddress}!</div> 
+                           </>
+                            )
                         }
                       </div> 
                     )
                   })
                 }
-                {/* <div label="Agent 2" className="tab-heading"> 
-                  After 'while, <em>Crocodile</em>! 
-                </div> 
-                <div label="Agent 3" className="tab-heading"> 
-                  Nothing to see here, this tab is <em>extinct</em>! 
-                </div>  */}
               </Tabs> 
+
           </section>
         </div>
       </>

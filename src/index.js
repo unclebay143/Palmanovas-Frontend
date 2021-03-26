@@ -17,6 +17,7 @@ import './pages/pages-styles/login.css';
 import './pages/pages-styles/signup.css';
 import './pages/pages-styles/forgotpassword.css';
 import './pages/pages-styles/about.css';
+import './components/common/navbar.css'
 
 // Dashboard Styles
 import './components/dashboard/dashboard-styles/sidebar.css';

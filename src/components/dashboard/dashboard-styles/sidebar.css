@@ -37,7 +37,8 @@
     background: var(--light-green-1);
     /* background: red; */
     color: #fff;
-    transition: all 0.3s;
+    transition: all 0.6s;
+
 }
 
 #sidebar.active {

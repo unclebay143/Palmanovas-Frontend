@@ -1,39 +1,154 @@
 import UserService from "../services/user.service"
-import { registrationCompletedLogger, registrationFailLogger, somethingWentWrongLogger, userIsAuthenticatedLogger } from "../toaster"
+import { 
+    bankDetailsUpdatedSuccessfullyLogger,
+    bankDetailsUpdateFailLogger,
+    cryptoDetailsUpdatedSuccessfullyLogger,
+    cryptoDetailsUpdateFailLogger,
+    logOutSuccessLogger,
+    passwordUpdateCompletedLogger,
+    passwordUpdateFailLogger,
+    profileUpdateCompletedLogger,
+    profileUpdateFailLogger,
+    registrationCompletedLogger, 
+    registrationFailLogger, 
+    somethingWentWrongLogger, 
+    userIsAuthenticatedLogger,
+    userNameOrEmailNotFoundLogger
+} from "../toaster"
+import { LOGIN_SUCCESSFUL, LOG_OUT, SET_PROFILE } from "./types"
+
+// Action function that handles registration
+
+export const handleRegistration = (values, action) => dispatch =>{
+    return UserService.tryRegister(values)
+    .then((response)=>{
+        registrationCompletedLogger()
+        action.setSubmitting(false)
+    })
+    .catch((error)=>{
+        registrationFailLogger()
+        action.setSubmitting(false)
+    })
+}
 
 
 // Action function that handles login
 
-export const handleLogin = ({email, password}, action) => dispatch =>{
-    console.log(email, password)
-    return UserService.tryLogin(email, password)
+export const handleLogin = (values, action) => dispatch =>{
+    return UserService.tryLogin(values)
     .then((response)=>{ // handle response
-        console.log(response)
-        userIsAuthenticatedLogger()
-        action.setIsSubmitting(false)
+        const _token = response.data.data.accessToken;
+        localStorage.setItem('token', _token);
+        if(localStorage.token){
+            dispatch({
+                type: LOGIN_SUCCESSFUL
+            })
+            loadUserProfile()
+            userIsAuthenticatedLogger()
+            action.setSubmitting(false)
+        }
+        if(!localStorage.token){
+
+            somethingWentWrongLogger()
+        }
         
     })
-    .catch((error)=>{ // handle error
-        console.log(error)
+    .catch((err)=>{ // handle error
+
+        if(err){ // catch all errors in this block
+            userNameOrEmailNotFoundLogger()
+        }
         somethingWentWrongLogger()
         action.setSubmitting(false)
     })
 }
 
 
-// Action function that handles registration
+// Function that loads user details from the server
 
-export const handleRegistration = (values, action) => dispatch =>{
-    console.table(values)
-    return UserService.tryRegister(values)
+export const loadUserProfile = () => dispatch =>{
+    return UserService.fetchUserProfile()
     .then((response)=>{
-        console.log(response)
-        registrationCompletedLogger()
-        action.setSubmitting(false)
+        dispatch({
+            type: SET_PROFILE,
+            payload: response.data.data[0]
+        })
     })
     .catch((error)=>{
         console.log(error)
-        registrationFailLogger()
+    })
+}
+
+// function that update the user profile
+export const updateUserProfile = (values, userID, action) =>{
+    return UserService.updateUserProfile(values, userID)
+    .then((response)=>{
+        profileUpdateCompletedLogger()
         action.setSubmitting(false)
     })
+    .catch((error)=>{
+        profileUpdateFailLogger()
+        action.setSubmitting(false)
+    })
+}
+
+// function that update the user password
+export const updateUserPassword = (values, userID, action) => dispatch =>{
+    return UserService.updateUserPassword(values, userID)
+    .then((response)=>{
+        passwordUpdateCompletedLogger()
+        action.setSubmitting(false)
+    })
+    .catch((error)=>{
+        passwordUpdateFailLogger()
+        action.setSubmitting(false)
+    })
+}
+
+// function to get the user bank details
+export const getUserBankDetails = (userID) => dispatch =>{
+    return UserService.fetchUserBankDetails(userID)
+}
+
+// function that update the user bank details
+export const updateUserBankDetails = (values, userID, action) => dispatch =>{
+    return UserService.updateUserBankDetails(values, userID)
+    .then((response)=>{
+        bankDetailsUpdatedSuccessfullyLogger()
+        action.setSubmitting(false)
+    })
+    .catch((error)=>{
+        bankDetailsUpdateFailLogger()
+        action.setSubmitting(false)
+    })
+}
+
+// function to get the user bank details
+export const getUserCryptoDetails = (userID) => dispatch =>{
+    return UserService.fetchUserCryptoDetails(userID)
+}
+
+// function that update the user crypto details
+export const updateUserCryptoWallet = (values, userID, action) => dispatch =>{
+    return UserService.updateUserCryptoDetails(values, userID)
+    .then((response)=>{
+        cryptoDetailsUpdatedSuccessfullyLogger()
+        action.setSubmitting(false)
+    })
+    .catch((error)=>{
+        cryptoDetailsUpdateFailLogger()
+        action.setSubmitting(false)
+    })
+}
+
+
+
+export const tryLogout = () => dispatch =>{
+    localStorage.removeItem('token');
+    logOutSuccessLogger()
+    setTimeout(() => {
+        dispatch({
+            type: LOG_OUT
+        })
+    }, 3000);
 }

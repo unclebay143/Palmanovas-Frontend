@@ -7,20 +7,25 @@ import MenuItem from '../appDb';
 // Fontawesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 // import { 
 //     faUsers 
 // } from "@fortawesome/free-solid-svg-icons";
 
 const Cards = (props) => {
-    console.log(MenuItem)
+    const dispatch = useDispatch();
     return (
         <>
-                
             {
                 MenuItem && (
                     MenuItem.map((item)=>{
                         return(
-                            <div className="col-md-3 col-lg-3 col-6 p-1 mb-3">
+                            <div 
+                                className="col-md-3 col-lg-3 col-6 p-1 mb-3" 
+                                key={item.id} 
+                                // if there is an handleClick props let the dispatch reflect
+                                onClick={()=>item.handleClick && dispatch(item.handleClick)} 
+                            >
                                 <Link to={item.url}>
                                     <div className="card dashboard-menu">
                                         <div className="card-body text-center">

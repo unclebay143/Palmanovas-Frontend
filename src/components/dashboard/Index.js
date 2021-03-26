@@ -1,29 +1,40 @@
 // React
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 // Fontawesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHandSparkles } from "@fortawesome/free-solid-svg-icons";
+
+// Layout
 import Cards from './Layout/Cards';
-import { Link } from 'react-router-dom';
-import { user } from './appDb'
+
+// Skeleton Loader
+import Skeleton from 'react-loading-skeleton';
+
 
 const Index = () => {
     const [isIROIMature, setIsIROIMature] = useState(true);
     const isPaymentApproved = false;
     const hasInvestment = false;
+    // Get user profile from the user state
+    const { profile } = useSelector(state => state.user);
+    const { userName } = profile || {};
+    // const userName =''
     // const purchasedDate = "Mar 7 2021";
     // const matureDate = "Mar 10 2021";
     // // const formatedMatureDate = new Date(matureDate).getTime()
     // const formatPurchasedDate = new Date(purchasedDate).getTime();
     // const rem = formatedMatureDate - formatPurchasedDate
     // const remainingDaysToMature = Math.floor(rem / (1000 * 3600 * 24))  
+
     return (
         <>
             <div className="container dashboard-Index"> 
                 <h5 className="text-custom-green" style={{lineHeight: '2'}}>
                     <FontAwesomeIcon icon={ faHandSparkles } className="mr-2 text-custom-green"/>
-                    Welcome back, <span className="p-0">{ user.profile.username }</span>
+                    Welcome back, {userName && userName ? <span className="p-0"> { userName } </span> : <Skeleton color="#EEE" highlightColor="#CCC" count={1} width={100} /> }
                     <span className="float-lg-right h3 mr-3 d-block mt-3 mt-lg-0">Rank: starter</span>
                 </h5>
                 {/* {formatedMatureDate === formatPurchasedDate ? "matured" : ("growing till "+ remainingDaysToMature)} */}

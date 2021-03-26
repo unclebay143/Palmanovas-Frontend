@@ -1,6 +1,6 @@
 // React
 import React from 'react';
-
+import { useHistory } from 'react-router-dom';
 // Layouts
 import ButtonLayout from '../components/common/ButtonLayout';
 
@@ -17,18 +17,36 @@ import { ErrorMessage, Form, Formik } from 'formik';
 import { signUpSchema } from '../Validation/Schema';
 import { handleRegistration } from '../actions/userAction';
 import { useDispatch } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
 
 const SignUp = () => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const history = useHistory();
     return (
         <>
             <section className="card signup-form">
+                <ToastContainer />
+                                <style>
+                    {
+                        `
+                            .Toastify__toast--warning{
+                                background: rgb(255,112,150);
+                                color: #FFFFFF;
+                            }
+
+
+                            footer{
+                                display: none;
+                            }
+                        `
+                    }
+                </style>
                 <div className="signup-img">
                     <img src={ pageBackgroundImage } className="card-img-top img-fluid" alt="signup page background"/>
                 </div>
                 <div className="form-area">
                     <section className="">
-                        <h2 className="text-enter mb-4 form-lead">Signup</h2>
+                        <h2 className="text-enter mb-4 form-lead">Sign Up</h2>
                         {/* <section className=""> */}
                         <Formik
                             initialValues={{
@@ -42,6 +60,7 @@ const SignUp = () => {
                             validationSchema={ signUpSchema }
                             onSubmit={(values, action)=>{
                                 dispatch(handleRegistration(values, action))
+                                .then((res)=>history.push('/login'))
                             }}
                         >
                             {({values, errors, touched, isSubmitting })=>(
@@ -50,7 +69,7 @@ const SignUp = () => {
                                             <TextInput 
                                                 label="Username"
                                                 name="userName"
-                                                type="userName"
+                                                type="text"
                                                 className={`form-control ${
                                                     touched.userName && errors.userName ? "is-invalid" : ""
                                                 }`}
@@ -84,7 +103,7 @@ const SignUp = () => {
                                             <TextInput 
                                                 label="Phone number"
                                                 name="phone"
-                                                type="phone"
+                                                type="tel"
                                                 className={`form-control ${
                                                     touched.phone && errors.phone ? "is-invalid" : ""
                                                 }`}
@@ -152,10 +171,10 @@ const SignUp = () => {
                                                 className="invalid-feedback"
                                             />
                                         </div>
-                                        <div className="form-group form-check">
+                                        {/* <div className="form-group form-check">
                                             <input type="checkbox" className="form-check-input" id="exampleCheck1" />
                                             <label className="form-check-label" htmlFor="exampleCheck1">Accept Terms and Condition.</label>
-                                        </div>
+                                        </div> */}
                                         <div className="form-group">
                                             <ButtonLayout 
                                                 type="submit"

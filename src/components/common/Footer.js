@@ -91,7 +91,7 @@ const Footer = () => {
                                 <span className="ml-3">Whatsapp</span>
                             </span>
                         </li>
-                        <li className="text-muted py-2"><span>+234 08-137-201-776</span></li>
+                        <li className="text-muted py-2"><span>+234 080-8610-7527</span></li>
                     </ul>
                 </div>
                 <hr />

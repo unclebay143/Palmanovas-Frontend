@@ -6,6 +6,7 @@ import {
     faSignOutAlt,
     faUsers 
 } from "@fortawesome/free-solid-svg-icons";
+import { tryLogout } from "../../actions/userAction";
 
 const MenuItem = [
     {
@@ -42,7 +43,7 @@ const MenuItem = [
         id: 6,
         title: "Logout",
         icon: faSignOutAlt,
-        url: '/dashboard/'
+        handleClick: tryLogout()
     },
 ]
 
@@ -81,46 +82,55 @@ export const upgradeAndAgentsDetails = [
             sr: 'Packages',
             packagesInformation:[
                 {
+                    packageID:1,
                     packageName: "PalmBasic",
                     packagePrice: "#10, 000",
                     packageDescription: "ROI #20350 - #970per day for 21days",
                 },
                 {
+                    packageID:2,
                     packageName: "Palmstandard",
                     packagePrice: "#25, 000",
                     packageDescription: "ROI #46,250 - #2,203per day for 21 days",
                 },
                 {
+                    packageID:3,
                     packageName: "Palmpremium",
                     packagePrice: "#53, 000",
                     packageDescription: "#98,050 - #4,690per day for 21days",
                 },
                 {
+                    packageID:4,
                     packageName: "Palmsilver",
                     packagePrice: "#108, 000",
                     packageDescription: "ROI #199,800 - #9,415per day for 21days",
                 },
                 {
+                    packageID:5,
                     packageName: "Palmbronze",
                     packagePrice: "#222,000",
                     packageDescription: "ROI #410,700 - #19,557per day for 21days",
                 },
                 {
+                    packageID:6,
                     packageName: "Palmgold",
                     packagePrice: "#530,000",
                     packageDescription: "ROI #980,500 - #46,690per day for 21days",
                 },
                 {
+                    packageID:7,
                     packageName: "Palmmaster",
                     packagePrice: "#1,110,000",
                     packageDescription: "ROI #2,053,500 - #330,357per day for 28day",
                 },
                 {
+                    packageID:8,
                     packageName: "Palmexecutive",
                     packagePrice: "#2,500,000",
                     packageDescription: "ROI #4,625,000 - #165,178per day for 28days",
                 },
                 {
+                    packageID:9,
                     packageName: "palmVIP",
                     packagePrice: "#5,000,000",
                     packageDescription: "ROI # 9,250,000 - #330,357per day for 28day",
@@ -132,11 +142,11 @@ export const upgradeAndAgentsDetails = [
             name: "Delikk",
             whatsappNumber: '+234 816 471 6129  '
         },
-        {
-            sr: 'Agent 2',
-            name: "Mabel",
-            whatsappNumber: '+234 813 547 8532'
-        },
+        // {
+        //     sr: 'Agent 2',
+        //     name: "Mabel",
+        //     whatsappNumber: '+234 813 547 8532'
+        // },
         // {
         //     sr: 'Agent 3',
         //     name: "O.J",

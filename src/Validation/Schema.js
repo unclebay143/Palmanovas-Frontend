@@ -5,7 +5,7 @@
 import * as Yup from 'yup';
 
 // regex for email
-// const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
 // Forgot Password
 export const forgotPasswordSchema = Yup.object().shape({
@@ -20,7 +20,7 @@ export const resetPasswordSchema = Yup.object().shape({
 
 // Login Schema
 export const loginSchema = Yup.object().shape({
-    email: Yup.string().email('Invalid email format').required('Email is required'),
+    userName: Yup.string().required('Username or email is required'),
     password: Yup.string().required('Password is required'),
 });
 
@@ -32,8 +32,7 @@ export const signUpSchema = Yup.object().shape({
     confirmPassword: Yup.string().required('Please confirm password').oneOf([Yup.ref('password')], 'Password Mismatch'),
     referral: Yup.string().required('Referral is required'),
     termsOfService : Yup.bool().oneOf([true], 'Please review and accept Terms and Condition'),
-    phone: Yup.number()
-    .required('Phone number is required')
+    phone: Yup.string().required('Phone number is required').matches(phoneRegExp, 'Phone number is not valid')
 })
 
 // Change Password

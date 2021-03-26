@@ -17,6 +17,7 @@ import ForgotPassword from '../ForgotPassword';
 const IndexTemplate = () => {
     return (
         <>
+        <div className="main-container">
             <Navbar />
                 <Switch>
                     <Route exact path="/forgot-password" component={ ForgotPassword } />
@@ -26,6 +27,7 @@ const IndexTemplate = () => {
                     <Route exact path="/" component={ LandingPage } />
                 </Switch>
             <Footer />
+        </div>
         </>
     )
 }

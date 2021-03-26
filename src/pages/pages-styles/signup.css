@@ -10,6 +10,7 @@
 /* Background Image Styling */
 
 .signup-form img{
+    /* margin-bottom: 30px; */
     height: 120vh;
     max-height: 150vh;
     opacity: 0.4;
@@ -18,6 +19,7 @@
 
 /* Page positioning */
 .form-area{
+    margin-top: 30px;
     width: 100%;
     height: 100%;
     display: flex;
@@ -25,6 +27,14 @@
     align-items: center;
     padding: 20px;
     color: white;
+}
+
+.signup-form input[type="text"],
+.signup-form input[type="email"],
+.signup-form input[type="password"],
+.signup-form input[type="phone"]{
+
+ height: 50px !important;
 }
 
 /* Input sizes */

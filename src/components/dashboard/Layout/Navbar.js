@@ -10,6 +10,7 @@ import {
 
 // Actions
 import { toggleSidebar } from '../../../actions/layoutAction';
+import { tryLogout } from '../../../actions/userAction';
 
 export const Navbar = () => {
     const dispatch = useDispatch()
@@ -38,7 +39,13 @@ export const Navbar = () => {
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className="nav navbar-nav ml-auto">
                                 <li className="nav-item">
-                                    <a className="nav-link" href=".">Logout</a>
+                                    <a 
+                                        className="nav-link" 
+                                        href="."
+                                        target="_self"
+                                        onClick={()=>dispatch(tryLogout())}
+                                    >Logout</a>
+                                    
                                 </li>
                             </ul>
                         </div>
