@@ -22,3 +22,6 @@ export const FOR_DECLARE_PAYMENT = 'payment/declarePayment/';
 export const FOR_VIEW_DECLARED_PAYMENTS = 'payment/viewAllPayment';
 export const FOR_PAYMENT_CONFIRMATION = 'payment/confirmPayment';
 
+export const FOR_VIEW_USER_APPROVED_PAYMENTS = 'payment/viewApprovedPayment/';
+export const FOR_VIEW_ALL_USERS_APPROVED_PAYMENTS = 'payment/viewAllApprovedPayment';
+export const FOR_REQUEST_WITHDRAWAL = 'payment/requestWithdrawal/';

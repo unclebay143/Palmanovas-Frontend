@@ -20,7 +20,6 @@ import { Link, NavLink } from 'react-router-dom';
 // Redux
 import { useDispatch, useSelector } from 'react-redux';
 import { tryLogout } from '../../../../actions/userAction';
-import { TermsAndCondition } from '../../t&c/TermsAndCondition';
 
 // import logo from '../../assets/images/logo1.png';
 
@@ -56,7 +55,7 @@ const UserSidebar = () => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink exact to="/dashboard/history" activeClassName="active">
+                        <NavLink exact to="/dashboard/package_history" activeClassName="active">
                             <FontAwesomeIcon icon={ faHistory } className="mr-2"/>
                             History
                         </NavLink>
@@ -73,12 +72,7 @@ const UserSidebar = () => {
                             Upgrade
                         </NavLink>
                     </li>
-                    <li>
-                        <NavLink exact to="/dashboard/upgrade_packages" activeClassName="active">
-                            <FontAwesomeIcon icon={ faPaperPlane } className="mr-2"/>
-                            Confirm Payment
-                        </NavLink>
-                    </li>
+                   
 
                     {/* general sidebar item */}
                     <li>

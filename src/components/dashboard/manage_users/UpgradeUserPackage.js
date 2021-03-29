@@ -98,6 +98,13 @@ const promptUser = (packageDetailsFromState, requestDetail) =>{
                         </thead>
                         <tbody>
                             {
+                                paymentRequestDetails.length === 0 ? (
+                                    <tr>
+                                        <td>No payment request yet</td>
+                                    </tr>
+                                ): null
+                            }
+                            {
                                 paymentRequestDetails && paymentRequestDetails.map((requestDetails, index)=>{
                                     return(
 

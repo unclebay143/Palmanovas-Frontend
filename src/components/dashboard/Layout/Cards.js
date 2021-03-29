@@ -2,23 +2,33 @@
 import React from 'react';
 
 // Array of menus
-import MenuItem from '../appDb';
+import MenuItem, { adminMenuItem } from '../appDb';
 
 // Fontawesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import SkeletonLoader from '../../../util/SkeletonLoader';
 // import { 
 //     faUsers 
 // } from "@fortawesome/free-solid-svg-icons";
 
 const Cards = (props) => {
     const dispatch = useDispatch();
+    const { profile} = useSelector(state => state.user);
+    const { roleID } = profile || {};
+    // render the card menu based on user role
+    const menuItemHolder = profile && roleID === 1  ? MenuItem : adminMenuItem;
+
+    // display loader while detecting user role
+    if(!profile){
+        return <SkeletonLoader />
+    }
     return (
         <>
             {
-                MenuItem && (
-                    MenuItem.map((item)=>{
+                menuItemHolder && (
+                    menuItemHolder.map((item)=>{
                         return(
                             <div 
                                 className="col-md-3 col-lg-3 col-6 p-1 mb-3" 

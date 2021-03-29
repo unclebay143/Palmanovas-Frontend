@@ -1,6 +1,7 @@
 import { ErrorMessage, Form, Formik } from 'formik';
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 import { updateUserCryptoWallet } from '../../actions/userAction';
 import ButtonLayout from '../common/ButtonLayout';
 import { TextInput } from '../common/FormInput';
@@ -8,6 +9,7 @@ import { TextInput } from '../common/FormInput';
 const UpdateCryptoWallet = () => {
     const user = useSelector(state => state.user);
     const dispatch = useDispatch();
+    const history = useHistory()
     const { profile } = user;
     return (
         <>
@@ -26,6 +28,12 @@ const UpdateCryptoWallet = () => {
 
                             onSubmit = {((values, action)=>{
                                 dispatch(updateUserCryptoWallet(values, profile.userID, action))
+                                // .then((response)=>{
+                                //     history.push('/dashboard/profile')
+                                // })
+                                // .catch((error)=>{
+                                //     return null
+                                // })
                             })}
                             
                             >

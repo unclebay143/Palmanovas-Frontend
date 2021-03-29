@@ -47,6 +47,45 @@ const MenuItem = [
     },
 ]
 
+export const adminMenuItem = [
+    {
+        id: 1,
+        title: "Package",
+        icon: faMoneyBillAlt,
+        url: '/dashboard/upgrade_packages'
+    },
+    {
+        id: 2,
+        title: "ROI Confirmation",
+        icon: faPaperPlane,
+        url: '/dashboard/upgrade'
+    },
+    {
+        id: 3,
+        title: "Payment History",
+        icon: faGift,
+        url: '/dashboard/bonus'
+    },
+    {
+        id: 4,
+        title: "Resolution",
+        icon: faUsers,
+        url: '/dashboard/referrals'
+    },
+    {
+        id: 5,
+        title: "Package History",
+        icon: faHistory,
+        url: '/dashboard/history'
+    },
+    {
+        id: 6,
+        title: "Logout",
+        icon: faSignOutAlt,
+        handleClick: tryLogout()
+    },
+]
+
 export const user = {
     isAdmin: false,
     profile:{

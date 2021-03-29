@@ -12,7 +12,8 @@ import {
     faUsers,
     faHandsHelping,
     faUsersCog,
-    faShoppingCart
+    faShoppingCart,
+    faMoneyBillWave
 } from "@fortawesome/free-solid-svg-icons";
 
 
@@ -38,66 +39,52 @@ const AdminSidebar = () => {
                 {/* <img src={logo} width="50px" className="img-fluid mr-5" alt="palmanovas logo on the navbar" /> */}
                 </div>
                 <ul className="list-unstyled components mt-4">
-                    {/* General user sidebar item */}
-                    {/* <p>
-                        <FontAwesomeIcon icon={ faHandSparkles } className="mr-2"/>
-                        hi, Sam
-                    </p> */}
-                
                     <li>
                         <NavLink exact to="/dashboard" activeClassName="active">
                             <FontAwesomeIcon icon={ faHome } className="mr-2"/>
                             Dashboard
                         </NavLink>
                     </li>
+                    <hr />
                     <li>
                         <NavLink exact to="/dashboard/profile" activeClassName="active">
                             <FontAwesomeIcon icon={ faUserCircle } className="mr-2"/>
                             Profile
                         </NavLink>
                     </li>
-                    <li>
-                        <NavLink exact to="/dashboard/history" activeClassName="active">
-                            <FontAwesomeIcon icon={ faHistory } className="mr-2"/>
-                            History
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink exact to="/dashboard/bonus" activeClassName="active">
-                            <FontAwesomeIcon icon={ faGift } className="mr-2"/>
-                            Bonus
-                        </NavLink>
-                    </li>
+                    <hr />
                     <li>
                         <NavLink exact to="/dashboard/upgrade_packages" activeClassName="active">
                             <FontAwesomeIcon icon={ faPaperPlane } className="mr-2"/>
-                            Upgrade
+                            Package Confirmation
                         </NavLink>
                     </li>
 
-                    {/* general sidebar item */}
                     <li>
-                        <NavLink exact to="/dashboard/referrals" activeClassName="active">
-                            <FontAwesomeIcon icon={ faUsers } className="mr-2"/>
-                            Referrals
+                        <NavLink exact to="/dashboard/payment_request" activeClassName="active">
+                            <FontAwesomeIcon icon={ faShoppingCart } className="mr-2"/>
+                            ROI Confirmation
                         </NavLink>
                     </li>
+
+                    <hr/>
+                    <li>
+                        <NavLink exact to="/dashboard/roi_payment_history" activeClassName="active">
+                            <FontAwesomeIcon icon={ faMoneyBillWave } className="mr-2"/>
+                            Payment History
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink exact to="/dashboard/approved_package_history" activeClassName="active">
+                            <FontAwesomeIcon icon={ faHistory } className="mr-2"/>
+                             Package History
+                        </NavLink>
+                    </li>
+                    <hr />
                     <li>
                         <NavLink exact to="/dashboard/resolution" activeClassName="active">
                             <FontAwesomeIcon icon={ faHandsHelping } className="mr-2"/>
                             Resolution
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink exact to="/dashboard/manage_users" activeClassName="active">
-                            <FontAwesomeIcon icon={ faUsersCog } className="mr-2"/>
-                            Manage Users
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink exact to="/dashboard/payment_request" activeClassName="active">
-                            <FontAwesomeIcon icon={ faShoppingCart } className="mr-2"/>
-                            Payment Requests
                         </NavLink>
                     </li>
                 </ul>

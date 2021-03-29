@@ -55,7 +55,7 @@ const SignUp = () => {
                                 confirmPassword: '',
                                 userName: '',
                                 referral: '',
-                                phone: ''
+                                phoneNumber: ''
                             }}
                             validationSchema={ signUpSchema }
                             onSubmit={(values, action)=>{
@@ -102,17 +102,17 @@ const SignUp = () => {
                                         <div className="form-group">
                                             <TextInput 
                                                 label="Phone number"
-                                                name="phone"
+                                                name="phoneNumber"
                                                 type="tel"
                                                 className={`form-control ${
-                                                    touched.phone && errors.phone ? "is-invalid" : ""
+                                                    touched.phoneNumber && errors.phoneNumber ? "is-invalid" : ""
                                                 }`}
-                                                id="phone"
+                                                id="phoneNumber"
                                                 placeholder="Enter Phone Number"
                                             />
                                             <ErrorMessage
                                                 component="div"
-                                                name="phone"
+                                                name="phoneNumber"
                                                 className="invalid-feedback p-0"
                                             />
                                         </div>

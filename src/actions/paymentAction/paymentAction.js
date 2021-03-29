@@ -1,7 +1,7 @@
 import PaymentService from "../../services/payments/payment.service";
 
 
-// let user declare payment for a package
+// let user declare payment for a package BY USERS
 export const tryDeclarePayment = (payeeName, userID) => dispatch =>{
     const agentName = {
         agentName: payeeName
@@ -10,13 +10,13 @@ export const tryDeclarePayment = (payeeName, userID) => dispatch =>{
 }
 
 
-// get lists of all payments
+// get lists of all payments BY ADMIN
 export const getDeclaredPaymentList = () => dispatch =>{
     return PaymentService.fetchDeclaredPaymentList()
 }
 
 
-// Confirm user payment
+// Confirm user payment BY ADMIN
 export const confirmPackagePayment = (packageID, requestID) => dispatch =>{
     const payload = {
         packageID: packageID,
@@ -24,6 +24,23 @@ export const confirmPackagePayment = (packageID, requestID) => dispatch =>{
     }
     console.log(payload)
     return PaymentService.confirmPackagePayment(payload)
+    .then((res)=>console.log(res))
+    .catch((err)=>console.log(err))
+}
+
+
+// get lists of approved payments for the user
+
+export const getUserApprovedPayments = (userID) => dispatch=>{
+    return PaymentService.fetchUserApprovedPaymentLists(userID)
+    // .then((res)=>console.log(res))
+    // .catch((err)=>console.log(err))
+}
+
+// get lists of approved payments for the user
+
+export const getUsersApprovedPayments = () => dispatch =>{
+    return PaymentService.fetchAllUsersApprovedPayments()
     .then((res)=>console.log(res))
     .catch((err)=>console.log(err))
 }

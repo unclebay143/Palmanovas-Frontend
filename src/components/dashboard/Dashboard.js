@@ -12,22 +12,25 @@ import { Navbar } from './Layout/Navbar';
 import Index from './Index';
 import UserProfile from './UserProfile';
 import Referral from './referral/Referral';
-import PaymentHistory from './history/PaymentHistory';
+import PaymentHistory from './history/admin/ApprovedPackageHistory';
 import Bonus from './bonus/Bonus';
 import Upgrade from './upgrade/Upgrade';
 import RequestWithdrawal from './request-payment/RequestWithdrawal';
 import Resolution from './resolution/Resolution';
 import HandlePaymentRequest from '../admin/HandlePaymentRequest';
-import { RequestSent } from './confirmation/RequestSent';
 import ManageUsers from './manage_users/ManageUsers';
-import { TermsAndCondition } from './t&c/TermsAndCondition';
 import UpdateProfile from '../users/UpdateProfile';
 import UpdateBankDetails from '../users/UpdateBankDetails';
 import UpdateCryptoWallet from '../users/UpdateCryptoWallet';
+import { RequestSent } from './confirmation/RequestSent';
+import { TermsAndCondition } from './t&c/TermsAndCondition';
 import { ToastContainer } from 'react-toastify'; 
 import { useDispatch } from 'react-redux';
 import { loadUserProfile } from '../../actions/userAction';
+import { generateMatureDate } from '../../_helper/generateMatureDate';
 import UpgradeUserPackage from './manage_users/UpgradeUserPackage';
+import ApprovedPackageHistory from './history/admin/ApprovedPackageHistory';
+import UserPackageHistory from './history/users/UserPackageHistory';
 
 
 
@@ -82,7 +85,8 @@ const Dashboard = () => {
                             <Route path="/dashboard/profile" component = { UserProfile } />
                             <Route path="/dashboard/referrals" component = { Referral } />
                             <Route path="/dashboard/t&c" component = { TermsAndCondition } />
-                            <Route path="/dashboard/history" component = { PaymentHistory } />
+                            <Route path="/dashboard/approved_package_history" component = { ApprovedPackageHistory } />
+                            <Route path="/dashboard/package_history" component = { UserPackageHistory } />
                             <Route path="/dashboard/bonus" component = { Bonus } />
                             <Route path="/dashboard" component = { Index } />
                         </Switch>

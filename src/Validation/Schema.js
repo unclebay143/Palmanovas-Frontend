@@ -30,9 +30,9 @@ export const signUpSchema = Yup.object().shape({
     email: Yup.string().required('Email is required'),
     password: Yup.string().min(4, 'Password must be at least 7 characters').required('Password is required'),
     confirmPassword: Yup.string().required('Please confirm password').oneOf([Yup.ref('password')], 'Password Mismatch'),
-    referral: Yup.string().required('Referral is required'),
+    // referral: Yup.string().required('Referral is required'),
     termsOfService : Yup.bool().oneOf([true], 'Please review and accept Terms and Condition'),
-    phone: Yup.string().required('Phone number is required').matches(phoneRegExp, 'Phone number is not valid')
+    phoneNumber: Yup.string().required('Phone number is required').matches(phoneRegExp, 'Phone number is not valid')
 })
 
 // Change Password

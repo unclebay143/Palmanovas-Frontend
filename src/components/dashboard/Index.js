@@ -1,5 +1,5 @@
 // React
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -12,32 +12,34 @@ import Cards from './Layout/Cards';
 
 // Skeleton Loader
 import Skeleton from 'react-loading-skeleton';
+import { getRemainingDays } from '../../_helper/generateMatureDate';
+import SkeletonLoader from '../../util/SkeletonLoader';
 
 
 const Index = () => {
-    const [isIROIMature, setIsIROIMature] = useState(true);
+    const [isIROIMature, setIsIROIMature] = useState(false);
     const isPaymentApproved = false;
-    const hasInvestment = false;
+    const hasInvestment = true;
     // Get user profile from the user state
     const { profile } = useSelector(state => state.user);
     const { userName } = profile || {};
-    // const userName =''
-    // const purchasedDate = "Mar 7 2021";
-    // const matureDate = "Mar 10 2021";
-    // // const formatedMatureDate = new Date(matureDate).getTime()
-    // const formatPurchasedDate = new Date(purchasedDate).getTime();
-    // const rem = formatedMatureDate - formatPurchasedDate
-    // const remainingDaysToMature = Math.floor(rem / (1000 * 3600 * 24))  
+    const [remainingDays, setRemainingDays] = useState(null)
 
+    useEffect(() => {
+        const startDate = new Date("March 26, 2021 00:00:00");
+        setRemainingDays(getRemainingDays(startDate))
+    }, [])
     return (
         <>
+        {
+            profile && profile ? 
             <div className="container dashboard-Index"> 
                 <h5 className="text-custom-green" style={{lineHeight: '2'}}>
                     <FontAwesomeIcon icon={ faHandSparkles } className="mr-2 text-custom-green"/>
                     Welcome back, {userName && userName ? <span className="p-0"> { userName } </span> : <Skeleton color="#EEE" highlightColor="#CCC" count={1} width={100} /> }
                     <span className="float-lg-right h3 mr-3 d-block mt-3 mt-lg-0">Rank: starter</span>
                 </h5>
-                {/* {formatedMatureDate === formatPurchasedDate ? "matured" : ("growing till "+ remainingDaysToMature)} */}
+                {/* {true === false ? "matured" : ("growing till "+ 1222)} */}
                 {
                     hasInvestment && 
                         <section className="clearfix">
@@ -64,7 +66,7 @@ const Index = () => {
 
                                             { 
                                             // ternary conditional rendering basd on ROI maturity
-                                                isIROIMature ? (
+                                                !isIROIMature ? (
 
                                                     <>
                                                 
@@ -73,33 +75,60 @@ const Index = () => {
 
                                                 ):(
                                                     <div className="progress" onClick={(()=>setIsIROIMature(true))}>
-                                                        <div 
-                                                            className="progress-bar progress-bar-striped bg-warning active" 
-                                                            role="progressbar" 
-                                                            aria-valuenow={15} 
-                                                            aria-valuemin={0} 
-                                                            aria-valuemax={15} 
-                                                            style={{ width: '25%' }}>
-                                                            25%
-                                                        </div>
-                                                        <div 
-                                                            className="progress-bar progress-bar-striped bg-danger active" 
-                                                            role="progressbar" 
-                                                            aria-valuenow={25} 
-                                                            aria-valuemin={0} 
-                                                            aria-valuemax={25} 
-                                                            style={{ width: '25%' }}>
-                                                            50%
-                                                        </div>
-                                                        <div 
-                                                            className="progress-bar progress-bar-striped active" 
-                                                            role="progressbar" 
-                                                            aria-valuenow={60} 
-                                                            aria-valuemin={0} 
-                                                            aria-valuemax={60} 
-                                                            style={{ width: '50%' }}>
-                                                            100%
-                                                        </div>
+                                                        {
+                                                            remainingDays > 0 ?
+                                                            <div 
+                                                                className="progress-bar progress-bar-striped bg-danger active" 
+                                                                role="progressbar" 
+                                                                aria-valuenow={15} 
+                                                                aria-valuemin={0} 
+                                                                aria-valuemax={15} 
+                                                                style={{ width: '15%' }}>
+                                                                10%
+                                                            </div>
+                                                            : ""
+                                                        }
+                                                        {
+                                                            remainingDays > 10 ?
+                                                            <div 
+                                                                className="progress-bar progress-bar-striped bg-warning active" 
+                                                                role="progressbar" 
+                                                                aria-valuenow={15} 
+                                                                aria-valuemin={0} 
+                                                                aria-valuemax={15} 
+                                                                style={{ width: '25%' }}>
+                                                                25%
+                                                            </div>
+                                                            : ""
+                                                        }
+                                                        {
+                                                            remainingDays > 15 ?
+                                                            <div 
+                                                                className="progress-bar progress-bar-striped bg-info active" 
+                                                                role="progressbar" 
+                                                                aria-valuenow={25} 
+                                                                aria-valuemin={0} 
+                                                                aria-valuemax={25} 
+                                                                style={{ width: '25%' }}>
+                                                                75%
+                                                            </div>
+                                                            : ""
+                                                        }
+
+                                                        {
+                                                            remainingDays > 18 ?
+                                                            <div 
+                                                                className="progress-bar progress-bar-striped active" 
+                                                                role="progressbar" 
+                                                                aria-valuenow={60} 
+                                                                aria-valuemin={0} 
+                                                                aria-valuemax={60} 
+                                                                style={{ width: '50%' }}>
+                                                                100%
+                                                            </div>
+                                                            : ""
+                                                        }
+
                                                     </div>
                                                 )
                                             }
@@ -110,13 +139,8 @@ const Index = () => {
                             </div>
                         </section>
                 }
-                <section className="section-heading mt-4">
-                    <div className="clearfix">
-                        {/* <h3 className="">Menu</h3>
-                        <hr className="hr-line"/> */}
-                    </div>
-                </section>
-                {/* <section className="container pl-3 pr-3 pt-3 row"> */}
+
+                {/* Menu items */}
                 <section className="container">
                     <div className="row">
                         <Cards />
@@ -124,6 +148,13 @@ const Index = () => {
                 </section>
                
             </div>
+            : (
+                <div>
+                    <SkeletonLoader count={5}/>
+                    <SkeletonLoader count={5}/>
+                </div>
+            )
+        }
         </>
     )
 }

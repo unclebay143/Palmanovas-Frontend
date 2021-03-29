@@ -26,6 +26,7 @@ const Sidebar = () => {
     if(currentUserType === 'admin'){
         return <AdminSidebar />
     }else{
+        // return <AdminSidebar />
         return <UserSidebar />
     }
 }

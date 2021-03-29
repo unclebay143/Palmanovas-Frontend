@@ -61,7 +61,6 @@ const Upgrade = () => {
             <div className="clearfix">
                 <h3>Upgrade & Payment Option</h3>
                 <hr className="hr-line"/>
-                <button onClick={()=>dispatch(getDeclaredPaymentList())}>fetch</button>
             </div>
           </section>
           <article>

@@ -24,11 +24,17 @@ const ForgotPassword = () => {
                                 <input type="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Email Address or Phone Number"/>
                             </div>
                             <div className="form-group">
-                                <ButtonLayout customclass="btn-md form-control" label="Send"/>
+                                <ButtonLayout type="button" customclass="btn-md form-control" label="Send"/>
                             </div>
                         </form>
                     </section>
                 </div> 
+                {/* <div className="form-area">
+                    <section>
+                        <h2 className="text-enter mb-4 form-lead">Reset Link Sent!!!</h2>
+                        <p>A reset link has been sent to your registered email</p>
+                    </section>
+                </div>  */}
             </section>
         </>
     )

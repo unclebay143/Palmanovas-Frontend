@@ -15,7 +15,7 @@ import {
     userIsAuthenticatedLogger,
     userNameOrEmailNotFoundLogger
 } from "../toaster"
-import { LOGIN_SUCCESSFUL, LOG_OUT, SET_PROFILE } from "./types"
+import { LOGIN_SUCCESSFUL, LOG_OUT, SET_BANK_DETAILS, SET_CRYPTO_DETAILS, SET_ERROR, SET_PROFILE } from "./types"
 
 // Action function that handles registration
 
@@ -80,7 +80,7 @@ export const loadUserProfile = () => dispatch =>{
 }
 
 // function that update the user profile
-export const updateUserProfile = (values, userID, action) =>{
+export const updateUserProfile = (values, userID, action) => dispatch =>{
     return UserService.updateUserProfile(values, userID)
     .then((response)=>{
         profileUpdateCompletedLogger()
@@ -108,6 +108,18 @@ export const updateUserPassword = (values, userID, action) => dispatch =>{
 // function to get the user bank details
 export const getUserBankDetails = (userID) => dispatch =>{
     return UserService.fetchUserBankDetails(userID)
+    .then((response)=>{
+        dispatch({
+            type: SET_BANK_DETAILS,
+            payload: response.data.data[0]
+        })
+    })
+    .catch((error)=>{
+        dispatch({
+            type: SET_ERROR,
+            payload: error
+        })
+    })
 }
 
 // function that update the user bank details
@@ -126,11 +138,23 @@ export const updateUserBankDetails = (values, userID, action) => dispatch =>{
 // function to get the user bank details
 export const getUserCryptoDetails = (userID) => dispatch =>{
     return UserService.fetchUserCryptoDetails(userID)
+    .then((response)=>{
+        dispatch({
+            type: SET_CRYPTO_DETAILS,
+            payload: response.data.data[0]
+        })
+    })
+    .catch((error)=>{
+        dispatch({
+            type: SET_ERROR,
+            payload: error
+        })
+    })
 }
 
 // function that update the user crypto details
 export const updateUserCryptoWallet = (values, userID, action) => dispatch =>{
-    return UserService.updateUserCryptoDetails(values, userID)
+    return UserService.updateUserCryptoWallet(values, userID)
     .then((response)=>{
         cryptoDetailsUpdatedSuccessfullyLogger()
         action.setSubmitting(false)

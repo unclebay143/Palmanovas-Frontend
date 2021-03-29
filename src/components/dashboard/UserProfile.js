@@ -1,5 +1,5 @@
 // React
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 // Fontawesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -16,31 +16,13 @@ import Skeleton from 'react-loading-skeleton';
 const UserProfile = () => {
     const user = useSelector(state => state.user);
     const dispatch = useDispatch();
-    const { profile } = user;
-    const [userBankDetails, setUserBankDetails] = useState({})
-    const [userCryptoDetails, setuserCryptoDetails] = useState({})
-
+    const { profile, bankDetails, cryptoDetails } = user;
     useEffect(() => {
-        // get the user bank details
         if(profile){
+            // get the user bank details
             dispatch(getUserBankDetails(profile.userID))
-            .then((response)=>{
-                setUserBankDetails(response.data.data[0])
-            })
-            .catch((error)=>{
-                console.log(error)
-            })
-        }
-        // get the user crypto wallet details
-        if(profile){
+            // get the user crypto wallet details
             dispatch(getUserCryptoDetails(profile.userID))
-            .then((response)=>{
-                console.log(response)
-                setuserCryptoDetails(response.data.data[0])
-            })
-            .catch((error)=>{
-                console.log(error)
-            })
         }
     }, [dispatch, profile])
 
@@ -88,37 +70,30 @@ const UserProfile = () => {
                 </section>
 
 
-                {
-                    !userBankDetails ? (
-                        // <h3>loading...</h3>
-                        <SkeletonLoader />
-                    ) : (
-                        <section className="col-md-6 col-lg-6 col-12 section-heading">
-                            <div className="clearfix">
-                                <h3>Bank Information</h3>
-                                <hr className="hr-line"/>
-                            </div>
-                            <div className="user-information">
-                                <p>
-                                    Bank Name: { userBankDetails.bankName || <Skeleton color="#EEE" highlightColor="#CCC" count={1} width={100} /> }
-                                </p>
-                                <p>
-                                    Account Number: { userBankDetails.accountNumber || <Skeleton color="#EEE" highlightColor="#CCC" count={1} width={100} /> }
-                                </p>
-                                <p>
-                                    Account Name: { userBankDetails.accountName || <Skeleton color="#EEE" highlightColor="#CCC" count={1} width={100} /> }
-                                </p>
-                                <p>
-                                    Account Type: { userBankDetails.accountType || <Skeleton color="#EEE" highlightColor="#CCC" count={1} width={100} /> }
-                                </p>
-                                <Link to="/dashboard/update_bank" 
-                                    className="btn btn-sm bg-custom-light-green">Update 
-                                    <FontAwesomeIcon icon={ faEdit } className="ml-1"/> 
-                                </Link>
-                            </div>
-                        </section>
-                    )
-                }
+                <section className="col-md-6 col-lg-6 col-12 section-heading">
+                    <div className="clearfix">
+                        <h3>Bank Information</h3>
+                        <hr className="hr-line"/>
+                    </div>
+                    <div className="user-information">
+                        <p>
+                            Bank Name: { bankDetails ? bankDetails.bankName : <Skeleton color="#EEE" highlightColor="#CCC" count={1} width={100} /> }
+                        </p>
+                        <p>
+                            Account Number: { bankDetails ? bankDetails.accountNumber : <Skeleton color="#EEE" highlightColor="#CCC" count={1} width={100} /> }
+                        </p>
+                        <p>
+                            Account Name: { bankDetails ? bankDetails.accountName : <Skeleton color="#EEE" highlightColor="#CCC" count={1} width={100} /> }
+                        </p>
+                        <p>
+                            Account Type: { bankDetails ? bankDetails.accountType : <Skeleton color="#EEE" highlightColor="#CCC" count={1} width={100} /> }
+                        </p>
+                        <Link to="/dashboard/update_bank" 
+                            className="btn btn-sm bg-custom-light-green">Update 
+                            <FontAwesomeIcon icon={ faEdit } className="ml-1"/> 
+                        </Link>
+                    </div>
+                </section>
                 
                 <section className="col-12 section-heading mt-5">
                     <div className="clearfix">
@@ -126,15 +101,12 @@ const UserProfile = () => {
                         <hr className="hr-line"/>
                     </div>
                     <div className="user-information">
-                        {
-                            userCryptoDetails &&(<>
                         <p>
-                            Wallet ID: { userCryptoDetails.walletID || <Skeleton color="#EEE" highlightColor="#CCC" count={1} width={100} />}
+                            Wallet ID: { cryptoDetails ? cryptoDetails.walletID : <Skeleton color="#EEE" highlightColor="#CCC" count={1} width={100} />}
                         </p>
                         <p>
-                            Email: { userCryptoDetails.email || <Skeleton color="#EEE" highlightColor="#CCC" count={1} width={100} />}
-                        </p></>)
-                        }
+                            Email: { cryptoDetails ? cryptoDetails.email : <Skeleton color="#EEE" highlightColor="#CCC" count={1} width={100} />}
+                        </p>
                         <Link to="/dashboard/update_crypto" 
                             className="btn btn-sm bg-custom-light-green">Update 
                             <FontAwesomeIcon icon={ faEdit } className="ml-1"/> 
