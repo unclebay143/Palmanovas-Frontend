@@ -11,6 +11,7 @@ const Upgrade = () => {
 
   // alert function
   const promptUser = (payeeId, payeeName) =>{
+    console.log(payeeId,"", payeeName)
     Swal.fire({
       title: 'Are you sure?',
       html: `A ticket will be raised that you have paid to <b>${ payeeId }</b> ( ${ payeeName } )`,
@@ -27,6 +28,7 @@ const Upgrade = () => {
     }).then((result) => {
       // if the user clicked on confirm 
       if (result.isConfirmed) { // run this block
+        console.log(payeeName)
         dispatch(tryDeclarePayment(payeeName, profile.userID)) // dispatch an action to the backend
         .then((response)=>{
           Swal.fire( // UI notification of the success

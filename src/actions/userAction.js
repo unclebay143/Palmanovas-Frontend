@@ -71,7 +71,7 @@ export const loadUserProfile = () => dispatch =>{
     .then((response)=>{
         dispatch({
             type: SET_PROFILE,
-            payload: response.data.data[0]
+            payload: response.data.data
         })
     })
     .catch((error)=>{

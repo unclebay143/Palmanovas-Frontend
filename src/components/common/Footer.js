@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHandsHelping, faHome, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 // Images
-import logo3 from '../../assets/images/logo3.png';
+import logo3 from '../../assets/images/logo4.jpeg';
 
 // Social icons
 import { SocialIcon } from 'react-social-icons'
@@ -29,7 +29,7 @@ const Footer = () => {
                         </h5>
                         <address className="text-muted">Abuja Area 10 wusa, Nigeria</address>
                         <hr />
-                        <p className="text-muted">Send us an email today: palmanovas@gmail.com</p>
+                        <p className="text-muted">Send us an email today: palmanovascare@gmail.com</p>
                     </div>
                 </div>
                 <div className='col-md-3 col-lg-3 mt-lg-0 mt-5' id="contact-us">

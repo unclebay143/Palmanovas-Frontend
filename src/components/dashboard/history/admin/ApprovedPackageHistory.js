@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { 
   getUsersApprovedPayments 
 } from '../../../../actions/paymentAction/paymentAction';
@@ -10,12 +10,8 @@ import { getPackageName } from '../../../../_helper/getPackageROIDay';
 // admin page to view all approved package payments
 const ApprovedPackageHistory = () => {
   const dispatch = useDispatch();
-  // get user from the redux state
-  const user = useSelector(state => state.user);
-  // get user profile from the state
-  const { profile } = user;
   // component level state
-  const [paymentHistory, setPaymentHistory] = useState([])
+  const [paymentHistory, setPaymentHistory] = useState(null)
 
   useEffect(() => {
     // get all users approved payments from the db
@@ -26,7 +22,6 @@ const ApprovedPackageHistory = () => {
     })
     .catch((error)=>console.log(error)) // handle error
   }, [dispatch])
-  console.log(paymentHistory)
   return (
     <>
       <div className="payment-history">
@@ -36,12 +31,13 @@ const ApprovedPackageHistory = () => {
               <hr className="hr-line"/>
           </div>
         </section>
-        <section className="table-responsive">
+        <section className="table-responsive" style={{overflowY:'scroll', height: '81vh'}}>
           <table className="table table-hover">
             <thead>
               <tr>
                 <th scope="col">SN</th>
                 <th scope="col">Username</th>
+                <th scope="col">ID</th>
                 <th scope="col">Package Name</th>
                 <th scope="col">Agent Name</th>
                 <th scope="col">Start Date</th>
@@ -49,18 +45,28 @@ const ApprovedPackageHistory = () => {
             </thead>
             <tbody>
               {
-                paymentHistory.length === 0 ?(
+                !paymentHistory ? (
+                  <tr>
+                    <td>Loading please wait...</td>
+                  </tr>
+              ):null
+              }
+              {
+                paymentHistory && paymentHistory.length === 0 ?(
                   <tr>
                     <td>No Payment History yet.</td>
                   </tr>
                 ):null
               }
+
+
               {
-                paymentHistory && paymentHistory.map((history, index)=>{
+                paymentHistory && [...paymentHistory].reverse().map((history, index)=>{
                   return(
                     <tr>
                       <th scope="row">{index + 1}</th>
                       <td>{history.userName}</td>
+                      <td>{history.id}</td>
                       <td>Palm - {getPackageName(history.packageID)}</td>
                       <td>{history.agentName}</td>
                       <td>{formatDate(history.startDate)}</td>

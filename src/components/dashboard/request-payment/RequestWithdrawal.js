@@ -8,7 +8,7 @@ const RequestWithdrawal = () => {
     const dispatch = useDispatch();
     const [isLoading, setIsLoading] = useState(true);
     const [withdrawalMethod, setWithdrawalMethod] = useState({
-        methed: null
+        method: null
     });
     const user = useSelector(state => state.user);
     const { profile, bankDetails, cryptoDetails } = user;
@@ -30,6 +30,15 @@ const RequestWithdrawal = () => {
             setIsLoading(false)
         }
     }, [bankDetails, cryptoDetails])
+    // handle select change
+    const handleChange = (event) =>{
+        setWithdrawalMethod({paymentMethod: event.target.value})
+    }
+
+    // payment method submission
+    const handleSubmit = () =>{
+        console.log(withdrawalMethod)
+    }
     return (
         <>
             <section className="section-heading mt-5">
@@ -39,23 +48,24 @@ const RequestWithdrawal = () => {
                 </div>
             </section>
             <section>
-                <select className="form-control form-control-sm">
+                <select className="form-control form-control-sm" onChange={handleChange}>
                     {/* display loading state to the user */}
                     <option>{isLoading ? "Loading..." : "Choose..."}</option>
                     {
                         !isLoading &&( // if the bank and crypto details are present, display them
                             <>
                                 {
-                                    bankDetails && <option>{ bankDetails.accountName } - { bankDetails.accountNumber } - { bankDetails.bankName }</option>
+                                    bankDetails && <option value="bank">{ bankDetails.accountName } - { bankDetails.accountNumber } - { bankDetails.bankName }</option>
                                 }
                                 {
-                                    cryptoDetails && <option>{ cryptoDetails.walletID } - { cryptoDetails.email }</option>
+                                    cryptoDetails && <option value="crypto">{ cryptoDetails.walletID } - { cryptoDetails.email }</option>
                                 }
                             </>
                         )
                     }
                 </select>
-                <button className="btn btn-sm btn-custom-green mt-3" onClick={(()=>history.push('/dashboard/request_sent'))}>Submit</button>
+                {/* <button className="btn btn-sm btn-custom-green mt-3" onClick={(()=>history.push('/dashboard/request_sent'))}>Submit</button> */}
+                <button className="btn btn-sm btn-custom-green mt-3" onClick={handleSubmit()}>Submit</button>
             </section>    
         </>
     )

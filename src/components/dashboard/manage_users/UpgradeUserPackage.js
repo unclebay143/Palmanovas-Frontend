@@ -13,7 +13,7 @@ const UpgradeUserPackage = () => {
 
     })
     // state for payment request from users
-    const [paymentRequestDetails, setPaymentRequestDetails] = useState([]);
+    const [paymentRequestDetails, setPaymentRequestDetails] = useState(null);
     
     // get all user's payment declaration`
     useEffect(() => {
@@ -85,7 +85,7 @@ const promptUser = (packageDetailsFromState, requestDetail) =>{
                         <hr className="hr-line"/>
                     </div>
                 </section>
-                <section className="table-responsive">
+                <section className="table-responsive"  style={{overflowY:'scroll', height: '81vh'}}>
                     <table className="table table-hover">
                         <thead>
                         <tr>
@@ -97,15 +97,23 @@ const promptUser = (packageDetailsFromState, requestDetail) =>{
                         </tr>
                         </thead>
                         <tbody>
+
                             {
-                                paymentRequestDetails.length === 0 ? (
+                                !paymentRequestDetails ? (
+                                <tr>
+                                    <td>Loading please wait...</td>
+                                </tr>
+                            ):null
+                            }
+                            {
+                                paymentRequestDetails && paymentRequestDetails.length === 0 ? (
                                     <tr>
                                         <td>No payment request yet</td>
                                     </tr>
                                 ): null
                             }
                             {
-                                paymentRequestDetails && paymentRequestDetails.map((requestDetails, index)=>{
+                                paymentRequestDetails && [...paymentRequestDetails].reverse().map((requestDetails, index)=>{
                                     return(
 
                                         <tr key={requestDetails.id}>

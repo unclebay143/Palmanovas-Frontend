@@ -59,7 +59,7 @@ const Navbar = () => {
                                 </ScrollLink>
                             </li>
                         </ul>
-                        <ul className="float-md-right navbar-nav">
+                        <ul className="float-left navbar-nav">
                             <li className="nav-item">
                                 <NavLink activeClassName="active" to="/login" className="nav-link">Login</NavLink>
                             </li>

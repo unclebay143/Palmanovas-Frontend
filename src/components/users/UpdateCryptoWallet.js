@@ -28,12 +28,12 @@ const UpdateCryptoWallet = () => {
 
                             onSubmit = {((values, action)=>{
                                 dispatch(updateUserCryptoWallet(values, profile.userID, action))
-                                // .then((response)=>{
-                                //     history.push('/dashboard/profile')
-                                // })
-                                // .catch((error)=>{
-                                //     return null
-                                // })
+                                .then((response)=>{
+                                    history.push('/dashboard/profile')
+                                })
+                                .catch((error)=>{
+                                    return null
+                                })
                             })}
                             
                             >

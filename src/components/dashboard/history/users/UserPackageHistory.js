@@ -33,7 +33,7 @@ const UserPackageHistory = () => {
               <hr className="hr-line"/>
           </div>
         </section>
-        <section className="table-responsive">
+        <section className="table-responsive"  style={{overflowY:'scroll', height: '81vh'}}>
           <table className="table table-hover">
             <thead>
               <tr>
@@ -47,15 +47,12 @@ const UserPackageHistory = () => {
               { // if there is no history
                 packagePaymentHistory.length === 0 ? (
                   <tr>
-                      <td>Loading</td> 
-                      <td>Loading</td>
-                      <td>Loading</td>
-                      <td>Loading</td>
+                    <td>Loading please wait...</td>
                   </tr>
                 ): null
               }
               {
-                packagePaymentHistory && packagePaymentHistory.map((history, index)=>{
+                packagePaymentHistory && [...packagePaymentHistory].reverse().map((history, index)=>{
                   return(
                     <tr key={history.id}>
                       {/* <th scope="row">{index + 1}</th> */}

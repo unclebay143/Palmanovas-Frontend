@@ -37,7 +37,7 @@ const MenuItem = [
         id: 5,
         title: "History",
         icon: faHistory,
-        url: '/dashboard/history'
+        url: '/dashboard/package_history'
     },
     {
         id: 6,
@@ -198,7 +198,8 @@ export const upgradeAndAgentsDetails = [
         },
         {
             sr: 'Cryptocurrency',
-            cryptoAddress: "3MVH7XYsAvMXubAyHhohoEtPa8vchuCA6F",
+            name: 'Cryptocurrency',
+            cryptoAddress: '3MVH7XYsAvMXubAyHhohoEtPa8vchuCA6F',
         },
 ]
 

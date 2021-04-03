@@ -15,7 +15,7 @@ const UpdateProfile = () => {
     const { profile } = user;
     const [userCurrentProfile, setUserCurrentProfile] = useState(null);
     const history = useHistory();
-    
+
     useEffect(() => {
         // If the user profile has been loaded
         if(profile){

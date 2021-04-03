@@ -15,7 +15,7 @@ const initialState = {
     profile: null,
     error: null,
     bankDetails: null,
-    cryptoDetails: null
+    cryptoDetails: null,
 }
 
 

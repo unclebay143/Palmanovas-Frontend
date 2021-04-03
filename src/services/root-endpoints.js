@@ -1,6 +1,6 @@
 
 // BASE URL
-export const BASE_URL = 'http://palmanovas.herokuapp.com/api/';
+export const BASE_URL = 'https://palmanovas.herokuapp.com/api/';
 
 // Authentication related endpoints
 export const FOR_SIGNUP = 'users/signUp';

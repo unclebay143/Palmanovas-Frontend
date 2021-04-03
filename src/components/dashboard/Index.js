@@ -12,23 +12,44 @@ import Cards from './Layout/Cards';
 
 // Skeleton Loader
 import Skeleton from 'react-loading-skeleton';
-import { getRemainingDays } from '../../_helper/generateMatureDate';
+import { generateMatureDate } from '../../_helper/generateMatureDate';
 import SkeletonLoader from '../../util/SkeletonLoader';
+import { getPackageName, getPackagePrice } from '../../_helper/getPackageROIDay';
 
 
 const Index = () => {
-    const [isIROIMature, setIsIROIMature] = useState(false);
-    const isPaymentApproved = false;
-    const hasInvestment = true;
-    // Get user profile from the user state
+    // get user from redux
     const { profile } = useSelector(state => state.user);
-    const { userName } = profile || {};
+    // destructure params from profile
+    const { userName, packageID, startDate, endDate, ROIstatus } = profile || {};
+    // remaining days state
     const [remainingDays, setRemainingDays] = useState(null)
+    // DELETE THIS
+    const [isIROIMature, setIsIROIMature] = useState(false)
+    // ROI state
+    const [ROIStatusState, setROIStatusState] = useState(null);
+    const [hasInvestment, setHasInvestment] = useState(false);
+    const [isPaymentApproved, setIsPaymentApproved] = useState(false);
 
+    // Get user profile from the user state
     useEffect(() => {
-        const startDate = new Date("March 26, 2021 00:00:00");
-        setRemainingDays(getRemainingDays(startDate))
-    }, [])
+        // set the USER roi status
+        switch (ROIstatus) {
+            case "growing":
+                setHasInvestment(true)
+                return setROIStatusState("growing")
+            case "mature":
+                setHasInvestment(true)
+                return setROIStatusState("mature")
+            default:
+                break;
+        }
+    }, [ROIstatus])
+    
+    useEffect(() => {
+        setRemainingDays(generateMatureDate(startDate, endDate))
+    }, [startDate, endDate])
+
     return (
         <>
         {
@@ -45,7 +66,7 @@ const Index = () => {
                         <section className="clearfix">
                             <div className={` ${ isPaymentApproved ? "" : "float-lg-left"} mt-4`}>
                                 <p className="text-lg-right custom-p text-custom-green">
-                                    PalmaGold - #40, 000 
+                                    Current Package: {getPackageName(packageID)} - #{getPackagePrice(packageID)} 
                                     {
                                         isIROIMature ? (<span className=""> ( Matured )</span>) : ''
                                     }
@@ -66,7 +87,7 @@ const Index = () => {
 
                                             { 
                                             // ternary conditional rendering basd on ROI maturity
-                                                !isIROIMature ? (
+                                                isIROIMature ? (
 
                                                     <>
                                                 
@@ -74,7 +95,8 @@ const Index = () => {
                                                     </>
 
                                                 ):(
-                                                    <div className="progress" onClick={(()=>setIsIROIMature(true))}>
+                                                    // <div className="progress" onClick={(()=>setIsIROIMature(true))}>
+                                                    <div className="progress">
                                                         {
                                                             remainingDays > 0 ?
                                                             <div 
@@ -89,7 +111,7 @@ const Index = () => {
                                                             : ""
                                                         }
                                                         {
-                                                            remainingDays > 10 ?
+                                                            remainingDays < 5 ?
                                                             <div 
                                                                 className="progress-bar progress-bar-striped bg-warning active" 
                                                                 role="progressbar" 
@@ -102,7 +124,7 @@ const Index = () => {
                                                             : ""
                                                         }
                                                         {
-                                                            remainingDays > 15 ?
+                                                            remainingDays < 10 ?
                                                             <div 
                                                                 className="progress-bar progress-bar-striped bg-info active" 
                                                                 role="progressbar" 
@@ -116,7 +138,7 @@ const Index = () => {
                                                         }
 
                                                         {
-                                                            remainingDays > 18 ?
+                                                            remainingDays < 18 ?
                                                             <div 
                                                                 className="progress-bar progress-bar-striped active" 
                                                                 role="progressbar" 

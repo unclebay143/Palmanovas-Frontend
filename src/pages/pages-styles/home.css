@@ -94,7 +94,8 @@
 }
 
 #footer .logo-brand img{
-    width: 40%;
+    width: 50%;
+    height: auto;
 }
 
 @media (max-width: 900px){

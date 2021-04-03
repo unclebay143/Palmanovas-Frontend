@@ -27,6 +27,10 @@ import { tryLogout } from '../../../../actions/userAction';
 const UserSidebar = () => {
     const dispatch = useDispatch();
     const { isSideBarOpen } = useSelector(state => state.layout);
+    // get user from redux
+    const { profile } = useSelector(state => state.user);
+    // destructure params from profile
+    const { ROIstatus } = profile || {};
     return (
         <>
             {/* Sidebar  */}
@@ -66,12 +70,17 @@ const UserSidebar = () => {
                             Bonus
                         </NavLink>
                     </li>
-                    <li>
-                        <NavLink exact to="/dashboard/upgrade" activeClassName="active">
-                            <FontAwesomeIcon icon={ faPaperPlane } className="mr-2"/>
-                            Upgrade
-                        </NavLink>
-                    </li>
+                    {// hide the upgrade nav-item when the user have an active package
+                        ROIstatus === "" ? (
+                            <li>
+                                <NavLink exact to="/dashboard/upgrade" activeClassName="active">
+                                    <FontAwesomeIcon icon={ faPaperPlane } className="mr-2"/>
+                                    Upgrade
+                                </NavLink>
+                            </li>
+
+                        ) : ""
+                    }
                    
 
                     {/* general sidebar item */}

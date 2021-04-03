@@ -48,3 +48,28 @@ export const getPackageName = (packageID) =>{
             break;
     }
 }
+
+export const getPackagePrice = (packageID) =>{
+    switch (packageID) {
+        case 1:
+            return "10, 000"
+        case 2:
+            return "25, 000"
+        case 3:
+            return "53, 000"
+        case 4:
+            return "108, 000"
+        case 5:
+            return "222, 000"
+        case 6:
+            return "530,000"
+        case 7:
+            return "1,110,000"
+        case 8:
+            return "2,500,000"
+        case 9:
+            return "5,000,000"
+        default:
+            break;
+    }
+}
