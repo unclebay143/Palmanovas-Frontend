@@ -44,9 +44,9 @@ const Dashboard = () => {
         }
     }, [dispatch])
 
-    if(!localStorage.token){ // Protect dashboard when there is no token in the localStorage
-        history.push('/login')
-    }
+    // if(!localStorage.token){ // Protect dashboard when there is no token in the localStorage
+    //     history.push('/login')
+    // }
     
     return (
         <>

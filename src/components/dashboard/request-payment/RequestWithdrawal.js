@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { getUserBankDetails, getUserCryptoDetails } from '../../../actions/userAction';
+import { tryRequestForwithdrawal } from '../../../actions/withdrawalAction/withdrawalAction';
 
 const RequestWithdrawal = () => {
     const history = useHistory();
@@ -22,7 +23,6 @@ const RequestWithdrawal = () => {
         }
 
     }, [dispatch, profile])
-    console.log((cryptoDetails));
 
     // handles fetching bank and crypto information
     useEffect(() => {
@@ -37,7 +37,11 @@ const RequestWithdrawal = () => {
 
     // payment method submission
     const handleSubmit = () =>{
-        console.log(withdrawalMethod)
+        if(withdrawalMethod.method !== null){
+            dispatch(tryRequestForwithdrawal(profile.userID, withdrawalMethod))
+        }else{
+            return alert('Withdrawal method cannot be blank');
+        }
     }
     return (
         <>
@@ -55,17 +59,25 @@ const RequestWithdrawal = () => {
                         !isLoading &&( // if the bank and crypto details are present, display them
                             <>
                                 {
-                                    bankDetails && <option value="bank">{ bankDetails.accountName } - { bankDetails.accountNumber } - { bankDetails.bankName }</option>
+                                    bankDetails && <option value="bank">
+                                        { bankDetails.accountName } - { bankDetails.accountNumber } - { bankDetails.bankName }
+                                    </option>
                                 }
                                 {
-                                    cryptoDetails && <option value="crypto">{ cryptoDetails.walletID } - { cryptoDetails.email }</option>
+                                    cryptoDetails && <option value="crypto">
+                                        { cryptoDetails.walletID } - { cryptoDetails.email }
+                                    </option>
                                 }
                             </>
                         )
                     }
                 </select>
                 {/* <button className="btn btn-sm btn-custom-green mt-3" onClick={(()=>history.push('/dashboard/request_sent'))}>Submit</button> */}
-                <button className="btn btn-sm btn-custom-green mt-3" onClick={handleSubmit()}>Submit</button>
+                <button 
+                    disabled={withdrawalMethod.method === null ? 'disabled' : ""}
+                    className="btn btn-sm btn-custom-green mt-3" 
+                    onClick={()=>handleSubmit()}
+                >Submit</button>
             </section>    
         </>
     )

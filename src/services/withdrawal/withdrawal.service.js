@@ -4,7 +4,7 @@ import { FOR_REQUEST_WITHDRAWAL } from '../root-endpoints';
 
 
 // push user to waiting list of users with matured ROI
-const requestWithdrawal = () =>{
+const requestWithdrawal = (userID, paymentMethod) =>{
     const isTokenStored = localStorage.getItem('token');
     const configWithToken ={
         headers: {
@@ -15,13 +15,8 @@ const requestWithdrawal = () =>{
           'Authorization': `Bearer ${ isTokenStored && isTokenStored}`
         }
       }
-    return axios.post(FOR_REQUEST_WITHDRAWAL + userID, configWithToken)
+    return axios.post(FOR_REQUEST_WITHDRAWAL + userID, paymentMethod, configWithToken)
 }
-
-
-
-
-
 
 
 
