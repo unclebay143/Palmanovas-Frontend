@@ -33,7 +33,7 @@ const AdminSidebar = () => {
     return (
         <>
             {/* Sidebar  */}
-            <nav id="sidebar" className={` ${ isSideBarOpen ? " " : "active"}`}>
+            <nav id="sidebar" className={`${ isSideBarOpen ? " " : "active"}`} style={{overflowY: "scroll", height: '100vh', whiteSpace: 'nowrap'}}>
                 <div className="sidebar-header">
                 <h3>Palmanovas</h3>
                 {/* <img src={logo} width="50px" className="img-fluid mr-5" alt="palmanovas logo on the navbar" /> */}
@@ -69,9 +69,9 @@ const AdminSidebar = () => {
 
                     <hr/>
                     <li>
-                        <NavLink exact to="/dashboard/roi_payment_history" activeClassName="active">
+                        <NavLink exact to="/dashboard/roi_withdrawal_history" activeClassName="active">
                             <FontAwesomeIcon icon={ faMoneyBillWave } className="mr-2"/>
-                            Payment History
+                            Withdrawal History
                         </NavLink>
                     </li>
                     <li>

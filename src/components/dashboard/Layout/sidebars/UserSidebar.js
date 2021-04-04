@@ -11,6 +11,7 @@ import {
     faUserCircle, 
     faUsers,
     faHandsHelping,
+    faMoneyBillWaveAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
 
@@ -61,7 +62,13 @@ const UserSidebar = () => {
                     <li>
                         <NavLink exact to="/dashboard/package_history" activeClassName="active">
                             <FontAwesomeIcon icon={ faHistory } className="mr-2"/>
-                            History
+                            Package History
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink exact to="/dashboard/withdrawal_history" activeClassName="active">
+                            <FontAwesomeIcon icon={ faMoneyBillWaveAlt } className="mr-2"/>
+                            Withdrawal History
                         </NavLink>
                     </li>
                     <li>

@@ -5,7 +5,7 @@ import {
   FOR_VIEW_DECLARED_PAYMENTS ,
   FOR_PAYMENT_CONFIRMATION, 
   FOR_VIEW_USER_APPROVED_PAYMENTS,
-  FOR_VIEW_ALL_USERS_APPROVED_PAYMENTS
+  FOR_VIEW_ALL_APPROVED_DECLARED_PAYMENTS
 } from '../root-endpoints';
 
 
@@ -84,7 +84,7 @@ const fetchAllUsersApprovedPayments = async() =>{
         'Authorization': `Bearer ${ isTokenStored && isTokenStored}`
       }
     }
-  const response = await axios.get(BASE_URL + FOR_VIEW_ALL_USERS_APPROVED_PAYMENTS, configWithToken)
+  const response = await axios.get(BASE_URL + FOR_VIEW_ALL_APPROVED_DECLARED_PAYMENTS, configWithToken)
   return response
 }
 

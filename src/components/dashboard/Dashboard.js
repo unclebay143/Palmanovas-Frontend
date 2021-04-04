@@ -31,6 +31,7 @@ import { generateMatureDate } from '../../_helper/generateMatureDate';
 import UpgradeUserPackage from './manage_users/UpgradeUserPackage';
 import ApprovedPackageHistory from './history/admin/ApprovedPackageHistory';
 import UserPackageHistory from './history/users/UserPackageHistory';
+import UsersWithdrawalHistory from './history/admin/UsersWithdrawalHistory';
 
 
 
@@ -44,9 +45,9 @@ const Dashboard = () => {
         }
     }, [dispatch])
 
-    // if(!localStorage.token){ // Protect dashboard when there is no token in the localStorage
-    //     history.push('/login')
-    // }
+    if(!localStorage.token){ // Protect dashboard when there is no token in the localStorage
+        history.push('/login')
+    }
     
     return (
         <>
@@ -71,6 +72,8 @@ const Dashboard = () => {
                             <Route path="/dashboard/manage_users" component = { ManageUsers } />
                             <Route path="/dashboard/payment_request" component = { HandlePaymentRequest } />
                             <Route path="/dashboard/upgrade_Packages" component = { UpgradeUserPackage } />
+                            <Route path="/dashboard/roi_withdrawal_history" component = { UsersWithdrawalHistory } />
+                            <Route path="/dashboard/approved_package_history" component = { ApprovedPackageHistory } />
 
 
 
@@ -85,7 +88,6 @@ const Dashboard = () => {
                             <Route path="/dashboard/profile" component = { UserProfile } />
                             <Route path="/dashboard/referrals" component = { Referral } />
                             <Route path="/dashboard/t&c" component = { TermsAndCondition } />
-                            <Route path="/dashboard/approved_package_history" component = { ApprovedPackageHistory } />
                             <Route path="/dashboard/package_history" component = { UserPackageHistory } />
                             <Route path="/dashboard/bonus" component = { Bonus } />
                             <Route path="/dashboard" component = { Index } />

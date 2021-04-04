@@ -87,11 +87,19 @@ const Index = () => {
 
                                             { 
                                             // ternary conditional rendering basd on ROI maturity
-                                                isIROIMature ? (
+                                                !isIROIMature ? (
 
                                                     <>
                                                 
-                                                        <Link to="/dashboard/withdraw" className="btn btn-sm btn-warning text-white">Request Withdrawal</Link>
+                                                        <Link 
+                                                            to={{
+                                                                pathname: "/dashboard/withdraw",
+                                                                state: {fromButton: true}
+                                                            }}
+                                                            className="btn btn-sm btn-warning text-white"
+                                                        >
+                                                            Request Withdrawal
+                                                        </Link>
                                                     </>
 
                                                 ):(

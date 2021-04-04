@@ -1,26 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserApprovedPayments } from '../../../../actions/paymentAction/paymentAction'
+import { getAllWithdrawalRequest } from '../../../../actions/withdrawalAction/withdrawalAction';
 import { formatDate } from '../../../../_helper/dateFormatter';
 import { getPackageName } from '../../../../_helper/getPackageROIDay'
 
 
 // users personal history page to view all their approved payments
-const UserPackageHistory = () => {
+const UsersWithdrawalHistory = () => {
   const dispatch = useDispatch();
   // get user from redux state
   const user = useSelector(state => state.user);
   // get user profile from the user state
   const { profile } = user;
   // component level state
-  const [packagePaymentHistory, setPackagePaymentHistory] = useState([])
+  const [withdrawalHistory, setWithdrawalHistory] = useState([])
   useEffect(() => {
     // if there is a profile get the user package approved history
-    profile && dispatch(getUserApprovedPayments(profile.userID))
+    profile && dispatch(getAllWithdrawalRequest(profile.userID))
     .then((res)=>{
       console.log(res)
       // store the response to the component level state
-      setPackagePaymentHistory(res.data.data)
+      setWithdrawalHistory(res.data.data)
     })
     .catch((error)=>console.log(error))
   }, [dispatch, profile])
@@ -29,7 +29,7 @@ const UserPackageHistory = () => {
       <div className="payment-history">
         <section className="section-heading mt-5">
           <div className="clearfix">
-              <h3>Package History</h3>
+              <h3>Withdrawal History</h3>
               <hr className="hr-line"/>
           </div>
         </section>
@@ -45,14 +45,14 @@ const UserPackageHistory = () => {
             </thead>
             <tbody>
               { // if there is no history
-                packagePaymentHistory.length === 0 ? (
+                withdrawalHistory.length === 0 ? (
                   <tr>
-                    <td>You do not have any package history yet.</td>
+                    <td>No withdrawal history yet.</td>
                   </tr>
                 ): null
               }
               {
-                packagePaymentHistory && [...packagePaymentHistory].reverse().map((history, index)=>{
+                withdrawalHistory && [...withdrawalHistory].reverse().map((history, index)=>{
                   return(
                     <tr key={history.id}>
                       {/* <th scope="row">{index + 1}</th> */}
@@ -74,4 +74,4 @@ const UserPackageHistory = () => {
 
 
 
-export default UserPackageHistory;
+export default UsersWithdrawalHistory;

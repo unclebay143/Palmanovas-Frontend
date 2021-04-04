@@ -3,46 +3,59 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { getUserBankDetails, getUserCryptoDetails } from '../../../actions/userAction';
 import { tryRequestForwithdrawal } from '../../../actions/withdrawalAction/withdrawalAction';
+import { somethingWentWrongLogger } from '../../../toaster/index';
 
 const RequestWithdrawal = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const [isLoading, setIsLoading] = useState(true);
-    const [withdrawalMethod, setWithdrawalMethod] = useState({
-        method: null
-    });
     const user = useSelector(state => state.user);
     const { profile, bankDetails, cryptoDetails } = user;
+    const { userID, ROIstatus } = profile || {};
+    // pull out withdrawalMethod from state
+    const [withdrawalMethodOption, setWithdrawalMethodOption] = useState({withdrawalMethod: null});
+    const { withdrawalMethod } = withdrawalMethodOption;
+
+    // if user roi is not matured send them back to the dashboard
+    // if(ROIstatus === "growing" || ROIstatus === "")history.push("/dashboard")
+    // if the user does not access this component from the request button, take them back to dashboard
+    if(!history.location.state)history.push('/dashboard')
 
     useEffect(() => {
         if(profile){
             // get the user bank details
-            dispatch(getUserBankDetails(profile.userID))
+            dispatch(getUserBankDetails(userID))
             // get the user crypto wallet details
-            dispatch(getUserCryptoDetails(profile.userID))
+            dispatch(getUserCryptoDetails(userID))
         }
 
     }, [dispatch, profile])
 
-    // handles fetching bank and crypto information
     useEffect(() => {
+        // handles fetching bank and crypto information
         if(bankDetails || cryptoDetails){
             setIsLoading(false)
         }
     }, [bankDetails, cryptoDetails])
+
+
     // handle select change
     const handleChange = (event) =>{
-        setWithdrawalMethod({paymentMethod: event.target.value})
+        setWithdrawalMethodOption({withdrawalMethod: event.target.value})
     }
 
     // payment method submission
     const handleSubmit = () =>{
-        if(withdrawalMethod.method !== null){
-            dispatch(tryRequestForwithdrawal(profile.userID, withdrawalMethod))
+        if(withdrawalMethod !== null){
+            dispatch(tryRequestForwithdrawal(userID, withdrawalMethodOption))
+            //push the current url to the history stack to be used to protect the request sent component
+            .then((response)=>history.push({pathname: '/dashboard/request_sent', state: {from: '/dashboard/withdraw'}}))
+            .catch((error)=>somethingWentWrongLogger())
         }else{
             return alert('Withdrawal method cannot be blank');
         }
     }
+
     return (
         <>
             <section className="section-heading mt-5">
@@ -52,7 +65,8 @@ const RequestWithdrawal = () => {
                 </div>
             </section>
             <section>
-                <select className="form-control form-control-sm" onChange={handleChange}>
+                <p className="alert alert-success p-2 text-dark">Do not make withdrawal request more than 1 if successful</p>
+                <select className="form-control form-control-md" onChange={handleChange}>
                     {/* display loading state to the user */}
                     <option>{isLoading ? "Loading..." : "Choose..."}</option>
                     {
@@ -60,12 +74,12 @@ const RequestWithdrawal = () => {
                             <>
                                 {
                                     bankDetails && <option value="bank">
-                                        { bankDetails.accountName } - { bankDetails.accountNumber } - { bankDetails.bankName }
+                                       Bank: { bankDetails.accountName } - { bankDetails.accountNumber } - { bankDetails.bankName }
                                     </option>
                                 }
                                 {
                                     cryptoDetails && <option value="crypto">
-                                        { cryptoDetails.walletID } - { cryptoDetails.email }
+                                        Crypto: { cryptoDetails.walletID } - { cryptoDetails.email }
                                     </option>
                                 }
                             </>
@@ -74,7 +88,7 @@ const RequestWithdrawal = () => {
                 </select>
                 {/* <button className="btn btn-sm btn-custom-green mt-3" onClick={(()=>history.push('/dashboard/request_sent'))}>Submit</button> */}
                 <button 
-                    disabled={withdrawalMethod.method === null ? 'disabled' : ""}
+                    disabled={withdrawalMethod === null || withdrawalMethod === "Choose..." ? 'disabled' : ""}
                     className="btn btn-sm btn-custom-green mt-3" 
                     onClick={()=>handleSubmit()}
                 >Submit</button>
