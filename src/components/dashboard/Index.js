@@ -86,7 +86,7 @@ const Index = () => {
                                         <>
 
                                             { 
-                                            // ternary conditional rendering basd on ROI maturity
+                                            // ternary conditional rendering based on ROI maturity
                                                 !isIROIMature ? (
 
                                                     <>

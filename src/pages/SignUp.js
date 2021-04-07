@@ -18,6 +18,8 @@ import { signUpSchema } from '../Validation/Schema';
 import { handleRegistration } from '../actions/userAction';
 import { useDispatch } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 const SignUp = () => {
     const dispatch = useDispatch();
@@ -180,7 +182,11 @@ const SignUp = () => {
                                                 type="submit"
                                                 customclass="btn-md form-control" 
                                                 disabled={isSubmitting}
-                                                label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Loading...</span>) : "Signup"}
+                                                label={isSubmitting ? (
+                                                <span>
+                                                    <FontAwesomeIcon icon={ faSpinner } className={` fa-spinning mr-2 text-white display-5`}/>
+                                                    Loading...
+                                                </span>) : "Signup"}
                                             />
                                         </div>
                                         

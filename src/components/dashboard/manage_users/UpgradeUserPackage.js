@@ -101,14 +101,14 @@ const promptUser = (packageDetailsFromState, requestDetail) =>{
                             {
                                 !paymentRequestDetails ? (
                                 <tr>
-                                    <td>Loading please wait...</td>
+                                    <td>Fetching Declaration please wait...</td>
                                 </tr>
                             ):null
                             }
                             {
                                 paymentRequestDetails && paymentRequestDetails.length === 0 ? (
                                     <tr>
-                                        <td>No payment request yet</td>
+                                        <td>No payment declaration yet</td>
                                     </tr>
                                 ): null
                             }

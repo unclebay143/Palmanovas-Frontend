@@ -4,14 +4,17 @@ import { upgradeAndAgentsDetails } from '../appDb';
 import Swal from 'sweetalert2'
 import { tryDeclarePayment, getDeclaredPaymentList } from '../../../actions/paymentAction/paymentAction';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
+
+
 const Upgrade = () => {
   const user = useSelector(state => state.user);
   const dispatch = useDispatch();
-  const { profile } = user;
+  const  history = useHistory();
+  const { profile, bankDetails } = user;
 
   // alert function
   const promptUser = (payeeId, payeeName) =>{
-    console.log(payeeId,"", payeeName)
     Swal.fire({
       title: 'Are you sure?',
       html: `A ticket will be raised that you have paid to <b>${ payeeId }</b> ( ${ payeeName } )`,
@@ -22,7 +25,7 @@ const Upgrade = () => {
       confirmButtonText: 'Yes, I have paid!',
       customClass: {
         confirmButton: 'btn  btn-custom-green',
-        cancelButton: 'btn btn-danger ml-2'
+        cancelButton: 'btn btn-danger ml-2',
       },
       buttonsStyling: false
     }).then((result) => {
@@ -55,6 +58,11 @@ const Upgrade = () => {
       }
     })
   }
+  if(!bankDetails){
+    alert("Update your profile")
+    history.push("/dashboard/profile")
+  }
+  console.log(!bankDetails)
     return (
 
       <>

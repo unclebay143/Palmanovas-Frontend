@@ -113,6 +113,7 @@ const UpdateProfile = () => {
                                             }`}
                                             id="email"
                                             placeholder="Enter Valid Email"
+                                            disabled
                                         />
                                         <ErrorMessage
                                             component="div"

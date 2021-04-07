@@ -7,9 +7,7 @@ import {
     faAngleRight,
     faCheckCircle, 
     faShareAlt, 
-    faTimesCircle,
     faAngleLeft,
-    faSpinner
 } from "@fortawesome/free-solid-svg-icons";
 
 
@@ -76,23 +74,24 @@ export const Bonus = () => {
                                         <h3>Bonus Tasks</h3>
                                         <hr className="hr-line"/>
                                     </div>
+                                    <span>How to qualify for bonus</span>
                                     <ul className="p-0">
                                         <li>
                                             <FontAwesomeIcon icon={ faCheckCircle } className="mr-2 text-custom-green" size="lg"/> 
-                                            Refer 5 people
+                                            Refer 30 people
                                         </li>
                                         <li>
                                             <FontAwesomeIcon icon={ faCheckCircle } className="mr-2 text-custom-green" size="lg"/> 
                                             Upload a 5 minute testimonial video
                                         </li>
                                         <li>
-                                            <FontAwesomeIcon icon={ faTimesCircle } className="mr-2 text-danger" size="lg"/> 
+                                            <FontAwesomeIcon icon={ faCheckCircle } className="mr-2 text-custom-green" size="lg"/> 
                                             Upgrade your package
                                         </li>
-                                        <li>
+                                        {/* <li>
                                             <FontAwesomeIcon icon={ faSpinner } className="mr-2 text-custom-green" size="lg"/> 
                                             More tasks loading
-                                        </li>
+                                        </li> */}
                                     </ul>
                                 </section>
                             </div>

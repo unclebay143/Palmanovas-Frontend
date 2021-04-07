@@ -12,7 +12,6 @@ import { Navbar } from './Layout/Navbar';
 import Index from './Index';
 import UserProfile from './UserProfile';
 import Referral from './referral/Referral';
-import PaymentHistory from './history/admin/ApprovedPackageHistory';
 import Bonus from './bonus/Bonus';
 import Upgrade from './upgrade/Upgrade';
 import RequestWithdrawal from './request-payment/RequestWithdrawal';
@@ -27,11 +26,15 @@ import { TermsAndCondition } from './t&c/TermsAndCondition';
 import { ToastContainer } from 'react-toastify'; 
 import { useDispatch } from 'react-redux';
 import { loadUserProfile } from '../../actions/userAction';
-import { generateMatureDate } from '../../_helper/generateMatureDate';
 import UpgradeUserPackage from './manage_users/UpgradeUserPackage';
 import ApprovedPackageHistory from './history/admin/ApprovedPackageHistory';
 import UserPackageHistory from './history/users/UserPackageHistory';
 import UsersWithdrawalHistory from './history/admin/UsersWithdrawalHistory';
+import UserWithdrawalHistory from './history/users/UserWithdrawalHistory';
+import ReferralList from '../admin/ReferralList';
+import BonusHistory from './history/admin/BonusHistory';
+import UserBonusHistory from './history/users/UserBonusHistory';
+import { Wallets } from '../users/Wallets';
 
 
 
@@ -72,8 +75,10 @@ const Dashboard = () => {
                             <Route path="/dashboard/manage_users" component = { ManageUsers } />
                             <Route path="/dashboard/payment_request" component = { HandlePaymentRequest } />
                             <Route path="/dashboard/upgrade_Packages" component = { UpgradeUserPackage } />
-                            <Route path="/dashboard/roi_withdrawal_history" component = { UsersWithdrawalHistory } />
                             <Route path="/dashboard/approved_package_history" component = { ApprovedPackageHistory } />
+                            <Route path="/dashboard/users_referrals" component = { ReferralList } />
+                            <Route path="/dashboard/roi_withdrawal_history" component = { UsersWithdrawalHistory } />
+                            <Route path="/dashboard/users_bonus_history" component = { BonusHistory } />
 
 
 
@@ -89,7 +94,10 @@ const Dashboard = () => {
                             <Route path="/dashboard/referrals" component = { Referral } />
                             <Route path="/dashboard/t&c" component = { TermsAndCondition } />
                             <Route path="/dashboard/package_history" component = { UserPackageHistory } />
+                            <Route path="/dashboard/bonus_history" component = {UserBonusHistory} />
+                            <Route path="/dashboard/withdrawal_history" component = {UserWithdrawalHistory} />
                             <Route path="/dashboard/bonus" component = { Bonus } />
+                            <Route path="/dashboard/wallet" component = { Wallets } />
                             <Route path="/dashboard" component = { Index } />
                         </Switch>
                     </div>

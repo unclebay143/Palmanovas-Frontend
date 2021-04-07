@@ -29,7 +29,7 @@ const RequestWithdrawal = () => {
             dispatch(getUserCryptoDetails(userID))
         }
 
-    }, [dispatch, profile])
+    }, [dispatch, profile, userID])
 
     useEffect(() => {
         // handles fetching bank and crypto information

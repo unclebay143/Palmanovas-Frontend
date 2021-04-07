@@ -4,14 +4,14 @@ import React from 'react';
 // Fontawesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
-    faGift, 
     faHistory, 
-    faHome, 
+    faHome,
+    faUsers,
+    faBoxOpen,
     faPaperPlane, 
     faUserCircle, 
-    faUsers,
+    faCheckSquare,
     faHandsHelping,
-    faUsersCog,
     faShoppingCart,
     faMoneyBillWave
 } from "@fortawesome/free-solid-svg-icons";
@@ -35,7 +35,7 @@ const AdminSidebar = () => {
             {/* Sidebar  */}
             <nav id="sidebar" className={`${ isSideBarOpen ? " " : "active"}`} style={{overflowY: "scroll", height: '100vh', whiteSpace: 'nowrap'}}>
                 <div className="sidebar-header">
-                <h3>Palmanovas</h3>
+                    <h3>Palmanovas</h3>
                 {/* <img src={logo} width="50px" className="img-fluid mr-5" alt="palmanovas logo on the navbar" /> */}
                 </div>
                 <ul className="list-unstyled components mt-4">
@@ -55,22 +55,27 @@ const AdminSidebar = () => {
                     <hr />
                     <li>
                         <NavLink exact to="/dashboard/upgrade_packages" activeClassName="active">
-                            <FontAwesomeIcon icon={ faPaperPlane } className="mr-2"/>
+                            <FontAwesomeIcon icon={ faBoxOpen } className="mr-2"/>
                             Package Confirmation
                         </NavLink>
                     </li>
 
                     <li>
                         <NavLink exact to="/dashboard/payment_request" activeClassName="active">
-                            <FontAwesomeIcon icon={ faShoppingCart } className="mr-2"/>
+                            <FontAwesomeIcon icon={ faCheckSquare } className="mr-2"/>
                             ROI Confirmation
                         </NavLink>
                     </li>
-
+                    <li>
+                        <NavLink exact to="/dashboard/users_referrals" activeClassName="active">
+                            <FontAwesomeIcon icon={ faUsers } className="mr-2"/>
+                            Users Referrals
+                        </NavLink>
+                    </li>
                     <hr/>
                     <li>
                         <NavLink exact to="/dashboard/roi_withdrawal_history" activeClassName="active">
-                            <FontAwesomeIcon icon={ faMoneyBillWave } className="mr-2"/>
+                            <FontAwesomeIcon icon={ faHistory } className="mr-2"/>
                             Withdrawal History
                         </NavLink>
                     </li>
@@ -78,6 +83,12 @@ const AdminSidebar = () => {
                         <NavLink exact to="/dashboard/approved_package_history" activeClassName="active">
                             <FontAwesomeIcon icon={ faHistory } className="mr-2"/>
                              Package History
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink exact to="/dashboard/users_bonus_history" activeClassName="active">
+                            <FontAwesomeIcon icon={ faHistory } className="mr-2"/>
+                             Bonus History
                         </NavLink>
                     </li>
                     <hr />

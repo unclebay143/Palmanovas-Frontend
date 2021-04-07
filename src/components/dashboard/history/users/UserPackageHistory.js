@@ -13,7 +13,7 @@ const UserPackageHistory = () => {
   // get user profile from the user state
   const { profile } = user;
   // component level state
-  const [packagePaymentHistory, setPackagePaymentHistory] = useState([])
+  const [packagePaymentHistory, setPackagePaymentHistory] = useState(null)
   useEffect(() => {
     // if there is a profile get the user package approved history
     profile && dispatch(getUserApprovedPayments(profile.userID))
@@ -37,29 +37,41 @@ const UserPackageHistory = () => {
           <table className="table table-hover">
             <thead>
               <tr>
-                <th scope="col">ID</th>
+                <th scope="col">S/N</th>
+                <th scope="col">Package ID</th>
                 <th scope="col">Package Name</th>
                 <th scope="col">Agent Name</th>
-                <th scope="col">Date</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">End Date</th>
               </tr>
             </thead>
             <tbody>
+              {
+                !packagePaymentHistory ? (
+                    <tr>
+                        <td colSpan="4">Fetching history please wait...</td>
+
+
+                    </tr>
+                ):null
+              }
               { // if there is no history
-                packagePaymentHistory.length === 0 ? (
+                packagePaymentHistory?.length === 0 ? (
                   <tr>
-                    <td>You do not have any package history yet.</td>
+                    <td colSpan="4">You do not have any package history yet.</td>
                   </tr>
                 ): null
               }
               {
                 packagePaymentHistory && [...packagePaymentHistory].reverse().map((history, index)=>{
                   return(
-                    <tr key={history.id}>
-                      {/* <th scope="row">{index + 1}</th> */}
-                      <th scope="row">{history.id}</th>
+                    <tr key={index}>
+                      <th scope="row">{index + 1}</th>
+                      <th scope="row">{history.packageID}</th>
                       <td>Palm - {getPackageName(history.packageID)}</td>
                       <td>{history.agentName}</td>
                       <td>{formatDate(history.startDate)}</td>
+                      <td>{formatDate(history.endDate)}</td>
                     </tr>
                   )
                 })

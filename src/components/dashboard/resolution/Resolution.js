@@ -1,17 +1,73 @@
 // React
-import React from 'react';
+import React, { useState } from 'react';
 
 // Fontawesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
     faPaperclip
 } from "@fortawesome/free-solid-svg-icons";
+import {sendResolutionDetails} from './../../../actions/resolutionAction/resolutionAction'
 
 // Dummy data
 import { user } from '../appDb';
+import { useDispatch } from 'react-redux';
 
 const Resolution = () => {
     const isAdmin = user.isAdmin;
+    const dispatch = useDispatch()
+    const [resolutionForm, setresolutionForm] = useState({
+        // no attachment
+        attachment: null,
+        // no comment
+        comment: null
+    })
+
+    // when the user state writing comment
+    const handleCommentChange = (event) =>{
+        // update the state
+        setresolutionForm({
+            ...resolutionForm,
+            comment: event.target.value
+        })
+    }
+    
+    // when the file is selected, from the pop up
+    const handleAttachmentChange = (event) =>{
+        // update the state
+        setresolutionForm({
+            ...resolutionForm,
+            attachment: event.target.files[0]
+        })
+    }
+
+    const handleSubmit = () =>{
+        const data = new FormData;
+
+        data.append(
+            'fileName', // name
+            resolutionForm.attachment, // file
+            resolutionForm.attachment.name, // file name
+            )
+            
+            const file = {
+                // comment: resolutionForm.comment,
+                fileName: resolutionForm.attachment.name
+            // filename: resolutionForm.attachment.name
+            }
+
+            dispatch(sendResolutionDetails(file))
+            .then((res)=>console.log(res))
+            .catch((err)=>console.log(err))
+            console.log(resolutionForm.attachment.name);
+            // console.log("payload",payLoad);
+            // console.log("formdata",file);
+    }
+    console.log(resolutionForm);
+    console.log(resolutionForm.comment);
+    console.log(resolutionForm.attachment);
+
+
+
     return (
         <>
             <div className="resolution">
@@ -39,13 +95,23 @@ const Resolution = () => {
                                             <h5 className="mb-4">Upload proof of payment</h5>
                                             <div className="mb-3">
                                                 <label>Comment</label>
-                                                <input type="text" placeholder="write your comment" className="form-control form-control-sm"/>
+                                                <input 
+                                                    type="text" 
+                                                    placeholder="write your comment" 
+                                                    className="form-control form-control-sm"
+                                                    onChange={handleCommentChange}
+                                                />
                                             </div>
                                             <div className="mb-4">
                                                 <label>Upload proof of payment</label>
-                                                <input type="file" placeholder="Subject" className="form-control form-control-sm"/>
+                                                <input 
+                                                    type="file" 
+                                                    placeholder="Subject" 
+                                                    className="form-control form-control-sm"
+                                                    onChange={handleAttachmentChange}
+                                                />
                                             </div>
-                                            <button className="btn btn-custom-green btn-block">Send</button>
+                                            <button className="btn btn-custom-green btn-block" onClick={handleSubmit}>Send</button>
                                         </section>
                                     </div>
                                 </div>

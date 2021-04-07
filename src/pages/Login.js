@@ -26,6 +26,8 @@ import { ToastContainer } from 'react-toastify';
 
 // Actions
 import { handleLogin } from '../actions/userAction';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 const Login = () => {
@@ -114,7 +116,11 @@ const Login = () => {
                                                 type="submit"
                                                 customclass="btn-md form-control" 
                                                 disabled={isSubmitting}
-                                                label={isSubmitting ? (<span><i className="fa fa-spinner fa-spin"></i> Loading...</span>) : "Login"}
+                                                label={isSubmitting ? (
+                                                <span>
+                                                    <FontAwesomeIcon icon={ faSpinner } className={` fa-spinning mr-2 text-white display-5`}/>
+                                                    Loading...
+                                                </span>) : "Login"}
                                             />
                                         </div>
                                         <div className="mt-3">

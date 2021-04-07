@@ -22,7 +22,6 @@ export const confirmPackagePayment = (packageID, requestID) => dispatch =>{
         packageID: packageID,
         id: requestID
     }
-    console.log(payload)
     return PaymentService.confirmPackagePayment(payload)
     .then((res)=>console.log(res))
     .catch((err)=>console.log(err))
@@ -33,14 +32,9 @@ export const confirmPackagePayment = (packageID, requestID) => dispatch =>{
 
 export const getUserApprovedPayments = (userID) => dispatch=>{
     return PaymentService.fetchUserApprovedPaymentLists(userID)
-    // .then((res)=>console.log(res))
-    // .catch((err)=>console.log(err))
 }
 
 // get lists of approved payments for the user
-
 export const getUsersApprovedPayments = () => dispatch =>{
     return PaymentService.fetchAllUsersApprovedPayments()
-    // .then((res)=>console.log(res))
-    // .catch((err)=>console.log(err))
 }

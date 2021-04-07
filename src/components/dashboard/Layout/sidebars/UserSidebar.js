@@ -59,25 +59,7 @@ const UserSidebar = () => {
                             Profile
                         </NavLink>
                     </li>
-                    <li>
-                        <NavLink exact to="/dashboard/package_history" activeClassName="active">
-                            <FontAwesomeIcon icon={ faHistory } className="mr-2"/>
-                            Package History
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink exact to="/dashboard/withdrawal_history" activeClassName="active">
-                            <FontAwesomeIcon icon={ faMoneyBillWaveAlt } className="mr-2"/>
-                            Withdrawal History
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink exact to="/dashboard/bonus" activeClassName="active">
-                            <FontAwesomeIcon icon={ faGift } className="mr-2"/>
-                            Bonus
-                        </NavLink>
-                    </li>
-                    {// hide the upgrade nav-item when the user have an active package
+                     {// hide the upgrade nav-item when the user have an active package
                         ROIstatus === "" ? (
                             <li>
                                 <NavLink exact to="/dashboard/upgrade" activeClassName="active">
@@ -88,8 +70,6 @@ const UserSidebar = () => {
 
                         ) : ""
                     }
-                   
-
                     {/* general sidebar item */}
                     <li>
                         <NavLink exact to="/dashboard/referrals" activeClassName="active">
@@ -97,6 +77,33 @@ const UserSidebar = () => {
                             Referrals
                         </NavLink>
                     </li>
+                    <li>
+                        <NavLink exact to="/dashboard/bonus" activeClassName="active">
+                            <FontAwesomeIcon icon={ faGift } className="mr-2"/>
+                            Bonus
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink exact to="/dashboard/package_history" activeClassName="active">
+                            <FontAwesomeIcon icon={ faHistory } className="mr-2"/>
+                            Package History
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink exact to="/dashboard/withdrawal_history" activeClassName="active">
+                            <FontAwesomeIcon icon={ faHistory } className="mr-2"/>
+                            Withdrawal History
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink exact to="/dashboard/bonus_history" activeClassName="active">
+                            <FontAwesomeIcon icon={ faHistory } className="mr-2"/>
+                            Bonus History
+                        </NavLink>
+                    </li>
+                   
+
+
                     <li>
                         <NavLink exact to="/dashboard/resolution" activeClassName="active">
                             <FontAwesomeIcon icon={ faHandsHelping } className="mr-2"/>

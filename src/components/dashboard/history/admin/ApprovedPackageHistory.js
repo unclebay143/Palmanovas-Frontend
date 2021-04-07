@@ -47,14 +47,14 @@ const ApprovedPackageHistory = () => {
               {
                 !paymentHistory ? (
                   <tr>
-                    <td>Loading please wait...</td>
+                    <td  colSpan="4">Fetching history please wait...</td>
                   </tr>
               ):null
               }
               {
                 paymentHistory && paymentHistory.length === 0 ?(
                   <tr>
-                    <td>No Payment History yet.</td>
+                    <td  colSpan="4">No Payment History yet.</td>
                   </tr>
                 ):null
               }
@@ -63,7 +63,7 @@ const ApprovedPackageHistory = () => {
               {
                 paymentHistory && [...paymentHistory].reverse().map((history, index)=>{
                   return(
-                    <tr>
+                    <tr key={index}>
                       <th scope="row">{index + 1}</th>
                       <td>{history.userName}</td>
                       <td>{history.id}</td>

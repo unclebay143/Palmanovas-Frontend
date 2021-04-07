@@ -4,7 +4,7 @@ import {
   FOR_DECLARE_PAYMENT, 
   FOR_VIEW_DECLARED_PAYMENTS ,
   FOR_PAYMENT_CONFIRMATION, 
-  FOR_VIEW_USER_APPROVED_PAYMENTS,
+  FOR_VIEW_USER_PACKAGE_HISTORY,
   FOR_VIEW_ALL_APPROVED_DECLARED_PAYMENTS
 } from '../root-endpoints';
 
@@ -69,7 +69,7 @@ const fetchUserApprovedPaymentLists = async(userID) =>{
         'Authorization': `Bearer ${ isTokenStored && isTokenStored}`
       }
     }
-  const response = await axios.get(BASE_URL + FOR_VIEW_USER_APPROVED_PAYMENTS + userID, configWithToken)
+  const response = await axios.get(BASE_URL + FOR_VIEW_USER_PACKAGE_HISTORY + userID, configWithToken)
   return response
 }
 

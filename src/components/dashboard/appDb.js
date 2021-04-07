@@ -50,7 +50,7 @@ const MenuItem = [
 export const adminMenuItem = [
     {
         id: 1,
-        title: "Package",
+        title: "Package Confirmation",
         icon: faMoneyBillAlt,
         url: '/dashboard/upgrade_packages'
     },
@@ -58,25 +58,25 @@ export const adminMenuItem = [
         id: 2,
         title: "ROI Confirmation",
         icon: faPaperPlane,
-        url: '/dashboard/upgrade'
+        url: '/dashboard/payment_request'
     },
     {
         id: 3,
-        title: "Payment History",
+        title: "Bonus History",
         icon: faGift,
-        url: '/dashboard/bonus'
+        url: '/dashboard/users_bonus_history'
     },
     {
         id: 4,
         title: "Resolution",
         icon: faUsers,
-        url: '/dashboard/referrals'
+        url: '/dashboard/resolution'
     },
     {
         id: 5,
         title: "Package History",
         icon: faHistory,
-        url: '/dashboard/history'
+        url: '/dashboard/approved_package_history'
     },
     {
         id: 6,
