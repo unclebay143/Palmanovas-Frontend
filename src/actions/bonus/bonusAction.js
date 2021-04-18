@@ -20,6 +20,7 @@ export const getUserReferralBonusPercentage = (userID) => async dispatch =>{
     return response
 }
 
+// function to pay users monthly salaries
 export const bonusPaidForCertainReferrals = (referralsSize, userID) => dispatch =>{
     return BonusService.bonusPaidForCertainReferrals(referralsSize, userID)
 }

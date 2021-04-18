@@ -15,7 +15,7 @@ const bonusPaidForActiveReferrals = async(bonus, userID) =>{
           'Authorization': `Bearer ${ isTokenStored && isTokenStored}`
         }
       }
-      console.log(amount);
+      // console.log(amount);
     const response = await axios.post(BASE_URL + FOR_ACTIVE_BONUS_PAID + userID, amount, configWithToken)
     return response
 }
@@ -34,7 +34,7 @@ const getAllUsersBonusHistory = async() =>{
         }
       }
     const response = await axios.get(BASE_URL + FOR_GET_USERS_BONUS_HISTORY, configWithToken)
-    console.log(response)
+    // console.log(response)
     return response
 }
 
@@ -69,12 +69,15 @@ const getUserReferralBonus = (userID) =>{
     }
   return axios.get(BASE_URL + GET_REFERRAL_BONUS + userID, configWithToken)
   .then((response)=>{
-    console.log("service",response.data.data[0].bonus);
+    // console.log("service",response.data.data[0].bonus);
     return response.data.data[0].bonus
+  })
+  .catch((error)=>{
+    console.log(error)
   })
 }
 
-
+// FUNCTION TO PAY USERS SALARY
 const bonusPaidForCertainReferrals = async(referralsSize, userID) =>{
   const referralCount = {
       referralCount: referralsSize
@@ -89,7 +92,7 @@ const bonusPaidForCertainReferrals = async(referralsSize, userID) =>{
         'Authorization': `Bearer ${ isTokenStored && isTokenStored}`
       }
     }
-    console.log(referralCount, userID);
+    // console.log(referralCount, userID);
   const response = await axios.post(BASE_URL + FOR_BONUS_PAID + userID, referralCount, configWithToken)
   return response
 }

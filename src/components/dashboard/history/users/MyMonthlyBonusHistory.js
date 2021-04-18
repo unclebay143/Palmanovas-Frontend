@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllUsersBonusHistory, getUserBonusHistory } from '../../../../actions/bonus/bonusAction';
+import { getUserBonusHistory } from '../../../../actions/bonus/bonusAction';
 import { formatDate } from '../../../../_helper/dateFormatter';
-import { getPackageName } from '../../../../_helper/getPackageROIDay'
+// import { getPackageName } from '../../../../_helper/getPackageROIDay'
 
 
 // users personal history page to view all their approved payments
@@ -49,7 +49,6 @@ const MyMonthlyBonusHistory = () => {
                 }
                 { 
                 // if there is no history
-                // I added the undefined check when the backend is not returning anything
                     userBonusHistory && userBonusHistory.length === 0 ? (
                     <tr>
                         <td colSpan="4">No Bonus history yet.</td>
