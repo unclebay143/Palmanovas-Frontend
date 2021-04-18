@@ -23,3 +23,12 @@ export const SET_CRYPTO_DETAILS = 'SET_CRYPTO_DETAILS';
 
 
 
+// REFERRALS 
+
+export const SET_REFERRALS ='SET_REFERRALS';
+
+
+
+// test
+
+export const LOAD_USER = 'LOAD_USER';

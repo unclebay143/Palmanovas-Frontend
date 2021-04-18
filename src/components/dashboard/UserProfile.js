@@ -8,7 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserBankDetails, getUserCryptoDetails, loadUserProfile } from '../../actions/userAction';
+import { getUserBankDetails, getUserCryptoDetails } from '../../actions/userAction';
 import SkeletonLoader from '../../util/SkeletonLoader';
 import Skeleton from 'react-loading-skeleton';
 

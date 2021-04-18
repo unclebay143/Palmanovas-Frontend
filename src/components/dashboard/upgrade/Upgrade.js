@@ -31,7 +31,6 @@ const Upgrade = () => {
     }).then((result) => {
       // if the user clicked on confirm 
       if (result.isConfirmed) { // run this block
-        console.log(payeeName)
         dispatch(tryDeclarePayment(payeeName, profile.userID)) // dispatch an action to the backend
         .then((response)=>{
           Swal.fire( // UI notification of the success
@@ -41,8 +40,7 @@ const Upgrade = () => {
               text: 'Your ticket has been created.',
               confirmButtonColor: 'rgb(83,175,80)',
             }
-  
-          )
+          ).then(()=>history.push('/dashboard'))
         })
         .catch((error)=>{
           Swal.fire( // UI notification of the success
@@ -55,12 +53,27 @@ const Upgrade = () => {
   
           )
         })
+      }else{
+        Swal.fire( // UI notification of the cancel action success
+          {
+            title: 'Cancelled!',
+            icon: 'success',
+          }
+
+        )
       }
     })
   }
-  if(!bankDetails){
-    alert("Update your profile")
-    history.push("/dashboard/profile")
+  if(bankDetails){
+    Swal.fire({
+      title: 'Update Profile',
+      html: `<p>update your <strong><b><em>personal profile</em></b></strong> and <strong><b><em>payment details</em></b></strong>  to access this page</p>`,
+      icon: 'warning',
+      })
+      .then(()=>{
+        // alert("Update your profile")
+        history.push("/dashboard/profile")
+      })
   }
   console.log(!bankDetails)
     return (

@@ -41,7 +41,7 @@ const Resolution = () => {
     }
 
     const handleSubmit = () =>{
-        const data = new FormData;
+        const data = new FormData();
 
         data.append(
             'fileName', // name
@@ -84,14 +84,24 @@ const Resolution = () => {
                                 <div className="row">
                                     <div className="col-md-6 col-lg-12 col-12">
                                         <section className="my-3 alert alert-success">
-                                            Your account may be suspended for any unpaid uploaded.
+                                            Your account may be suspended for any unpaid or false resolution.
                                         </section>
                                         <section>
                                             <h5>Send us a mail</h5>
-                                            <p style={{lineHeight: '2'}}>forward your proof of payment to <span className="alert alert-success p-2">support@palmanovas.com</span></p>
+                                            <p style={{lineHeight: '2'}}>
+                                                forward your proof of payment to 
+                                                <a 
+                                                    href="mailto:palmanovascare@gmail.com" 
+                                                    className="alert alert-success p-2 m-2"
+                                                >
+                                                    <u>
+                                                        palmanovascare@gmail.com
+                                                    </u>
+                                                </a>
+                                            </p>
                                         </section>
-                                        <strong className="">OR</strong>
-                                        <section className="my-3">
+                                        <strong className="d-none ">OR</strong>
+                                        <section className="d-none my-3">
                                             <h5 className="mb-4">Upload proof of payment</h5>
                                             <div className="mb-3">
                                                 <label>Comment</label>

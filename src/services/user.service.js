@@ -41,13 +41,20 @@ const config ={
 
 // send user details for registration
 const tryRegister = async(values) =>{
-
     const response = await axios.post(BASE_URL + FOR_SIGNUP, values, config)
     return response
 }
 
 // send user login details to the backend
 const tryLogin = ( values ) =>{
+  const config ={
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'mode': 'cors',
+    }
+  }
     return axios.post(BASE_URL + FOR_LOGIN, values);
 }
 

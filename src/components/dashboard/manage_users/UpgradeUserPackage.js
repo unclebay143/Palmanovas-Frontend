@@ -14,6 +14,8 @@ const UpgradeUserPackage = () => {
     })
     // state for payment request from users
     const [paymentRequestDetails, setPaymentRequestDetails] = useState(null);
+    const [isLoading, setIsLoading] = useState(false)
+    const [isApproved, setIsApproved] = useState(false)
     
     // get all user's payment declaration`
     useEffect(() => {
@@ -33,6 +35,7 @@ const UpgradeUserPackage = () => {
     
   // alert function
 const promptUser = (packageDetailsFromState, requestDetail) =>{
+    setIsLoading(true)
     Swal.fire({
       title: 'Confirmation',
       html: `Approve Package: <b>${packageDetailsFromState.packageID}</b> <br/> To Account: <b>${requestDetail.userName}</b>`,
@@ -52,6 +55,8 @@ const promptUser = (packageDetailsFromState, requestDetail) =>{
         // handleSubmit(y)
         dispatch(confirmPackagePayment(packageDetailsFromState.packageID, requestDetail.id)) // dispatch an action to the backend
         .then((response)=>{
+        setIsLoading(false)
+        setIsApproved(true)
           Swal.fire( // UI notification of the success
             {
               title: 'Confirmed!',
@@ -60,9 +65,12 @@ const promptUser = (packageDetailsFromState, requestDetail) =>{
               confirmButtonColor: 'rgb(83,175,80)',
             }
   
-          )
+          ).then(()=>{
+            dispatch(getDeclaredPaymentList())
+          })
         })
         .catch((error)=>{
+          setIsLoading(false)
           Swal.fire( // UI notification of the success
             {
               title: 'Error!',
@@ -70,9 +78,10 @@ const promptUser = (packageDetailsFromState, requestDetail) =>{
               text: 'Something went wrong, please try again.',
               confirmButtonColor: 'rgb(83,175,80)',
             }
-  
           )
         })
+      }else{
+          setIsLoading(false)
       }
     })
   }
@@ -150,7 +159,7 @@ const promptUser = (packageDetailsFromState, requestDetail) =>{
                                                     className="btn btn-sm btn-custom-green" 
                                                     onClick={()=>promptUser(packageDetails, requestDetails)}
                                                 >
-                                                    Approve
+                                                    {isApproved ? "Approved" : (isLoading ? "Loading..." : "Approve")}
                                                 </button>
                                             </td>
                                         </tr>

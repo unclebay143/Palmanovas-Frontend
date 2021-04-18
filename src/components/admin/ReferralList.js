@@ -1,7 +1,8 @@
+import { event } from 'jquery';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
-import { bonusPaid } from '../../actions/bonus/bonusAction';
+import { bonusPaid, getUserBonusHistory, getUserReferralBonusPercentage } from '../../actions/bonus/bonusAction';
 import { getAllUserReferral } from '../../actions/referralAction/referralAction';
 import { viewWithdrawalDetails } from '../../actions/withdrawalAction/withdrawalAction';
 import './modal.css'
@@ -10,7 +11,7 @@ const ReferralList = () => {
     const dispatch = useDispatch();
     const { profile } = useSelector(state => state.user);
     const [usersReferral, setUsersReferral] = useState(null)
-    const [filterBy, setFilterBy] = useState(0)
+    const [filterBy, setFilterBy] = useState(null)
     const [showBankDetails, setShowBankDetails] = useState(null) 
     const [showCryptoDetails, setShowCryptoDetails] = useState(null) 
     const [isPaying, setIsPaying] = useState(false)
@@ -19,17 +20,17 @@ const ReferralList = () => {
         referralCount: null,
         userID: null,
     })
-    const usersReferralBaseOnSize = usersReferral?.filter((referral)=>referral.referralList.length === filterBy)
+    console.log(typeof filterBy);
+    const usersReferralBaseOnSize = usersReferral?.filter((referral)=> filterBy ? referral.referralList.length === filterBy : referral.referralList.length > 0)
     const { userID } = profile || {}
     const [withdrawalMethodDetails, setWithdrawalMethodDetails] = useState({
         bank: {},
         crypto: {}
     })
-
     useEffect(() => {
         profile && dispatch(getAllUserReferral(userID))
         .then((res)=>{
-            setUsersReferral(res.data.data)
+            setUsersReferral(res.data.data?.filter((list)=>list.bonus > 0))
         })
         .catch((err)=>console.log(err))
     }, [dispatch, userID, profile])
@@ -51,9 +52,8 @@ const ReferralList = () => {
                 }
             })
         })
-        // get the user withdrawal details from the server
-        
 
+        // get the user withdrawal bank details from the server
         if(withdrawalMethod === "bank"){
             dispatch(viewWithdrawalDetails("bank",userID))
             .then((res)=>{
@@ -68,6 +68,7 @@ const ReferralList = () => {
             })
             
         }
+        // get the user withdrawal crypto details from the server
         if(withdrawalMethod === "crypto"){
             dispatch(viewWithdrawalDetails("crypto",userID))
             .then((res)=>{
@@ -82,7 +83,6 @@ const ReferralList = () => {
         }
         
     }
-
 
     // handle filterBy change
     const handleChange = (event) =>{
@@ -100,6 +100,7 @@ const ReferralList = () => {
             alert("Something went wrong")
         })
     }
+
     return (
         <>
             <div className="users-referral-list">
@@ -156,6 +157,8 @@ const ReferralList = () => {
                                 <th scope="col">S/N</th>
                                 <th scope="col">Username</th>
                                 <th scope="col">No of referrals</th>
+                                <th scope="col">Active Bonus</th>
+                            {/* <td>{dispatch(getUserReferralBonusPercentage(514))}l</td> */}
                                 <th scope="col"></th>
                             </tr>
                         </thead>
@@ -176,12 +179,13 @@ const ReferralList = () => {
                                 ):null
                             }
                             {
-                                usersReferralBaseOnSize?.map(({userName, referralList, userID}, index)=>{
+                               usersReferralBaseOnSize?.map(({userName, referralList, userID, bonus}, index)=>{
                                     return(
                                     <tr key={index}>
                                         <th scope="row">{index+1}</th>
                                         <td>{userName}</td>
                                         <td>{referralList.length}</td>
+                                        <td>{bonus}</td>
                                         <td><button className="btn btn-sm btn-success" onClick={()=>paymentMethodPrompt("bank",userID,referralList.length)} disabled={isLoading}>{isLoading ? "Loading Please wait..." : "View Bank Details"}</button></td>
                                         <td><button className="btn btn-sm btn-success" onClick={()=>paymentMethodPrompt("crypto",userID,referralList.length)} disabled={isLoading}>{isLoading ? "Loading Please wait.." : "View Crypto Details"}</button></td>
                                     </tr>

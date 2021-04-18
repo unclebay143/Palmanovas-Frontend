@@ -1,7 +1,7 @@
 // React
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector,  useDispatch } from 'react-redux';
 
 // Fontawesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -15,11 +15,14 @@ import Skeleton from 'react-loading-skeleton';
 import { generateMatureDate } from '../../_helper/generateMatureDate';
 import SkeletonLoader from '../../util/SkeletonLoader';
 import { getPackageName, getPackagePrice } from '../../_helper/getPackageROIDay';
+import { getUserReferral } from '../../actions/referralAction/referralAction';
 
 
 const Index = () => {
+    const dispatch = useDispatch();
     // get user from redux
     const { profile } = useSelector(state => state.user);
+    const { listOfReferrals } = useSelector(state => state.referrals);
     // destructure params from profile
     const { userName, packageID, startDate, endDate, ROIstatus } = profile || {};
     // remaining days state
@@ -30,6 +33,13 @@ const Index = () => {
     const [ROIStatusState, setROIStatusState] = useState(null);
     const [hasInvestment, setHasInvestment] = useState(false);
     const [isPaymentApproved, setIsPaymentApproved] = useState(false);
+    const [userRank, setUserRank] = useState("Starter");
+    const { userID } = profile || {}
+
+    useEffect(() => {
+        profile && dispatch(getUserReferral(userID))
+    }, [dispatch, userID, profile])
+
 
     // Get user profile from the user state
     useEffect(() => {
@@ -44,12 +54,18 @@ const Index = () => {
             default:
                 break;
         }
+       
     }, [ROIstatus])
-    
+
+    useEffect(() => {
+        if(hasInvestment)setUserRank("Palma")
+        if(getPackageName(packageID) === 'Premium' && listOfReferrals?.length > 15)setUserRank("Tutor")
+        if(getPackageName(packageID) === 'Silver' && listOfReferrals?.length > 25)setUserRank("V.P")
+    }, [hasInvestment, listOfReferrals?.length])
+    console.log(userRank);
     useEffect(() => {
         setRemainingDays(generateMatureDate(startDate, endDate))
     }, [startDate, endDate])
-
     return (
         <>
         {
@@ -58,7 +74,7 @@ const Index = () => {
                 <h5 className="text-custom-green" style={{lineHeight: '2'}}>
                     <FontAwesomeIcon icon={ faHandSparkles } className="mr-2 text-custom-green"/>
                     Welcome back, {userName && userName ? <span className="p-0"> { userName } </span> : <Skeleton color="#EEE" highlightColor="#CCC" count={1} width={100} /> }
-                    <span className="float-lg-right h3 mr-3 d-block mt-3 mt-lg-0">Rank: starter</span>
+                    <span className="float-lg-right h3 mr-3 d-block mt-3 mt-lg-0">Rank: { userRank }</span>
                 </h5>
                 {/* {true === false ? "matured" : ("growing till "+ 1222)} */}
                 {
@@ -87,7 +103,7 @@ const Index = () => {
 
                                             { 
                                             // ternary conditional rendering based on ROI maturity
-                                                !isIROIMature ? (
+                                                isIROIMature ? (
 
                                                     <>
                                                 

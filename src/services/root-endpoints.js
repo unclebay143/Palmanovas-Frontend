@@ -51,7 +51,14 @@ export const FOR_BONUS_PAID = 'payment/bonusPaid/';
 export const FOR_GET_USER_BONUS_HISTORY = 'payment/viewUserBonusHistory/';
 export const FOR_GET_USERS_BONUS_HISTORY = 'payment/viewAllBonusHistory/';
 
+export const GET_REFERRAL_BONUS = 'payment/getReferralBonus/'
+
 
 // RESOLUTION
 
 export const FOR_POST_RESOLUTION = "resolution/upload";
+
+
+
+// test
+export const URL_FOR_LOAD_USER = 'https://jsonplaceholder.typicode.com/todos/'

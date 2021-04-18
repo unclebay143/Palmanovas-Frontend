@@ -35,7 +35,6 @@
 
 
 export const generateMatureDate = (startDate, endDate) =>{
-    console.log(endDate)
     // get today's current date
     const getCurrentDate = new Date();
     // convert end date to new Date

@@ -6,8 +6,7 @@ import { useSelector } from 'react-redux';
 import UserSidebar from './Layout/sidebars/UserSidebar';
 import AdminSidebar from './Layout/sidebars/AdminSidebar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircle, faHome, faSpinner, faUserCircle } from '@fortawesome/free-solid-svg-icons';
-import { NavLink } from 'react-router-dom';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 
 const Sidebar = () => {

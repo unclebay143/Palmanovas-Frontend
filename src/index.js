@@ -10,14 +10,15 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.js';
 
+
 // Custom Styles
+import './components/common/navbar.css'
 import './pages/pages-styles/common.css';
 import './pages/pages-styles/home.css';
 import './pages/pages-styles/login.css';
 import './pages/pages-styles/signup.css';
 import './pages/pages-styles/forgotpassword.css';
 import './pages/pages-styles/about.css';
-import './components/common/navbar.css'
 
 // Dashboard Styles
 import './components/dashboard/dashboard-styles/sidebar.css';
@@ -34,6 +35,7 @@ import 'react-toastify/dist/ReactToastify.css';
 // Redux Store
 import store from './store';
 import { Provider } from 'react-redux';
+
 
 
 ReactDOM.render(

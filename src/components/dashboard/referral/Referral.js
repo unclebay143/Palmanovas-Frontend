@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserReferral } from '../../../actions/referralAction/referralAction';
 
 const Referral = () => {
-    const dispatch = useDispatch();
     const { profile } = useSelector(state => state.user);
-    const [userReferral, setUserReferral] = useState(null)
-
-    const { userID } = profile || {}
+    const { listOfReferrals } = useSelector(state => state.referrals);
+    const dispatch = useDispatch();
+    console.log(listOfReferrals);
+    
     useEffect(() => {
-        profile && dispatch(getUserReferral(userID))
-        .then((res)=>{
-            setUserReferral(res.data.data)
-        })
-        .catch((err)=>console.log(err))
-    }, [dispatch, userID, profile])
+        if(!listOfReferrals){
+            profile && dispatch(getUserReferral(profile.userID))
+        }
+    }, [dispatch, profile?.userID, profile])
+
+
     return (
         <>
             <section className="section-heading mt-5">
@@ -41,7 +41,7 @@ const Referral = () => {
                                 </thead>
                                 <tbody>
                                     {
-                                        !userReferral ? (
+                                        !listOfReferrals ? (
                                             <tr>
                                                 <td>Fetching Referrals please wait...</td>
                                             </tr>
@@ -49,14 +49,14 @@ const Referral = () => {
                                     }
                                     {
                                         
-                                        userReferral?.length === 0 ? (
+                                        listOfReferrals?.length === 0 ? (
                                             <tr>
                                                 <td  colSpan="4">You do not have Referrals yet.</td>
                                             </tr>
                                         ):null
                                     }
                                     {
-                                        userReferral?.map((referral, index)=>{
+                                        listOfReferrals?.map((referral, index)=>{
                                             return(
                                             <tr>
                                                 <th scope="row">{index+1}</th>

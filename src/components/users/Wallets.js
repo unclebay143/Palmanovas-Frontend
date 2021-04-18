@@ -6,8 +6,11 @@ import { getPackageName, getPackagePrice } from '../../_helper/getPackageROIDay'
 export const Wallets = () => {
     const user = useSelector(state => state.user);
     const { profile } = user;
-    const { packageID, ROIstatus, endDate, startDate, status } = profile;
+    const { packageID, ROIstatus, endDate, startDate, status } = profile || {};
 
+    if(profile === null){
+        return <span className="data-lead">Loading... please wait</span>
+    }
 
     const WalletDetails = () =>(
         ROIstatus === "" ?(
@@ -38,7 +41,7 @@ export const Wallets = () => {
              <div className="row user-profile">
                 <section className="col-md-6 col-lg-6 col-12 profile-heading">
                     <div className="clearfix">
-                        <h3>User profile</h3>
+                        <h3>Current Package Wallet</h3>
                         <hr className="hr-line"/>
                     </div>
                     <div className="wallet-information mb-4">

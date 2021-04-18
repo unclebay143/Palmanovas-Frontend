@@ -8,12 +8,9 @@ import {
     faHome,
     faUsers,
     faBoxOpen,
-    faPaperPlane, 
     faUserCircle, 
     faCheckSquare,
     faHandsHelping,
-    faShoppingCart,
-    faMoneyBillWave
 } from "@fortawesome/free-solid-svg-icons";
 
 
