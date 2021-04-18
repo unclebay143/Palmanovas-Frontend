@@ -32,9 +32,12 @@ import UserPackageHistory from './history/users/UserPackageHistory';
 import UsersWithdrawalHistory from './history/admin/UsersWithdrawalHistory';
 import UserWithdrawalHistory from './history/users/UserWithdrawalHistory';
 import ReferralList from '../admin/ReferralList';
-import BonusHistory from './history/admin/BonusHistory';
-import UserBonusHistory from './history/users/UserBonusHistory';
+import MonthlyBonusHistory from './history/admin/MonthlyBonusHistory';
+import MyMonthlyBonusHistory from './history/users/MyMonthlyBonusHistory';
 import { Wallets } from '../users/Wallets';
+import MonthlyBonusReferralList from '../admin/MonthlyBonusReferralList';
+import MyReferralBonusHistory from './history/users/MyReferralBonusHistory';
+import UsersReferralBonusHistory from './history/admin/UsersReferralBonusHistory';
 
 
 
@@ -76,9 +79,11 @@ const Dashboard = () => {
                             <Route path="/dashboard/payment_request" component = { HandlePaymentRequest } />
                             <Route path="/dashboard/upgrade_Packages" component = { UpgradeUserPackage } />
                             <Route path="/dashboard/approved_package_history" component = { ApprovedPackageHistory } />
-                            <Route path="/dashboard/users_referrals" component = { ReferralList } />
+                            <Route path="/dashboard/referral_bonus" component = { ReferralList } />
+                            <Route path="/dashboard/referral_bonus_history" component = { UsersReferralBonusHistory } />
                             <Route path="/dashboard/roi_withdrawal_history" component = { UsersWithdrawalHistory } />
-                            <Route path="/dashboard/users_bonus_history" component = { BonusHistory } />
+                            <Route path="/dashboard/monthly_bonus" component = { MonthlyBonusReferralList } />
+                            <Route path="/dashboard/monthly_bonus_history" component = { MonthlyBonusHistory } />
 
 
 
@@ -91,13 +96,14 @@ const Dashboard = () => {
                             <Route path="/dashboard/update_bank" component = { UpdateBankDetails } />
                             <Route path="/dashboard/update_profile" component = { UpdateProfile } />
                             <Route path="/dashboard/profile" component = { UserProfile } />
-                            <Route path="/dashboard/referrals" component = { Referral } />
+                            <Route path="/dashboard/my_referrals" component = { Referral } />
+                            <Route path="/dashboard/my_referrals_bonus_history" component = { MyReferralBonusHistory } />
                             <Route path="/dashboard/t&c" component = { TermsAndCondition } />
                             <Route path="/dashboard/package_history" component = { UserPackageHistory } />
-                            <Route path="/dashboard/bonus_history" component = {UserBonusHistory} />
-                            <Route path="/dashboard/withdrawal_history" component = {UserWithdrawalHistory} />
-                            <Route path="/dashboard/bonus" component = { Bonus } />
-                            <Route path="/dashboard/wallet" component = { Wallets } />
+                            <Route path="/dashboard/my_monthly_bonus_history" component = {MyMonthlyBonusHistory} />
+                            <Route path="/dashboard/my_withdrawal_history" component = {UserWithdrawalHistory} />
+                            <Route path="/dashboard/my_bonus" component = { Bonus } />
+                            <Route path="/dashboard/my_wallet" component = { Wallets } />
                             <Route path="/dashboard" component = { Index } />
                         </Switch>
                     </div>

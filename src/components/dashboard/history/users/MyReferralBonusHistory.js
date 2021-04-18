@@ -1,33 +1,33 @@
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllUsersBonusHistory } from '../../../../actions/bonus/bonusAction';
+import { getAllUsersBonusHistory, getUserBonusHistory } from '../../../../actions/bonus/bonusAction';
+import { getCurrentUserRefferalBonusHistory } from '../../../../actions/referralAction/referralAction';
 import { formatDate } from '../../../../_helper/dateFormatter';
 import { getPackageName } from '../../../../_helper/getPackageROIDay'
 
 
 // users personal history page to view all their approved payments
-const BonusHistory = () => {
+const MyReferralBonusHistory = () => {
   const dispatch = useDispatch();
+  const { profile } = useSelector(state => state.user);
   // component level state
-  const [bonusHistories, setBonusHistory] = useState(null)
+  const [userReferral, setUserReferralBonusHistory] = useState(null)
   useEffect(() => {
     // if there is a profile get the user package approved history
-    dispatch(getAllUsersBonusHistory())
+    profile && dispatch(getCurrentUserRefferalBonusHistory(profile.userID))
     .then((res)=>{
       // store the response to the component level state
-      setBonusHistory(res.data.data)
+      setUserReferralBonusHistory(res.data.data)
     })
     .catch((error)=>console.log(error))
-  }, [dispatch])
-  console.log(bonusHistories)
+  }, [dispatch, profile])
+  console.log(userReferral)
   return (
     <>
       <div className="payment-history">
         <section className="section-heading mt-5">
           <div className="clearfix">
-              <h3>Bonus History</h3>
+              <h3>Referral Bonus History</h3>
               <hr className="hr-line"/>
           </div>
         </section>
@@ -35,46 +35,37 @@ const BonusHistory = () => {
           <table className="table table-hover">
             <thead>
               <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Username</th>
-                <th scope="col">Fullname</th>
+                <th scope="col">S/N</th>
                 <th scope="col">Date Paid</th>
-                <th scope="col">Referrals</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Status</th>
               </tr>
             </thead>
             <tbody>
                 {
-                    !bonusHistories ? (
+                    !userReferral ? (
                         <tr>
-                            <td colSpan="9">Fetching history please wait...</td>
+                            <td colSpan="4">Fetching history please wait...</td>
                         </tr>
                     ):null
                 }
                 { 
                 // if there is no history
                 // I added the undefined check when the backend is not returning anything
-                    !bonusHistories === "undefined" && bonusHistories.length === 0 ? (
+                    userReferral && userReferral.length === 0 ? (
                     <tr>
-                        <td colSpan="4">No withdrawal history yet.</td>
+                        <td colSpan="4">No Referral Bonus history yet.</td>
                     </tr>
                     ): null
                 }
                 {
-                    bonusHistories && [...bonusHistories].reverse().map((bonusHistory, index)=>{
+                    userReferral && [...userReferral].reverse().map((bonusHistory, index)=>{
                     return(
                         <tr key={bonusHistory.id}>
                         <th scope="row">{index + 1}</th>
-                        <th scope="row">{bonusHistory.userName}</th>
-                        <td className="text-capitalize">{bonusHistory.fullName}</td>
-                        <td>{formatDate(bonusHistory.datePaid)}</td>
-                        <td>{bonusHistory.referralCount}</td>
-                        <td>
-                        <button 
-                            className="btn btn-sm btn-success text-capitalize">
-                                Paid {" "}
-                                <FontAwesomeIcon icon={ faCheck } className="mr-2"/>
-                            </button>
-                          </td>
+                        <td>{formatDate(bonusHistory.date)}</td>
+                        <td>{bonusHistory.amount}</td>
+                        <td> <button className="btn btn-sm btn-success">paid</button></td>
                         </tr>
                     )
                     })
@@ -89,4 +80,4 @@ const BonusHistory = () => {
 
 
 
-export default BonusHistory;
+export default MyReferralBonusHistory;

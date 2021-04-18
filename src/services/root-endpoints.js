@@ -44,16 +44,16 @@ export const FOR_VIEW_ALL_USERS_ROI_WITHDRAWAL_HISTORY = 'payment/allRoiWithdraw
 // USERS REFERRAL
 export const FOR_REFERRAL_LIST = 'payment/getReferral/';
 export const FOR_VIEW_USER_REFERRAL_LIST = 'payment/getAllReferral/';
-
+export const FOR_CURRENT_USER_REFERRAL_BONUS_HISTORY = 'payment/viewMyReferralBonusHistory/';
 
 // BONUS
-export const FOR_BONUS_PAID = 'payment/bonusPaid/';
+export const FOR_ACTIVE_BONUS_PAID = 'payment/payReferralBonus/'
 export const FOR_GET_USER_BONUS_HISTORY = 'payment/viewUserBonusHistory/';
+//admin
 export const FOR_GET_USERS_BONUS_HISTORY = 'payment/viewAllBonusHistory/';
-
 export const GET_REFERRAL_BONUS = 'payment/getReferralBonus/'
-
-
+// monthly salary
+export const FOR_BONUS_PAID = 'payment/bonusPaid/';
 // RESOLUTION
 
 export const FOR_POST_RESOLUTION = "resolution/upload";

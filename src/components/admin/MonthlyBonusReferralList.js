@@ -2,12 +2,15 @@ import { event } from 'jquery';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
-import { bonusPaidForActiveReferrals, getUserBonusHistory, getUserReferralBonusPercentage } from '../../actions/bonus/bonusAction';
+import { bonusPaidForCertainReferrals, getUserBonusHistory, getUserReferralBonusPercentage } from '../../actions/bonus/bonusAction';
 import { getAllUserReferral } from '../../actions/referralAction/referralAction';
 import { viewWithdrawalDetails } from '../../actions/withdrawalAction/withdrawalAction';
-import './modal.css'
+import { getPackageName } from '../../_helper/getPackageROIDay';
+import './modal.css';
 
-const ReferralList = () => {
+// this component is for the 
+
+const MonthlyBonusReferralList = () => {
     const dispatch = useDispatch();
     const { profile } = useSelector(state => state.user);
     const [usersReferral, setUsersReferral] = useState(null)
@@ -19,7 +22,6 @@ const ReferralList = () => {
     const [payLoad, setPayLoad] = useState({
         referralCount: null,
         userID: null,
-        bonus: null
     })
     const usersReferralBaseOnSize = usersReferral?.filter((referral)=> filterBy ? referral.referralList.length === filterBy : referral.referralList.length > 0)
     const { userID } = profile || {}
@@ -85,14 +87,16 @@ const ReferralList = () => {
         
     }
 
+    console.log('referral count', payLoad.referralCount);
+
     // handle filterBy change
     const handleChange = (event) =>{
         // convert the value from form to number and update the filter by
         setFilterBy(Number(event.target.value))
     }
-    const handleBonusPayment = (bonus, userID) =>{
+    const handleBonusPayment = (referralCount, userID) =>{
         setIsPaying(true)
-        dispatch(bonusPaidForActiveReferrals(bonus, userID))
+        dispatch(bonusPaidForCertainReferrals(referralCount, userID))
         .then((res)=>{
             setIsPaying(false)
             Swal.fire("Success", "Bonus Payment Confirmed", "success")
@@ -118,7 +122,7 @@ const ReferralList = () => {
                                 <li style={{marginBottom: "20px"}}>Bank Account: {withdrawalMethodDetails.bank?.accountNumber}</li>
                                 <li style={{marginBottom: "20px"}}>Account Name: {withdrawalMethodDetails.bank?.accountName}</li>
                                 <li style={{marginBottom: "20px"}}>Account Type: {withdrawalMethodDetails.bank?.accountType}</li>
-                                <button disabled={isPaying} class="btn btn-sm btn-success my-3" onClick={()=>handleBonusPayment(payLoad.bonus, payLoad.userID)}>{isPaying ? "Loading..." : "Mark Paid"}</button>
+                                <button disabled={isPaying} class="btn btn-sm btn-success my-3" onClick={()=>handleBonusPayment(payLoad.referralCount, payLoad.userID)}>{isPaying ? "Loading..." : "Mark Paid"}</button>
                                 <button class="btn btn-sm btn-danger m-3" onClick={()=>setShowBankDetails(false)}>Close</button>
                             </ul>
                         </div>
@@ -133,7 +137,7 @@ const ReferralList = () => {
                             <ul style={{marginTop: '20px'}}>
                                 <li style={{marginBottom: "20px"}}>Wallet ID: {withdrawalMethodDetails.crypto?.walletID}</li>
                                 <li style={{marginBottom: "20px"}}>Email: {withdrawalMethodDetails.crypto?.email}</li>
-                                <button disabled={isPaying} class="btn btn-sm btn-success my-3" onClick={()=>dispatch(bonusPaidForActiveReferrals(payLoad.bonus, payLoad.userID))}>{isPaying ? "Loading..." : "Mark Paid"}</button>
+                                <button disabled={isPaying} class="btn btn-sm btn-success my-3" onClick={()=>dispatch(bonusPaidForCertainReferrals(payLoad.referralCount, payLoad.userID))}>{isPaying ? "Loading..." : "Mark Paid"}</button>
                                 <button class="btn btn-sm btn-danger m-3" onClick={()=>setShowCryptoDetails(false)}>Close</button>
                             </ul>
                         </div>
@@ -141,12 +145,12 @@ const ReferralList = () => {
                 </div>
                 <section className="section-heading mt-5">
                     <div className="clearfix">
-                        <h3>Referrals Bonus</h3>
+                        <h3>Monthly Bonus</h3>
                         <hr className="hr-line"/>
                     </div>
                 </section>
                 <section>
-                    <label className="text-capitalize">filter users by number of referral</label>
+                    <label className="text-capitalize">filter users by number of referrals</label>
                     <input 
                      className="form-control form-control-sm" 
                      placeholder="Enter Number of referrals"
@@ -159,8 +163,7 @@ const ReferralList = () => {
                                 <th scope="col">S/N</th>
                                 <th scope="col">Username</th>
                                 <th scope="col">No of referrals</th>
-                                <th scope="col">Active Bonus</th>
-                            {/* <td>{dispatch(getUserReferralBonusPercentage(514))}l</td> */}
+                                <th scope="col">Current Package</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
@@ -181,13 +184,13 @@ const ReferralList = () => {
                                 ):null
                             }
                             {
-                               usersReferralBaseOnSize?.map(({userName, referralList, userID, bonus}, index)=>{
+                               usersReferralBaseOnSize?.map(({userName, referralList, userID, bonus, packageID}, index)=>{
                                     return(
                                     <tr key={index}>
                                         <th scope="row">{index+1}</th>
                                         <td>{userName}</td>
                                         <td>{referralList.length}</td>
-                                        <td>#{bonus}</td>
+                                        <td>{getPackageName(packageID)}</td>
                                         <td><button className="btn btn-sm btn-success" onClick={()=>paymentMethodPrompt("bank",userID,referralList.length, bonus)} disabled={isLoading}>{isLoading ? "Loading Please wait..." : "View Bank Details"}</button></td>
                                         <td><button className="btn btn-sm btn-success" onClick={()=>paymentMethodPrompt("crypto",userID,referralList.length, bonus)} disabled={isLoading}>{isLoading ? "Loading Please wait.." : "View Crypto Details"}</button></td>
                                     </tr>
@@ -202,4 +205,4 @@ const ReferralList = () => {
     )
 }
 
-export default ReferralList;
+export default MonthlyBonusReferralList;

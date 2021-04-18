@@ -16,8 +16,13 @@ export const getUserReferral = (userID) => dispatch =>{
     })
 }
 
+export const getCurrentUserRefferalBonusHistory = (userID) => dispatch =>{
+    return ReferralService.getCurrentUserRefferalBonusHistory(userID)
+}
+
 
 // admin get all user referral 
 export const getAllUserReferral = () => dispatch =>{
     return ReferralService.getAllReferral()
 }
+

@@ -64,7 +64,7 @@ const Upgrade = () => {
       }
     })
   }
-  if(bankDetails){
+  if(!bankDetails){// if there is no bank details, return the user to their profile page
     Swal.fire({
       title: 'Update Profile',
       html: `<p>update your <strong><b><em>personal profile</em></b></strong> and <strong><b><em>payment details</em></b></strong>  to access this page</p>`,
@@ -75,7 +75,6 @@ const Upgrade = () => {
         history.push("/dashboard/profile")
       })
   }
-  console.log(!bankDetails)
     return (
 
       <>

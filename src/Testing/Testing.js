@@ -5,7 +5,7 @@ import { loadUser } from '../actions/test/testAction';
 export const Testing = () => {
     const dispatch = useDispatch()
     const { user } = useSelector(state => state.test)
-    const [currentUser, setCurrentUser] = useState(null)
+    // const [currentUser, setCurrentUser] = useState(null)
     const [userID, setUserID] = useState(1)
     
     useEffect(() => {
@@ -13,11 +13,11 @@ export const Testing = () => {
         // calling the action function
         dispatch(loadUser(userID))
         if(user){
-            setCurrentUser(user)
+            // setCurrentUser(user)
         }
         // .then((response)=>setCurrentUser(response.data))
         // .catch((error)=>console.log(error))
-    }, [user])
+    }, [user, dispatch, userID])
     // console.log(currentUser);
 
     // if(!user){

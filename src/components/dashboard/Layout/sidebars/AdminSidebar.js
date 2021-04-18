@@ -11,6 +11,7 @@ import {
     faUserCircle, 
     faCheckSquare,
     faHandsHelping,
+    faCheckCircle,
 } from "@fortawesome/free-solid-svg-icons";
 
 
@@ -56,7 +57,12 @@ const AdminSidebar = () => {
                             Package Confirmation
                         </NavLink>
                     </li>
-
+                    <li>
+                        <NavLink exact to="/dashboard/monthly_bonus" activeClassName="active">
+                            <FontAwesomeIcon icon={ faCheckCircle } className="mr-2"/>
+                            Monthly Bonus
+                        </NavLink>
+                    </li>
                     <li>
                         <NavLink exact to="/dashboard/payment_request" activeClassName="active">
                             <FontAwesomeIcon icon={ faCheckSquare } className="mr-2"/>
@@ -64,12 +70,18 @@ const AdminSidebar = () => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink exact to="/dashboard/users_referrals" activeClassName="active">
+                        <NavLink exact to="/dashboard/referral_bonus" activeClassName="active">
                             <FontAwesomeIcon icon={ faUsers } className="mr-2"/>
-                            Users Referrals
+                            Referrals Bonus
                         </NavLink>
                     </li>
                     <hr/>
+                    <li>
+                        <NavLink exact to="/dashboard/referral_bonus_history" activeClassName="active">
+                            <FontAwesomeIcon icon={ faHistory } className="mr-2"/>
+                             Referral Bonus History
+                        </NavLink>
+                    </li>
                     <li>
                         <NavLink exact to="/dashboard/roi_withdrawal_history" activeClassName="active">
                             <FontAwesomeIcon icon={ faHistory } className="mr-2"/>
@@ -83,9 +95,9 @@ const AdminSidebar = () => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink exact to="/dashboard/users_bonus_history" activeClassName="active">
+                        <NavLink exact to="/dashboard/monthly_bonus_history" activeClassName="active">
                             <FontAwesomeIcon icon={ faHistory } className="mr-2"/>
-                             Bonus History
+                             Monthly Bonus History
                         </NavLink>
                     </li>
                     <hr />

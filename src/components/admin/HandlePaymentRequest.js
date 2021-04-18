@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router';
 import Swal from 'sweetalert2';
 import { getAllWithdrawalRequest, tryConfirmWithdrawal, viewWithdrawalDetails } from '../../actions/withdrawalAction/withdrawalAction';
 // import { formatDate } from '../../../../_helper/dateFormatter';
@@ -8,13 +7,12 @@ import { getPackageName } from '../../_helper/getPackageROIDay'
 
 const HandlePaymentRequest = () => {
     const dispatch = useDispatch();
-    const history= useHistory()
     // get user from redux state
     const user = useSelector(state => state.user);
     // get user profile from the user state
     const { profile } = user;
     // component level state
-    const [withdrawalHistory, setWithdrawalHistory] = useState(null)
+    const [withdrawalRequests, setWithdrawalRequest] = useState(null)
     const [withdrawalMethodDetails, setWithdrawalMethodDetails] = useState(null)
     const [onPage, setOnPage] = useState(null) //use re-render the component when the sweet alert is been cancelled/confirmed
     useEffect(() => {
@@ -22,7 +20,7 @@ const HandlePaymentRequest = () => {
       profile && dispatch(getAllWithdrawalRequest(profile.userID))
       .then((res)=>{
         // store the response to the component level state
-        setWithdrawalHistory(res.data.data)
+        setWithdrawalRequest(res.data.data)
       })
       .catch((error)=>console.log(error))
       setOnPage(true)
@@ -128,7 +126,7 @@ const HandlePaymentRequest = () => {
         // );
     }
   
-
+    console.log(withdrawalRequests);
     return (
         <>
             <div className="payment-history">
@@ -152,7 +150,7 @@ const HandlePaymentRequest = () => {
                 <tbody>
                     
                     {
-                        !withdrawalHistory ? (
+                        !withdrawalRequests ? (
                             <tr>
                                 <td>Fetching Request please wait...</td>
                             </tr>
@@ -160,15 +158,14 @@ const HandlePaymentRequest = () => {
                     }
                     { 
                     // if there is no history
-                    // I added the undefined check when the backend is not returning anything
-                    !withdrawalHistory === "undefined" && withdrawalHistory.length === 0 ? (
+                    withdrawalRequests?.length === 0 ? (
                         <tr>
                         <td>No withdrawal history yet.</td>
                         </tr>
                     ): null
                     }
                     {
-                    withdrawalHistory && [...withdrawalHistory].reverse().map((userHistory)=>{
+                    withdrawalRequests && [...withdrawalRequests].reverse().map((userHistory)=>{
                         return(
                         <tr key={userHistory.id}>
                             {/* <th scope="row">{index + 1}</th> */}
@@ -195,59 +192,3 @@ const HandlePaymentRequest = () => {
 }
 
 export default HandlePaymentRequest;
-
-    {/* return (
-        <>
-            <div className="payment-history">
-                <section className="section-heading mt-5">
-                    <div className="clearfix">
-                        <h3>Payment Requests</h3>
-                        <hr className="hr-line"/>
-                    </div>
-                </section>
-                <section className="my-3">
-                    <select className="form-control">
-                        <option>All</option>
-                        <option>Pending</option>
-                        <option>Paid</option>
-                    </select>
-                </section>
-                <section className="table-responsive">
-                    <table className="table table-hover">
-                        <thead>
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Amount</th>
-                                <th scope="col">Date</th>
-                                <th scope="col">Action</th>
-                                <th scope="col">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Ayodele Samuel Adebayo</td>
-                                <td>#530, 000</td>
-                                <td>February 28, 2021</td>
-                                <td><button className="btn btn-sm btn-custom-green">Mark as Paid</button></td>
-                                <td>Pending</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Durojaye Felix Toba</td>
-                                <td>#530, 000</td>
-                                <td>February 28, 2021</td>
-                                <td>Paid</td>
-                                <td>Paid</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </section>
-            </div>
-        </>
-    )
-}
-
-
-export default HandlePaymentRequest; */}

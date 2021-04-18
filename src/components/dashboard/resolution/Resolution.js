@@ -1,5 +1,5 @@
 // React
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // Fontawesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,11 +9,25 @@ import {
 import {sendResolutionDetails} from './../../../actions/resolutionAction/resolutionAction'
 
 // Dummy data
-import { user } from '../appDb';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Resolution = () => {
-    const isAdmin = user.isAdmin;
+    const { profile } = useSelector(state => state.user);
+    const { roleID } = profile || {};
+    const [ currentUserType, setCurrentUserType ] = useState(null);
+
+    useEffect(() => {
+        switch (roleID) {
+            case 1:
+                return setCurrentUserType('normal')
+            case 2:
+                return setCurrentUserType('admin')
+            case 3:
+                return setCurrentUserType('superAdmin')
+            default:
+                break;
+        }
+    }, [roleID])
     const dispatch = useDispatch()
     const [resolutionForm, setresolutionForm] = useState({
         // no attachment
@@ -78,7 +92,7 @@ const Resolution = () => {
                     </div>
                 </section>
                 {
-                    !isAdmin && (
+                    currentUserType === 'normal' && (
                         <>
                             <section className="">
                                 <div className="row">
@@ -131,10 +145,22 @@ const Resolution = () => {
                 }
 
                 {
-                    isAdmin && (
+                    currentUserType !== 'normal' && (
                         <>
                             <section className="table-responsive">
-                                <table className="table table-hover">
+                                <div className="col-md-6 col-lg-12 col-12">
+                                    <section className="my-3 alert alert-success">
+                                        To check new resolution message log on to:
+                                            <span
+                                                className="alert alert-warning p-2 m-2"
+                                            >
+                                                <u>
+                                                    palmanovascare@gmail.com
+                                                </u>
+                                            </span>
+                                    </section>
+                                </div>
+                                <table className="table table-hover d-none">
                                     <thead>
                                         <tr>
                                             <th scope="col">ID</th>

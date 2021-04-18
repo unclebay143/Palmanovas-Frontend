@@ -1,6 +1,6 @@
+import React, { useEffect, useState } from 'react'
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUsersROIHistories } from '../../../../actions/withdrawalAction/withdrawalAction';
 import { formatDate } from '../../../../_helper/dateFormatter';
@@ -8,30 +8,30 @@ import { getPackageName } from '../../../../_helper/getPackageROIDay'
 
 
 // users personal history page to view all their approved payments
-const UsersWithdrawalHistory = () => {
+const UsersReferralBonusHistory = () => {
   const dispatch = useDispatch();
   // get user from redux state
   const user = useSelector(state => state.user);
   // get user profile from the user state
   const { profile } = user;
   // component level state
-  const [userWithdrawalHistories, setWithdrawalHistory] = useState(null)
+  const [usersReferralBonusHistory, setUsersReferralBonusHistory] = useState(null)
   useEffect(() => {
     // if there is a profile get the user package approved history
     profile && dispatch(getAllUsersROIHistories(profile.userID))
     .then((res)=>{
       // store the response to the component level state
-      setWithdrawalHistory(res.data.data)
+      setUsersReferralBonusHistory(res.data.data)
     })
     .catch((error)=>console.log(error))
   }, [dispatch, profile])
-  console.log(userWithdrawalHistories)
+  console.log(usersReferralBonusHistory)
   return (
     <>
       <div className="payment-history">
         <section className="section-heading mt-5">
           <div className="clearfix">
-              <h3>Withdrawal History <span className="display-5">(Admin)</span></h3>
+              <h3>Users Referrals Bonus History <span className="display-5">(Admin)</span></h3>
               <hr className="hr-line"/>
           </div>
         </section>
@@ -40,17 +40,16 @@ const UsersWithdrawalHistory = () => {
             <thead>
               <tr>
                 <th scope="col">S/N</th>
-                <th scope="col">ID</th>
-                <th scope="col">Package Name</th>
-                <th scope="col">Withdrawal Method</th>
-                <th scope="col">Date</th>
+                <th scope="col">Username</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Date Paid</th>
                 <th scope="col">Status</th>
                 <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
                 {
-                  !userWithdrawalHistories ? (
+                  !usersReferralBonusHistory ? (
                       <tr>
                           <td colSpan="4">Fetching history please wait...</td>
                       </tr>
@@ -59,14 +58,14 @@ const UsersWithdrawalHistory = () => {
                 { 
                   // if there is no history
                   // I added the undefined check when the backend is not returning anything
-                  userWithdrawalHistories?.length === 0 ? (
+                  usersReferralBonusHistory?.length === 0 ? (
                       <tr>
                         <td colSpan="4">No withdrawal history yet.</td>
                       </tr>
                   ): null
                 }
                 {
-                userWithdrawalHistories && [...userWithdrawalHistories].reverse().map((userHistory, index)=>{
+                usersReferralBonusHistory && [...usersReferralBonusHistory].reverse().map((userHistory, index)=>{
                     return(
                     <tr key={index}>
                         <th scope="row">{index + 1}</th>
@@ -95,4 +94,4 @@ const UsersWithdrawalHistory = () => {
 
 
 
-export default UsersWithdrawalHistory;
+export default UsersReferralBonusHistory;

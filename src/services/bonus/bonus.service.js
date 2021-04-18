@@ -1,9 +1,9 @@
 import axios from "axios"
-import { BASE_URL, FOR_BONUS_PAID, FOR_GET_USERS_BONUS_HISTORY, FOR_GET_USER_BONUS_HISTORY, GET_REFERRAL_BONUS } from "../root-endpoints"
+import { BASE_URL, FOR_ACTIVE_BONUS_PAID, FOR_BONUS_PAID, FOR_GET_USERS_BONUS_HISTORY, FOR_GET_USER_BONUS_HISTORY, GET_REFERRAL_BONUS } from "../root-endpoints"
 
-const bonusPaid = async(referralCount, userID) =>{
-    const userReferral = {
-        referralCount
+const bonusPaidForActiveReferrals = async(bonus, userID) =>{
+    const amount = {
+        amount: bonus
     }
     const isTokenStored = localStorage.getItem('token');
     const configWithToken ={
@@ -15,7 +15,8 @@ const bonusPaid = async(referralCount, userID) =>{
           'Authorization': `Bearer ${ isTokenStored && isTokenStored}`
         }
       }
-    const response = await axios.post(BASE_URL + FOR_BONUS_PAID + userID, userReferral, configWithToken)
+      console.log(amount);
+    const response = await axios.post(BASE_URL + FOR_ACTIVE_BONUS_PAID + userID, amount, configWithToken)
     return response
 }
 
@@ -74,11 +75,31 @@ const getUserReferralBonus = (userID) =>{
 }
 
 
+const bonusPaidForCertainReferrals = async(referralsSize, userID) =>{
+  const referralCount = {
+      referralCount: referralsSize
+  }
+  const isTokenStored = localStorage.getItem('token');
+  const configWithToken ={
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'mode': 'no-cors',
+        'Authorization': `Bearer ${ isTokenStored && isTokenStored}`
+      }
+    }
+    console.log(referralCount, userID);
+  const response = await axios.post(BASE_URL + FOR_BONUS_PAID + userID, referralCount, configWithToken)
+  return response
+}
+
 const BonusService = {
-    bonusPaid,
+    bonusPaidForActiveReferrals,
     getAllUsersBonusHistory,
     getUserBonusHistory,
-    getUserReferralBonus
+    getUserReferralBonus,
+    bonusPaidForCertainReferrals
 }
 
 export default BonusService;

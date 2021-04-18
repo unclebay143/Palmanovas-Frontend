@@ -56,13 +56,14 @@ const Index = () => {
         }
        
     }, [ROIstatus])
-
     useEffect(() => {
         if(hasInvestment)setUserRank("Palma")
         if(getPackageName(packageID) === 'Premium' && listOfReferrals?.length > 15)setUserRank("Tutor")
         if(getPackageName(packageID) === 'Silver' && listOfReferrals?.length > 25)setUserRank("V.P")
-    }, [hasInvestment, listOfReferrals?.length])
-    console.log(userRank);
+    }, [hasInvestment, listOfReferrals?.length, packageID])
+
+
+
     useEffect(() => {
         setRemainingDays(generateMatureDate(startDate, endDate))
     }, [startDate, endDate])

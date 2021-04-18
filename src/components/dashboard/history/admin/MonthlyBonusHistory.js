@@ -1,32 +1,33 @@
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllUsersBonusHistory, getUserBonusHistory } from '../../../../actions/bonus/bonusAction';
+import { getAllUsersBonusHistory } from '../../../../actions/bonus/bonusAction';
 import { formatDate } from '../../../../_helper/dateFormatter';
 import { getPackageName } from '../../../../_helper/getPackageROIDay'
 
 
 // users personal history page to view all their approved payments
-const UserBonusHistory = () => {
+const MonthlyBonusHistory = () => {
   const dispatch = useDispatch();
-  const { profile } = useSelector(state => state.user);
   // component level state
-  const [userBonusHistory, setUserBonusHistory] = useState(null)
+  const [bonusHistories, setBonusHistory] = useState(null)
   useEffect(() => {
     // if there is a profile get the user package approved history
-    profile && dispatch(getUserBonusHistory(profile.userID))
+    dispatch(getAllUsersBonusHistory())
     .then((res)=>{
       // store the response to the component level state
-      setUserBonusHistory(res.data.data)
+      setBonusHistory(res.data.data)
     })
     .catch((error)=>console.log(error))
-  }, [dispatch, profile])
-  console.log(userBonusHistory)
+  }, [dispatch])
+  console.log(bonusHistories)
   return (
     <>
       <div className="payment-history">
         <section className="section-heading mt-5">
           <div className="clearfix">
-              <h3>Bonus History</h3>
+              <h3>Monthly Bonus History</h3>
               <hr className="hr-line"/>
           </div>
         </section>
@@ -34,35 +35,46 @@ const UserBonusHistory = () => {
           <table className="table table-hover">
             <thead>
               <tr>
-                <th scope="col">S/N</th>
+                <th scope="col">ID</th>
+                <th scope="col">Username</th>
+                <th scope="col">Fullname</th>
                 <th scope="col">Date Paid</th>
                 <th scope="col">Referrals</th>
               </tr>
             </thead>
             <tbody>
                 {
-                    !userBonusHistory ? (
+                    !bonusHistories ? (
                         <tr>
-                            <td colSpan="4">Fetching history please wait...</td>
+                            <td colSpan="9">Fetching history please wait...</td>
                         </tr>
                     ):null
                 }
                 { 
                 // if there is no history
                 // I added the undefined check when the backend is not returning anything
-                    userBonusHistory && userBonusHistory.length === 0 ? (
+                    bonusHistories?.length === 0 ? (
                     <tr>
                         <td colSpan="4">No withdrawal history yet.</td>
                     </tr>
                     ): null
                 }
                 {
-                    userBonusHistory && [...userBonusHistory].reverse().map((bonusHistory, index)=>{
+                    bonusHistories && [...bonusHistories].reverse().map((bonusHistory, index)=>{
                     return(
                         <tr key={bonusHistory.id}>
                         <th scope="row">{index + 1}</th>
+                        <th scope="row">{bonusHistory.userName}</th>
+                        <td className="text-capitalize">{bonusHistory.fullName}</td>
                         <td>{formatDate(bonusHistory.datePaid)}</td>
                         <td>{bonusHistory.referralCount}</td>
+                        <td>
+                        <button 
+                            className="btn btn-sm btn-success text-capitalize">
+                                Paid {" "}
+                                <FontAwesomeIcon icon={ faCheck } className="mr-2"/>
+                            </button>
+                          </td>
                         </tr>
                     )
                     })
@@ -77,4 +89,4 @@ const UserBonusHistory = () => {
 
 
 
-export default UserBonusHistory;
+export default MonthlyBonusHistory;

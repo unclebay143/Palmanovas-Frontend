@@ -13,7 +13,7 @@ const MenuItem = [
         id: 1,
         title: "Wallets",
         icon: faMoneyBillAlt,
-        url: '/dashboard/wallet'
+        url: '/dashboard/my_wallet'
     },
     {
         id: 2,
@@ -25,13 +25,13 @@ const MenuItem = [
         id: 3,
         title: "Bonus",
         icon: faGift,
-        url: '/dashboard/bonus'
+        url: '/dashboard/my_bonus'
     },
     {
         id: 4,
         title: "Referral",
         icon: faUsers,
-        url: '/dashboard/referrals'
+        url: '/dashboard/my_referrals'
     },
     {
         id: 5,

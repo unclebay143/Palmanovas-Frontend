@@ -6,13 +6,12 @@ const Referral = () => {
     const { profile } = useSelector(state => state.user);
     const { listOfReferrals } = useSelector(state => state.referrals);
     const dispatch = useDispatch();
-    console.log(listOfReferrals);
     
     useEffect(() => {
         if(!listOfReferrals){
             profile && dispatch(getUserReferral(profile.userID))
         }
-    }, [dispatch, profile?.userID, profile])
+    }, [dispatch, profile?.userID, profile, listOfReferrals])
 
 
     return (

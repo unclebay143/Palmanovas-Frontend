@@ -72,17 +72,18 @@ const UserSidebar = () => {
                     }
                     {/* general sidebar item */}
                     <li>
-                        <NavLink exact to="/dashboard/referrals" activeClassName="active">
+                        <NavLink exact to="/dashboard/my_referrals" activeClassName="active">
                             <FontAwesomeIcon icon={ faUsers } className="mr-2"/>
                             Referrals
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink exact to="/dashboard/bonus" activeClassName="active">
+                        <NavLink exact to="/dashboard/my_bonus" activeClassName="active">
                             <FontAwesomeIcon icon={ faGift } className="mr-2"/>
                             Bonus
                         </NavLink>
                     </li>
+                   
                     <li>
                         <NavLink exact to="/dashboard/package_history" activeClassName="active">
                             <FontAwesomeIcon icon={ faHistory } className="mr-2"/>
@@ -90,15 +91,21 @@ const UserSidebar = () => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink exact to="/dashboard/withdrawal_history" activeClassName="active">
+                        <NavLink exact to="/dashboard/my_referrals_bonus_history" activeClassName="active">
+                            <FontAwesomeIcon icon={ faHistory } className="mr-2"/>
+                            Referral Bonus History
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink exact to="/dashboard/my_withdrawal_history" activeClassName="active">
                             <FontAwesomeIcon icon={ faHistory } className="mr-2"/>
                             Withdrawal History
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink exact to="/dashboard/bonus_history" activeClassName="active">
+                        <NavLink exact to="/dashboard/my_monthly_bonus_history" activeClassName="active">
                             <FontAwesomeIcon icon={ faHistory } className="mr-2"/>
-                            Bonus History
+                            Monthly Bonus History
                         </NavLink>
                     </li>
                    

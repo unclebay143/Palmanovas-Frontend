@@ -19,21 +19,21 @@ const Carousel = () => {
                     </ol>
                     <div className="carousel-inner">
                         <div className="carousel-item active">
-                            <img src={carouselImage1} className="d-block w-100" alt="..." />
+                            <img loading="lazy" src={carouselImage1} className="d-block w-100" alt="..." />
                             <div className="carousel-caption">
                                 <h3>The Smartest Way of Income</h3>
                                 <p>Start investing smartly today and build toward your dreams</p>
                             </div>
                         </div>
                     <div className="carousel-item">
-                        <img src={carouselImage2} className="d-block w-100" alt="..." />
+                        <img loading="lazy" src={carouselImage2} className="d-block w-100" alt="..." />
                         <div className="carousel-caption">
                         <h3>The Smartest Way of Income</h3>
                         <p>No matter what they are, your dreams are valid, achieve them with palmanovas.com!</p>
                         </div>
                     </div>
                     <div className="carousel-item">
-                        <img src={carouselImage3} className="d-block w-100" alt="..." />
+                        <img loading="lazy" src={carouselImage3} className="d-block w-100" alt="..." />
                         <div className="carousel-caption">
                             <h3>The Smartest Way of Income</h3>
                             <p>Invest with peace of mind!</p>

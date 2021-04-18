@@ -1,5 +1,5 @@
 // React
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // Fontawesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,12 +9,26 @@ import {
     faShareAlt, 
     faAngleLeft,
 } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserReferralBonusPercentage } from '../../../actions/bonus/bonusAction';
 
 
 export const Bonus = () => {
-
+    const [currentBonus, setCurrentBonus] = useState(null)
+    const user = useSelector(state => state.user);
+    const dispatch = useDispatch();
+    const { profile } = user;
     const [flipBonusCard, setFlipBonusCard] = useState(false)
     const [isBonusAvailable] = useState(true)
+
+    useEffect(() => {
+        if(profile){
+            dispatch(getUserReferralBonusPercentage(profile.userID))
+            .then((response)=>{
+                setCurrentBonus(response)
+            })
+        }
+    }, [dispatch, profile?.userID])
     
     return (
         <>
@@ -23,6 +37,7 @@ export const Bonus = () => {
                     <>
                         <div className="row">
                             <div className="col-md-4 col-lg-4 col-12">
+                                <p>current Bonus: <b># {currentBonus}</b></p>
                                 <div className={ `bonus ${ flipBonusCard ? 'flip' : '' } ` }>
                                     {/* FRONT OF BONUS CARD */}    
                                     <div className="front">
@@ -78,11 +93,11 @@ export const Bonus = () => {
                                     <ul className="p-0">
                                         <li>
                                             <FontAwesomeIcon icon={ faCheckCircle } className="mr-2 text-custom-green" size="lg"/> 
-                                            Refer 30 people
+                                            Refer More people
                                         </li>
                                         <li>
                                             <FontAwesomeIcon icon={ faCheckCircle } className="mr-2 text-custom-green" size="lg"/> 
-                                            Upload a 5 minute testimonial video
+                                            Share us on your social media
                                         </li>
                                         <li>
                                             <FontAwesomeIcon icon={ faCheckCircle } className="mr-2 text-custom-green" size="lg"/> 
