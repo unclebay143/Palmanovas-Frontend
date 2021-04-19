@@ -1,5 +1,5 @@
 // React
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 // Layouts
 import ButtonLayout from '../components/common/ButtonLayout';
@@ -20,10 +20,22 @@ import { useDispatch } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import Swal from 'sweetalert2';
 
 const SignUp = () => {
     const dispatch = useDispatch();
     const history = useHistory();
+    useEffect(() => {
+        Swal.fire({
+            title:"Attention!!!", 
+            text: "Multiple account is prohibited, or you risk your account to suspension",
+            icon:"warning",
+            customClass: {
+                confirmButton: 'btn btn-lg btn-custom-green',
+            },
+            buttonsStyling: false
+        })
+    }, [])
     return (
         <>
             <section className="card signup-form">

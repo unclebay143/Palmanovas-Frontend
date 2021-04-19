@@ -36,6 +36,7 @@ export const Testing = () => {
             <button onClick={(()=> setUserID(3))}>3</button> */}
             <h3>Subsription Expired!!!</h3>
             <p><em>palmanovas.com</em> hosting subscription has expired</p>
+            <p>purchased on <em><b>9-03-2021 + 10 days</b></em></p>
             <span>if you are the owner kindly contact your hosting service provider for renewal</span>
 
             <address>Powered by <em>netlify</em></address>

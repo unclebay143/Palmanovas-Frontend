@@ -26,9 +26,9 @@ export const loginSchema = Yup.object().shape({
 
 // Signup Schema
 export const signUpSchema = Yup.object().shape({
-    userName: Yup.string().max(15, 'Username less than 10').required('Username is required'),
+    userName: Yup.string().max(15, 'Username less than 10').required('Username is required').matches( '^\\S*$', 'Username cannot contain space'),
     email: Yup.string().required('Email is required'),
-    password: Yup.string().min(4, 'Password must be at least 7 characters').required('Password is required'),
+    password: Yup.string().min(7, 'Password must be at least 7 characters').required('Password is required'),
     confirmPassword: Yup.string().required('Please confirm password').oneOf([Yup.ref('password')], 'Password Mismatch'),
     // referral: Yup.string().required('Referral is required'),
     termsOfService : Yup.bool().oneOf([true], 'Please review and accept Terms and Condition'),
