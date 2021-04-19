@@ -9,9 +9,13 @@ export const getAllUsersBonusHistory = () => dispatch =>{
     return BonusService.getAllUsersBonusHistory()
 }
 
-// USER VIEW THEIR BONUS HISTORY
+// USER VIEW THEIR BONUS HISTORY MONTHLY
 export const getUserBonusHistory = (userID) => dispatch =>{
     return BonusService.getUserBonusHistory(userID)
+}
+// USER VIEW THEIR BONUS HISTORY REERRAL BONUS H
+export const getAllUsersReferralBonusHistory = (userID) => dispatch =>{
+    return BonusService.getAllUsersReferralBonusHistory(userID)
 }
 
 // USER REFERRAL BONUS PERCENTAGE

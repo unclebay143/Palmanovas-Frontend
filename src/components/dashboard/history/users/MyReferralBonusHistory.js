@@ -1,9 +1,9 @@
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllUsersBonusHistory, getUserBonusHistory } from '../../../../actions/bonus/bonusAction';
 import { getCurrentUserRefferalBonusHistory } from '../../../../actions/referralAction/referralAction';
 import { formatDate } from '../../../../_helper/dateFormatter';
-import { getPackageName } from '../../../../_helper/getPackageROIDay'
 
 
 // users personal history page to view all their approved payments
@@ -62,12 +62,18 @@ const MyReferralBonusHistory = () => {
                     userReferral && [...userReferral].reverse().map((bonusHistory, index)=>{
                     return(
                         <tr key={bonusHistory.id}>
-                        <th scope="row">{index + 1}</th>
-                        <td>{formatDate(bonusHistory.date)}</td>
-                        <td>{bonusHistory.amount}</td>
-                        <td> <button className="btn btn-sm btn-success">paid</button></td>
+                          <th scope="row">{index + 1}</th>
+                          <td>{formatDate(bonusHistory.date)}</td>
+                          <td>#{bonusHistory.amount}</td>
+                          <td>
+                              <button 
+                                className="btn btn-sm btn-success text-capitalize">
+                                  Paid {" "}
+                                  <FontAwesomeIcon icon={ faCheck } className="mr-2"/>
+                              </button>
+                          </td>
                         </tr>
-                    )
+                      )
                     })
                 }
             </tbody>

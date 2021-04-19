@@ -32,7 +32,8 @@ const MonthlyBonusReferralList = () => {
     useEffect(() => {
         profile && dispatch(getAllUserReferral(userID))
         .then((res)=>{
-            setUsersReferral(res.data.data?.filter((list)=>list.bonus > 0))
+            // setUsersReferral(res.data.data?.filter((list)=>list.bonus > 0))
+            setUsersReferral(res.data.data) // do not filter because Woli Peter said you should not filter becaus it is a monthly payment
         })
         .catch((err)=>console.log(err))
     }, [dispatch, userID, profile])

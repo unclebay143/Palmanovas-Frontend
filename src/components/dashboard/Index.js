@@ -125,7 +125,7 @@ const Index = () => {
                                                         {
                                                             remainingDays > 0 ?
                                                             <div 
-                                                                className="progress-bar progress-bar-striped bg-danger active" 
+                                                                className="progress-bar progress-bar-striped bg-warning active" 
                                                                 role="progressbar" 
                                                                 aria-valuenow={15} 
                                                                 aria-valuemin={0} 
@@ -151,7 +151,7 @@ const Index = () => {
                                                         {
                                                             remainingDays < 10 ?
                                                             <div 
-                                                                className="progress-bar progress-bar-striped bg-info active" 
+                                                                className="progress-bar progress-bar-striped bg-warning active" 
                                                                 role="progressbar" 
                                                                 aria-valuenow={25} 
                                                                 aria-valuemin={0} 
@@ -165,7 +165,7 @@ const Index = () => {
                                                         {
                                                             remainingDays < 18 ?
                                                             <div 
-                                                                className="progress-bar progress-bar-striped active" 
+                                                                className="progress-bar progress-bar-striped  bg-success active" 
                                                                 role="progressbar" 
                                                                 aria-valuenow={60} 
                                                                 aria-valuemin={0} 

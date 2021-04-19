@@ -1,5 +1,5 @@
 import axios from "axios"
-import { BASE_URL, FOR_ACTIVE_BONUS_PAID, FOR_BONUS_PAID, FOR_GET_USERS_BONUS_HISTORY, FOR_GET_USER_BONUS_HISTORY, GET_REFERRAL_BONUS } from "../root-endpoints"
+import { BASE_URL, FOR_ACTIVE_BONUS_PAID, FOR_BONUS_PAID, FOR_GET_USERS_BONUS_HISTORY, FOR_GET_USER_BONUS_HISTORY, GET_REFERRAL_BONUS, GET_REFERRAL_BONUS_HISTORY } from "../root-endpoints"
 
 const bonusPaidForActiveReferrals = async(bonus, userID) =>{
     const amount = {
@@ -21,7 +21,7 @@ const bonusPaidForActiveReferrals = async(bonus, userID) =>{
 }
 
 
-// Admin get all the bonus history
+// Admin get all the bonus history MONTHLY
 const getAllUsersBonusHistory = async() =>{
     const isTokenStored = localStorage.getItem('token');
     const configWithToken ={
@@ -77,6 +77,23 @@ const getUserReferralBonus = (userID) =>{
   })
 }
 
+// Admin get all the bonus history REFERRAL BONUS
+const getAllUsersReferralBonusHistory = async() =>{
+  const isTokenStored = localStorage.getItem('token');
+  const configWithToken ={
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'mode': 'no-cors',
+        'Authorization': `Bearer ${ isTokenStored && isTokenStored}`
+      }
+    }
+  const response = await axios.get(BASE_URL + GET_REFERRAL_BONUS_HISTORY, configWithToken)
+  // console.log(response)
+  return response
+}
+
 // FUNCTION TO PAY USERS SALARY
 const bonusPaidForCertainReferrals = async(referralsSize, userID) =>{
   const referralCount = {
@@ -102,7 +119,8 @@ const BonusService = {
     getAllUsersBonusHistory,
     getUserBonusHistory,
     getUserReferralBonus,
-    bonusPaidForCertainReferrals
+    bonusPaidForCertainReferrals,
+    getAllUsersReferralBonusHistory
 }
 
 export default BonusService;

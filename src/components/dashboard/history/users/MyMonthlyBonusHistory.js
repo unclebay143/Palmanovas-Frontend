@@ -1,3 +1,5 @@
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserBonusHistory } from '../../../../actions/bonus/bonusAction';
@@ -37,6 +39,7 @@ const MyMonthlyBonusHistory = () => {
                 <th scope="col">S/N</th>
                 <th scope="col">Date Paid</th>
                 <th scope="col">Referrals</th>
+                <th scope="col">Status</th>
               </tr>
             </thead>
             <tbody>
@@ -59,9 +62,16 @@ const MyMonthlyBonusHistory = () => {
                     userBonusHistory && [...userBonusHistory].reverse().map((bonusHistory, index)=>{
                     return(
                         <tr key={bonusHistory.id}>
-                        <th scope="row">{index + 1}</th>
-                        <td>{formatDate(bonusHistory.datePaid)}</td>
-                        <td>{bonusHistory.referralCount}</td>
+                          <th scope="row">{index + 1}</th>
+                          <td>{formatDate(bonusHistory.datePaid)}</td>
+                          <td>{bonusHistory.referralCount}</td>
+                          <td>
+                              <button 
+                                className="btn btn-sm btn-success text-capitalize">
+                                  Paid {" "}
+                                  <FontAwesomeIcon icon={ faCheck } className="mr-2"/>
+                              </button>
+                          </td>
                         </tr>
                     )
                     })

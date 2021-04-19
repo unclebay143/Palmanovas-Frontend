@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllUsersROIHistories } from '../../../../actions/withdrawalAction/withdrawalAction';
+import { getAllUsersReferralBonusHistory } from '../../../../actions/bonus/bonusAction';
 import { formatDate } from '../../../../_helper/dateFormatter';
 import { getPackageName } from '../../../../_helper/getPackageROIDay'
 
@@ -18,7 +18,7 @@ const UsersReferralBonusHistory = () => {
   const [usersReferralBonusHistory, setUsersReferralBonusHistory] = useState(null)
   useEffect(() => {
     // if there is a profile get the user package approved history
-    profile && dispatch(getAllUsersROIHistories(profile.userID))
+    profile && dispatch(getAllUsersReferralBonusHistory(profile.userID))
     .then((res)=>{
       // store the response to the component level state
       setUsersReferralBonusHistory(res.data.data)
@@ -69,14 +69,13 @@ const UsersReferralBonusHistory = () => {
                     return(
                     <tr key={index}>
                         <th scope="row">{index + 1}</th>
-                        <th scope="row">{userHistory.packageID}</th>
-                        <td>Palm - {getPackageName(userHistory.packageID)}</td>
-                        <td>{userHistory.withdrawalMethod}</td>
+                        <th scope="row">{userHistory.userName.toUpperCase()}</th>
+                        <th scope="row"># {userHistory.amount}</th>
                         <td>{formatDate(userHistory.date)}</td>
                         <td>
                             <button 
                             className="btn btn-sm btn-success text-capitalize">
-                                {userHistory.status} {" "}
+                                Paid {" "}
                                 <FontAwesomeIcon icon={ faCheck } className="mr-2"/>
                             </button>
                         </td>

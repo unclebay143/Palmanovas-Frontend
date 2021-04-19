@@ -51,6 +51,7 @@ export const FOR_ACTIVE_BONUS_PAID = 'payment/payReferralBonus/'
 export const FOR_GET_USER_BONUS_HISTORY = 'payment/viewUserBonusHistory/';
 //admin
 export const FOR_GET_USERS_BONUS_HISTORY = 'payment/viewAllBonusHistory/';
+export const GET_REFERRAL_BONUS_HISTORY = 'payment/viewAllPaidReferralBonus'
 export const GET_REFERRAL_BONUS = 'payment/getReferralBonus/'
 // monthly salary
 export const FOR_BONUS_PAID = 'payment/bonusPaid/';

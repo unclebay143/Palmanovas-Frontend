@@ -60,7 +60,7 @@ const UserProfile = () => {
                             <span className="data-lead">User Type:</span> { profile.roleID !== 1 ? "Admin" : "palmaUser" }
                         </p>
                         <p>
-                            <span className="data-lead">Rank:</span> { profile.rank }
+                            {/* <span className="data-lead">Rank:</span> { profile.rank } */}
                         </p>
                         <Link
                             to="/dashboard/update_profile" 

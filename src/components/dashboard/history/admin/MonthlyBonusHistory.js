@@ -69,13 +69,13 @@ const MonthlyBonusHistory = () => {
                         <td>{formatDate(bonusHistory.datePaid)}</td>
                         <td>{bonusHistory.referralCount}</td>
                         <td>
-                        <button 
-                            className="btn btn-sm btn-success text-capitalize">
+                            <button 
+                              className="btn btn-sm btn-success text-capitalize">
                                 Paid {" "}
                                 <FontAwesomeIcon icon={ faCheck } className="mr-2"/>
                             </button>
-                          </td>
-                        </tr>
+                        </td>
+                      </tr>
                     )
                     })
                 }
