@@ -28,7 +28,7 @@ export const Bonus = () => {
                 setCurrentBonus(response)
             })
         }
-    }, [dispatch, profile?.userID])
+    }, [dispatch, profile?.userID, profile])
     
     return (
         <>

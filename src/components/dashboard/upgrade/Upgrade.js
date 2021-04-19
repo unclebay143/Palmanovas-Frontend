@@ -12,6 +12,7 @@ const Upgrade = () => {
   const dispatch = useDispatch();
   const  history = useHistory();
   const { profile, bankDetails } = user;
+  const { ROIstatus } = profile || {};
 
   // alert function
   const promptUser = (payeeId, payeeName) =>{
@@ -64,17 +65,21 @@ const Upgrade = () => {
       }
     })
   }
-  if(!bankDetails){// if there is no bank details, return the user to their profile page
-    Swal.fire({
-      title: 'Update Profile',
-      html: `<p>update your <strong><b><em>personal profile</em></b></strong> and <strong><b><em>payment details</em></b></strong>  to access this page</p>`,
-      icon: 'warning',
-      })
-      .then(()=>{
-        // alert("Update your profile")
-        history.push("/dashboard/profile")
-      })
-  }
+    if(!bankDetails){// if there is no bank details, return the user to their profile page
+      Swal.fire({
+        title: 'Update Profile',
+        html: `<p>update your <strong><b><em>personal profile</em></b></strong> and <strong><b><em>payment details</em></b></strong>  to access this page</p>`,
+        icon: 'warning',
+        })
+        .then(()=>{
+          // alert("Update your profile")
+          history.push("/dashboard/profile")
+        })
+    }
+
+    if(ROIstatus !== ""){
+      history.push("/dashboard")
+    };
     return (
 
       <>

@@ -41,12 +41,6 @@ const UserSidebar = () => {
                 {/* <img src={logo} width="50px" className="img-fluid mr-5" alt="palmanovas logo on the navbar" /> */}
                 </div>
                 <ul className="list-unstyled components mt-4">
-                    {/* General user sidebar item */}
-                    {/* <p>
-                        <FontAwesomeIcon icon={ faHandSparkles } className="mr-2"/>
-                        hi, Sam
-                    </p> */}
-                
                     <li>
                         <NavLink exact to="/dashboard" activeClassName="active">
                             <FontAwesomeIcon icon={ faHome } className="mr-2"/>

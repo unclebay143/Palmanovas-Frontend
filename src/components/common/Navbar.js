@@ -1,18 +1,33 @@
 // React
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { HashLink as ScrollLink } from 'react-router-hash-link';
+import { tryLogout, loadUserProfile } from '../../actions/userAction';
 
 // Images
-import logo from '../../assets/images/logo1.png';
+import logo from '../../assets/images/logo11.png';
 
 const Navbar = () => {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const user = useSelector(state => state.user);
+    const { profile } = user;
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        loadUserProfile()
+        if(localStorage.token){
+            setIsLoggedIn(true)
+        }
+    }, [])
+
+    console.log(isLoggedIn, profile);
     return (
         <>
             <section id="top-nav">
                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
                     <a className="navbar-brand" href=".">
-                        <img src={logo} width="50px" className="img-fluid" alt="palmanovas logo on the navbar" />
+                        <img src={logo} width="50px" className="img-fluid rounde" style={{padding: '4px', borderRadius: '5px'}} alt="palmanovas logo on the navbar" />
                     </a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon" />
@@ -60,12 +75,31 @@ const Navbar = () => {
                             </li>
                         </ul>
                         <ul className="float-left navbar-nav">
-                            <li className="nav-item">
-                                <NavLink activeClassName="active" to="/login" className="nav-link">Login</NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink activeClassName="active" to="/signup" className="nav-link">Sign Up</NavLink>
-                            </li>                
+                            {
+                                isLoggedIn ? (
+                                    <>
+                                        <li className="nav-item text-capitalize nav-link"><NavLink to="/dashboard"><b>{profile?.userName}</b></NavLink></li>
+                                        <li className="nav-item">
+                                            <a 
+                                                className="nav-link" 
+                                                href="."
+                                                target="_self"
+                                                onClick={()=>dispatch(tryLogout())}
+                                            >Logout</a>
+                                        
+                                        </li>
+                                    </>
+                                ):(
+                                    <>
+                                        <li className="nav-item">
+                                            <NavLink activeClassName="active" to="/login" className="nav-link">Login</NavLink>
+                                        </li>
+                                        <li className="nav-item">
+                                            <NavLink activeClassName="active" to="/signup" className="nav-link">Sign Up</NavLink>
+                                        </li>  
+                                    </>              
+                                )
+                            }
                         </ul>
                     </div>
                 </nav>

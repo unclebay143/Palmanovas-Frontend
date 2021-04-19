@@ -33,6 +33,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const Login = () => {
     const dispatch = useDispatch();
     const history = useHistory();
+    if(localStorage.token){
+        history.push('/dashboard')
+    }
     return (
         <>
             <section className="card login-form d-lg-flex justify-content-around">

@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHandsHelping, faHome, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 // Images
-import logo3 from '../../assets/images/logo4.jpeg';
+import logo3 from '../../assets/images/logo4.png';
 
 // Social icons
 import { SocialIcon } from 'react-social-icons'
@@ -21,7 +21,7 @@ const Footer = () => {
             <div className="row footer">
                 <div className="col-md-5 col-lg-5">
                     <div className="logo-brand">
-                        <img src={ logo3 } alt="palmanovas logo on the footer" className="mb-3 pb-1"/>
+                        <img src={ logo3 } alt="palmanovas logo on the footer" className="mb-3 pb-3"/>
                         <hr className="bg-custom-light-green"/>
                         <h5 className="mt-lg-5 mb-5 pt-1">
                             <FontAwesomeIcon icon={ faHome } className="mr-2"/>

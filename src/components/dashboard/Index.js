@@ -66,6 +66,7 @@ const Index = () => {
 
     useEffect(() => {
         setRemainingDays(generateMatureDate(startDate, endDate))
+        // setRemainingDays(1)
     }, [startDate, endDate])
     return (
         <>
@@ -74,7 +75,7 @@ const Index = () => {
             <div className="container dashboard-Index"> 
                 <h5 className="text-custom-green" style={{lineHeight: '2'}}>
                     <FontAwesomeIcon icon={ faHandSparkles } className="mr-2 text-custom-green"/>
-                    Welcome back, {userName && userName ? <span className="p-0"> { userName } </span> : <Skeleton color="#EEE" highlightColor="#CCC" count={1} width={100} /> }
+                    Welcome back, {userName && userName ? <span className="p-0 text-capitalize"> { userName } </span> : <Skeleton color="#EEE" highlightColor="#CCC" count={1} width={100} /> }
                     <span className="float-lg-right h3 mr-3 d-block mt-3 mt-lg-0">Rank: { userRank }</span>
                 </h5>
                 {/* {true === false ? "matured" : ("growing till "+ 1222)} */}
