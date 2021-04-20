@@ -39,7 +39,7 @@ const MonthlyBonusReferralList = () => {
     }, [dispatch, userID, profile])
     // function that handles popup
     const paymentMethodPrompt = (withdrawalMethod, userID, userReferralLength, bonus) =>{
-        console.log(bonus);
+        // console.log(bonus);
         setPayLoad({
             referralCount: userReferralLength,
             userID,
@@ -88,7 +88,7 @@ const MonthlyBonusReferralList = () => {
         
     }
 
-    console.log('referral count', payLoad.referralCount);
+    // console.log('referral count', payLoad.referralCount);
 
     // handle filterBy change
     const handleChange = (event) =>{

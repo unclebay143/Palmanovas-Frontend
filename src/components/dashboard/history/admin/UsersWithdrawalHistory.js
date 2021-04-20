@@ -16,6 +16,10 @@ const UsersWithdrawalHistory = () => {
   const { profile } = user;
   // component level state
   const [userWithdrawalHistories, setWithdrawalHistory] = useState(null)
+  const [filterByUsername, setFilterByUserName] = useState(null)
+  // if there is a filter return the users details else return all usernames
+  const filteredUsersByUsername = userWithdrawalHistories?.filter((referral)=> filterByUsername ? referral.userName.toLowerCase() === filterByUsername.toLowerCase() : referral.userName !== "")
+
   useEffect(() => {
     // if there is a profile get the user package approved history
     profile && dispatch(getAllUsersROIHistories(profile.userID))
@@ -25,15 +29,26 @@ const UsersWithdrawalHistory = () => {
     })
     .catch((error)=>console.log(error))
   }, [dispatch, profile])
-  console.log(userWithdrawalHistories)
+
+  // handle filterByUsername change
+  const handleChange = (event) =>{
+    setFilterByUserName(event.target.value);
+  }
   return (
     <>
       <div className="payment-history">
         <section className="section-heading mt-5">
           <div className="clearfix">
-              <h3>Withdrawal History <span className="display-5">(Admin)</span></h3>
+              <h3>Withdrawal History <span className="display-5"></span></h3>
               <hr className="hr-line"/>
           </div>
+        </section>
+        <section>
+          <label className="text-capitalize">Search history by usernames</label>
+          <input 
+            className="form-control form-control-sm" 
+            placeholder="Enter Username"
+            type="text" onChange={handleChange}></input>
         </section>
         <section className="table-responsive"  style={{overflowY:'scroll', height: '81vh'}}>
           <table className="table table-hover">
@@ -66,7 +81,8 @@ const UsersWithdrawalHistory = () => {
                   ): null
                 }
                 {
-                userWithdrawalHistories && [...userWithdrawalHistories].reverse().map((userHistory, index)=>{
+                  // userWithdrawalHistories && [...userWithdrawalHistories].reverse().map((userHistory, index)=>{
+                    filteredUsersByUsername && [...filteredUsersByUsername].reverse().map((userHistory, index)=>{
                     return(
                     <tr key={index}>
                         <th scope="row">{index + 1}</th>

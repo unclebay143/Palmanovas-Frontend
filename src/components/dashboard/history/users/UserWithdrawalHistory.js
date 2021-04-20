@@ -26,7 +26,7 @@ const UserWithdrawalHistory = () => {
     })
     .catch((error)=>console.log(error))
   }, [dispatch, profile])
-  console.log(withdrawalHistory)
+  // console.log(withdrawalHistory)
   return (
     <>
       <div className="payment-history">

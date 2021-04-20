@@ -44,7 +44,7 @@ const confirmWithdrawal = (userID, id) =>{
     userID,
     id
   }
-  console.log(payLoad);
+  // console.log(payLoad);
   const isTokenStored = localStorage.getItem('token');
   const configWithToken ={
       headers: {

@@ -13,7 +13,7 @@ const sendResolutionComplain = async(payLoad) =>{
         }
       }
     const response = await axios.post (BASE_URL + FOR_POST_RESOLUTION, payLoad, configWithToken);
-    console.log(response);
+    // console.log(response);
     return response;
 }
 

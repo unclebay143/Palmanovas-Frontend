@@ -110,7 +110,7 @@ const HandlePaymentRequest = () => {
             }
         })
         .catch((err)=>{
-            console.log(err);
+            // console.log(err);
             Swal.fire({
                 title: 'Something went wrong, Please try again',
                 showClass: {
@@ -126,7 +126,7 @@ const HandlePaymentRequest = () => {
         // );
     }
   
-    console.log(withdrawalRequests);
+    // console.log(withdrawalRequests);
     return (
         <>
             <div className="payment-history">

@@ -12,6 +12,7 @@ import {
     faCheckSquare,
     faHandsHelping,
     faCheckCircle,
+    faPeopleCarry,
 } from "@fortawesome/free-solid-svg-icons";
 
 
@@ -22,7 +23,6 @@ import { Link, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { tryLogout } from '../../../../actions/userAction';
 
-// import logo from '../../assets/images/logo1.png';
 
 
 const AdminSidebar = () => {
@@ -50,11 +50,17 @@ const AdminSidebar = () => {
                             Profile
                         </NavLink>
                     </li>
+                    <li>
+                        <NavLink exact to="/dashboard/view_users" activeClassName="active">
+                            <FontAwesomeIcon icon={ faUsers } className="mr-2"/>
+                            Registered Users
+                        </NavLink>
+                    </li>
                     <hr />
                     <li>
                         <NavLink exact to="/dashboard/upgrade_packages" activeClassName="active">
                             <FontAwesomeIcon icon={ faBoxOpen } className="mr-2"/>
-                            Package Confirmation
+                            Package Purchase
                         </NavLink>
                     </li>
                     <li>
@@ -66,12 +72,12 @@ const AdminSidebar = () => {
                     <li>
                         <NavLink exact to="/dashboard/payment_request" activeClassName="active">
                             <FontAwesomeIcon icon={ faCheckSquare } className="mr-2"/>
-                            ROI Confirmation
+                            ROI Requests
                         </NavLink>
                     </li>
                     <li>
                         <NavLink exact to="/dashboard/referral_bonus" activeClassName="active">
-                            <FontAwesomeIcon icon={ faUsers } className="mr-2"/>
+                            <FontAwesomeIcon icon={ faPeopleCarry } className="mr-2"/>
                             Referrals Bonus
                         </NavLink>
                     </li>

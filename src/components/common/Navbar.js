@@ -11,17 +11,19 @@ import logo from '../../assets/images/logo11.png';
 const Navbar = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const user = useSelector(state => state.user);
+    const [showDashboardText, setShowDashboardText] = useState(false)
     const { profile } = user;
     const dispatch = useDispatch();
 
     useEffect(() => {
-        loadUserProfile()
+        if(isLoggedIn){
+            dispatch(loadUserProfile())
+        }
         if(localStorage.token){
             setIsLoggedIn(true)
         }
-    }, [])
+    }, [isLoggedIn])
 
-    console.log(isLoggedIn, profile);
     return (
         <>
             <section id="top-nav">
@@ -78,7 +80,13 @@ const Navbar = () => {
                             {
                                 isLoggedIn ? (
                                     <>
-                                        <li className="nav-item text-capitalize nav-link"><NavLink to="/dashboard"><b>{profile?.userName}</b></NavLink></li>
+                                        <li className="nav-item text-capitalize nav-link" 
+                                            onMouseOver={()=>setShowDashboardText(true)}
+                                            onMouseOut={()=>setShowDashboardText(false)}
+                                        >
+                                            <NavLink to="/dashboard">
+                                                <b>{ showDashboardText ? "Back to Dashboard" : `Welcome, ${profile?.userName}`}</b>
+                                            </NavLink></li>
                                         <li className="nav-item">
                                             <a 
                                                 className="nav-link" 

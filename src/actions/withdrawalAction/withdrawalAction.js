@@ -9,7 +9,7 @@ export const tryRequestForwithdrawal = (userID, withdrawalMethod) => async dispa
 // admin to see all withdrawal requests from the users with matured ROI
 export const getAllWithdrawalRequest = () => async dispatch =>{
     const response = await WithDrawalService.getAllWithdrawalRequest();
-    console.log(response);
+    // console.log(response);
     return response;
 }
 

@@ -38,6 +38,7 @@ import { Wallets } from '../users/Wallets';
 import MonthlyBonusReferralList from '../admin/MonthlyBonusReferralList';
 import MyReferralBonusHistory from './history/users/MyReferralBonusHistory';
 import UsersReferralBonusHistory from './history/admin/UsersReferralBonusHistory';
+import UsersList from '../admin/UsersList';
 
 
 
@@ -84,6 +85,7 @@ const Dashboard = () => {
                             <Route path="/dashboard/roi_withdrawal_history" component = { UsersWithdrawalHistory } />
                             <Route path="/dashboard/monthly_bonus" component = { MonthlyBonusReferralList } />
                             <Route path="/dashboard/monthly_bonus_history" component = { MonthlyBonusHistory } />
+                            <Route path="/dashboard/view_users" component = { UsersList } />
 
 
 

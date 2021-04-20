@@ -36,7 +36,7 @@ const ReferralList = () => {
     }, [dispatch, userID, profile])
     // function that handles popup
     const paymentMethodPrompt = (withdrawalMethod, userID, userReferralLength, bonus) =>{
-        console.log(bonus);
+        // console.log(bonus);
         setPayLoad({
             referralCount: userReferralLength,
             userID,
@@ -174,9 +174,9 @@ const ReferralList = () => {
                             }
                             {
                                 
-                                usersReferral?.length === 0 ? (
+                                usersReferralBaseOnSize?.length === 0 ? (
                                     <tr>
-                                        <td  colSpan="4">Fetching Referrals please wait...</td>
+                                        <td  colSpan="4">No users with bonus yet.</td>
                                     </tr>
                                 ):null
                             }

@@ -72,13 +72,13 @@ const Resolution = () => {
             dispatch(sendResolutionDetails(file))
             .then((res)=>console.log(res))
             .catch((err)=>console.log(err))
-            console.log(resolutionForm.attachment.name);
+            // console.log(resolutionForm.attachment.name);
             // console.log("payload",payLoad);
             // console.log("formdata",file);
     }
-    console.log(resolutionForm);
-    console.log(resolutionForm.comment);
-    console.log(resolutionForm.attachment);
+    // console.log(resolutionForm);
+    // console.log(resolutionForm.comment);
+    // console.log(resolutionForm.attachment);
 
 
 

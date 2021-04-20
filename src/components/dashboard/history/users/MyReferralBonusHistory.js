@@ -21,7 +21,7 @@ const MyReferralBonusHistory = () => {
     })
     .catch((error)=>console.log(error))
   }, [dispatch, profile])
-  console.log(userReferral)
+  // console.log(userReferral)
   return (
     <>
       <div className="payment-history">

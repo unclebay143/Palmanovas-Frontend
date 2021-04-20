@@ -18,7 +18,7 @@ const UserPackageHistory = () => {
     // if there is a profile get the user package approved history
     profile && dispatch(getUserApprovedPayments(profile.userID))
     .then((res)=>{
-      console.log(res)
+      // console.log(res)
       // store the response to the component level state
       setPackagePaymentHistory(res.data.data)
     })
