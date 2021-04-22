@@ -37,7 +37,7 @@ export const Bonus = () => {
                     <>
                         <div className="row">
                             <div className="col-md-4 col-lg-4 col-12">
-                                <p>current Bonus: <b># {currentBonus}</b></p>
+                                <p><b>current Bonus: # {currentBonus}</b></p>
                                 <div className={ `bonus ${ flipBonusCard ? 'flip' : '' } ` }>
                                     {/* FRONT OF BONUS CARD */}    
                                     <div className="front">

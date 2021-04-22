@@ -1,5 +1,6 @@
 import { 
     faGift,
+    faHandsHelping,
     faHistory,
     faMoneyBillAlt,
     faPaperPlane,
@@ -15,12 +16,12 @@ const MenuItem = [
         icon: faMoneyBillAlt,
         url: '/dashboard/my_wallet'
     },
-    {
-        id: 2,
-        title: "Upgrade",
-        icon: faPaperPlane,
-        url: '/dashboard/upgrade'
-    },
+    // {
+    //     id: 2,
+    //     title: "Upgrade",
+    //     icon: faPaperPlane,
+    //     url: '/dashboard/upgrade'
+    // },
     {
         id: 3,
         title: "Bonus",
@@ -35,9 +36,15 @@ const MenuItem = [
     },
     {
         id: 5,
-        title: "History",
+        title: "Package History",
         icon: faHistory,
         url: '/dashboard/package_history'
+    },
+    {
+        id: 6,
+        title: "Resolution",
+        icon: faHandsHelping,
+        url: '/dashboard/resolution'
     },
     {
         id: 6,
@@ -50,21 +57,21 @@ const MenuItem = [
 export const adminMenuItem = [
     {
         id: 1,
-        title: "Package Confirmation",
+        title: "Package Payment",
         icon: faMoneyBillAlt,
         url: '/dashboard/upgrade_packages'
     },
     {
         id: 2,
-        title: "ROI Confirmation",
+        title: "ROI Requests",
         icon: faPaperPlane,
         url: '/dashboard/payment_request'
     },
     {
         id: 3,
-        title: "Bonus History",
+        title: "Monthly Bonus",
         icon: faGift,
-        url: '/dashboard/users_bonus_history'
+        url: '/dashboard/monthly_bonus'
     },
     {
         id: 4,

@@ -40,7 +40,7 @@ const SignUp = () => {
         <>
             <section className="card signup-form">
                 <ToastContainer />
-                                <style>
+                <style>
                     {
                         `
                             .Toastify__toast--warning{

@@ -38,6 +38,7 @@ const UsersList = () => {
                 </section>
                 <section>
                 <label className="text-capitalize">Search by usernames</label>
+                <b className="float-right">Total: <label>{usersReferral?.length}</label></b>
                 <input 
                     className="form-control form-control-sm" 
                     placeholder="Enter Username"

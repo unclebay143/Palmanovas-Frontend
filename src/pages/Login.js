@@ -28,11 +28,13 @@ import { ToastContainer } from 'react-toastify';
 import { handleLogin } from '../actions/userAction';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { invalidDetailsLogger, somethingWentWrongLogger, userNameOrEmailNotFoundLogger } from '../toaster';
 
 
 const Login = () => {
     const dispatch = useDispatch();
     const history = useHistory();
+
     if(localStorage.token){
         history.push('/dashboard')
     }
@@ -65,10 +67,16 @@ const Login = () => {
                             onSubmit={(values, action)=>{
                                 dispatch(handleLogin(values, action))
                                 .then((res)=>{
+                                    console.log(typeof res === 'string' ? "yh" : 'no');
+                                    if(typeof res === 'string'){
+                                        return invalidDetailsLogger()
+                                        // alert("Username or Password incorrect")
+                                    }
                                     history.push('/dashboard')
                                 })
                                 .catch((err)=>{
-                                    console.log(err)
+                                    action.setSubmitting(false)
+                                    return invalidDetailsLogger()
                                 })
                             }}
                         >

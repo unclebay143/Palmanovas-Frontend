@@ -90,7 +90,7 @@ const promptUser = (packageDetailsFromState, requestDetail) =>{
             <div className="upgrade">
                 <section className="section-heading mt-5">
                     <div className="clearfix">
-                        <h3>Confirm Payment</h3>
+                        <h3>Package Payment Confirmation</h3>
                         <hr className="hr-line"/>
                     </div>
                 </section>

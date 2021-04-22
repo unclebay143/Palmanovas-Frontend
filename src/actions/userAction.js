@@ -4,6 +4,7 @@ import {
     bankDetailsUpdateFailLogger,
     cryptoDetailsUpdatedSuccessfullyLogger,
     cryptoDetailsUpdateFailLogger,
+    invalidDetailsLogger,
     logOutSuccessLogger,
     passwordUpdateCompletedLogger,
     passwordUpdateFailLogger,
@@ -35,8 +36,10 @@ export const handleRegistration = (values, action) => dispatch =>{
 // Action function that handles login
 
 export const handleLogin = (values, action) => dispatch =>{
+    // userNameOrEmailNotFoundLogger()
     return UserService.tryLogin(values)
     .then((response)=>{ // handle response
+        console.log(response);
         const _token = response.data.data.accessToken;
         localStorage.setItem('token', _token);
         if(localStorage.token){
@@ -47,19 +50,21 @@ export const handleLogin = (values, action) => dispatch =>{
             userIsAuthenticatedLogger()
             action.setSubmitting(false)
         }
-        if(!localStorage.token){
-
-            somethingWentWrongLogger()
-        }
-        
+        // if(!response.data){
+        //     alert("Username or Password incorrect")
+        //     somethingWentWrongLogger()
+        // }
+        return response
     })
     .catch((err)=>{ // handle error
-
+        // console.log(err ? "nsns" : "noething");
+        // err && somethingWentWrongLogger()
+        // err && alert(err)
         if(err){ // catch all errors in this block
-            userNameOrEmailNotFoundLogger()
+            return invalidDetailsLogger()
         }
-        somethingWentWrongLogger()
         action.setSubmitting(false)
+        return err
     })
 }
 

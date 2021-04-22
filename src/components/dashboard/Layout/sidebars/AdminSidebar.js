@@ -60,7 +60,7 @@ const AdminSidebar = () => {
                     <li>
                         <NavLink exact to="/dashboard/upgrade_packages" activeClassName="active">
                             <FontAwesomeIcon icon={ faBoxOpen } className="mr-2"/>
-                            Package Purchase
+                            Package Payment
                         </NavLink>
                     </li>
                     <li>

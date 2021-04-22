@@ -9,7 +9,6 @@ import Pricing from './Pricing';
 
 
 const LandingPage = () => {
-    console.log("loading");
     return (
         <div>
             <Carousel />
